@@ -11,6 +11,9 @@ export const columns = {
   world: {
     zh: "国际",
   },
+  visual: {
+    zh: "图文",
+  },
   tech: {
     zh: "科技",
   },

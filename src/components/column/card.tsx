@@ -163,10 +163,30 @@ function NewsCard({ id, setHandleRef }: NewsCardProps) {
         defer
       >
         <div className={$("transition-opacity-500", isFetching && "op-20")}>
-          {!!data?.items?.length && (sources[id].type === "hottest" ? <NewsListHot items={data.items} /> : <NewsListTimeLine items={data.items} />)}
+          {!!data?.items?.length && (id === "pinterest" ? <PinterestList items={data.items} /> : sources[id].type === "hottest" ? <NewsListHot items={data.items} /> : <NewsListTimeLine items={data.items} />)}
         </div>
       </OverlayScrollbar>
     </>
+  )
+}
+
+function PinterestList({ items }: { items: NewsItem[] }) {
+  return (
+    <ol className="flex flex-col gap-3" aria-label="Pinterest 图文灵感">
+      {items.map(item => (
+        <li key={item.id}>
+          <a href={item.url} target="_blank" rel="noopener noreferrer" className="flex gap-3 items-center p-1 rounded-md hover:bg-neutral-400/10 transition-colors">
+            {item.extra?.image && (
+              <img src={item.extra.image} alt="" loading="lazy" decoding="async" referrerPolicy="no-referrer" width={80} height={80} className="w-20 h-20 shrink-0 object-cover rounded-lg bg-neutral-400/10" onError={event => event.currentTarget.hidden = true} />
+            )}
+            <span className="flex flex-col gap-1 min-w-0">
+              <span className="text-base break-words leading-snug">{item.title}</span>
+              <span className="text-xs text-neutral-400/80">{item.extra?.info}</span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ol>
   )
 }
 

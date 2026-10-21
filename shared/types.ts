@@ -91,6 +91,7 @@ export interface NewsItem {
   mobileUrl?: string
   pubDate?: number | string
   extra?: {
+    image?: string
     hover?: string
     date?: number | string
     info?: false | string

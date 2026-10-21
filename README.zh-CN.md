@@ -43,6 +43,8 @@ TikTok 展示官方 Creative Center 的美国区近 7 天热门话题及视频�
 
 ## 国际平台内容
 
+Pinterest 位于「图文」分类，同时出现在最热、更新及来源搜索中。展示公开灵感页的真实缩略图和原标题，优先精选、随后灵感分类，合并去重后最多 10 条；分别标注「公开精选」「精选合作专题」「灵感分类」，不将列表当作人气排名。公开页不可用时回退到标注的 Pinterest 官方动态；图片使用官方 CDN，点击进入原始页面。
+
 虎扑、凤凰网、爱奇艺、稀土掘金、快手、牛客、腾讯视频、少数派、腾讯新闻、澎湃新闻、百度贴吧、今日头条、华尔街见闻、微博、雪球、知乎依次替换为 Euronews、Le Monde、YouTube、Instagram、Facebook、Dailymotion、Rumble、Vimeo、Twitch、Kick、Netflix、Disney+、Paramount+、Peacock、X、Quora。原关注及排序自动迁移，原平台的多个子项合并去重。已保存的 HBO Max、Hulu 也分别迁移至 Paramount+、Peacock。
 
 优先使用公开热门或推荐内容，无法获取时显示并标注官方动态：

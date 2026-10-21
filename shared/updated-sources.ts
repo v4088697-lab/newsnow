@@ -1,4 +1,5 @@
 export const updatedSourceIds = [
+  "pinterest",
   "paramountplus",
   "peacock",
   "euronews",

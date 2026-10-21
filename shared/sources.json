@@ -313,6 +313,16 @@
     "color": "orange",
     "interval": 600000
   },
+  "pinterest": {
+    "title": "图文灵感",
+    "name": "Pinterest",
+    "type": "hottest",
+    "desc": "Pinterest 公开精选与灵感分类，展示原始图片和标题，不代表个人推荐或热门排名；不可用时标注官方动态。",
+    "column": "visual",
+    "home": "https://www.pinterest.com/ideas/",
+    "color": "rose",
+    "interval": 600000
+  },
   "euronews": {
     "title": "最新新闻",
     "name": "Euronews 欧洲新闻台",
