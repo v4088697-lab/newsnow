@@ -2,7 +2,6 @@ import { Link } from "@tanstack/react-router"
 import { useIsFetching } from "@tanstack/react-query"
 import type { SourceID } from "@shared/types"
 import { NavBar } from "../navbar"
-import { Menu } from "./menu"
 import { PageActions } from "./page-actions"
 import { currentSourcesAtom, goToTopAtom } from "~/atoms"
 
@@ -15,12 +14,6 @@ function GoTop() {
       className={$("i-ph:arrow-fat-up-duotone", ok ? "op-50 btn" : "op-0")}
       onClick={goToTop}
     />
-  )
-}
-
-function Github() {
-  return (
-    <button type="button" title="Github" className="i-ph:github-logo-duotone btn" onClick={() => window.open(Homepage)} />
   )
 }
 
@@ -73,8 +66,6 @@ export function Header() {
         <GoTop />
         <Refresh />
         <PageActions />
-        <Github />
-        <Menu />
       </span>
     </>
   )
