@@ -1,7 +1,13 @@
 import { describe, expect, it } from "vitest"
-import { parseTikTokTrends } from "./tiktok-trends"
+import { isCurrentTikTokCache, parseTikTokTrends } from "./tiktok-trends"
 
 describe("tikTok official trending hashtags", () => {
+  it("invalidates old short TikTok caches while preserving complete and unrelated caches", () => {
+    const items = Array.from({ length: 10 }, (_, id) => ({ id, title: `Topic ${id}`, url: `https://www.tiktok.com/tag/topic${id}` }))
+    expect(isCurrentTikTokCache({ id: "tiktok", items: items.slice(0, 3) })).toBe(false)
+    expect(isCurrentTikTokCache({ id: "tiktok", items })).toBe(true)
+    expect(isCurrentTikTokCache({ id: "bbc", items: items.slice(0, 3) })).toBe(true)
+  })
   it("preserves official rank, labels the region and period, and links to TikTok", () => {
     const items = parseTikTokTrends({
       BaseResp: { StatusCode: 0 },

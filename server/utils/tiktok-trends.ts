@@ -1,5 +1,11 @@
 import type { NewsItem } from "@shared/types"
 
+export const TIKTOK_TREND_COUNT = 10
+
+export function isCurrentTikTokCache(cache: { id: string, items: NewsItem[] }) {
+  return cache.id !== "tiktok" || cache.items.length >= TIKTOK_TREND_COUNT
+}
+
 export interface TikTokTrendsResponse {
   BaseResp?: { StatusCode?: number }
   items?: {
@@ -11,7 +17,7 @@ export interface TikTokTrendsResponse {
   }[]
 }
 
-export function parseTikTokTrends(response: TikTokTrendsResponse): NewsItem[] {
+export function parseTikTokTrends(response: TikTokTrendsResponse, category = false): NewsItem[] {
   if (response.BaseResp?.StatusCode !== 0 || !Array.isArray(response.items)) {
     throw new Error("TikTok trends unavailable")
   }
@@ -21,7 +27,7 @@ export function parseTikTokTrends(response: TikTokTrendsResponse): NewsItem[] {
     title: `#${item.hashtagName.trim().replace(/^#/, "")}`,
     url: `https://www.tiktok.com/tag/${encodeURIComponent(item.hashtagName.trim().replace(/^#/, ""))}`,
     extra: {
-      info: typeof item.publishCnt === "number" ? `${item.publishCnt.toLocaleString("en-US")} 条视频 · 美国近 7 天` : "美国近 7 天",
+      info: `${typeof item.publishCnt === "number" ? `${item.publishCnt.toLocaleString("en-US")} 条视频 · ` : ""}美国近 7 天${category ? " · 分类趋势" : ""}`,
     },
   }))
   if (!items.length) throw new Error("TikTok returned no trending hashtags")

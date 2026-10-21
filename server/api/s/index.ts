@@ -2,6 +2,7 @@ import type { SourceID, SourceResponse } from "@shared/types"
 import { getters } from "#/getters"
 import { getCacheTable } from "#/database/cache"
 import type { CacheInfo } from "#/types"
+import { isCurrentTikTokCache } from "#/utils/tiktok-trends"
 
 const info = {
   LICENCE: "MIT",
@@ -28,6 +29,7 @@ export default defineEventHandler(async (event): Promise<SourceResponse> => {
     let cache: CacheInfo | undefined
     if (cacheTable) {
       cache = await cacheTable.get(id)
+      if (cache && !isCurrentTikTokCache(cache)) cache = undefined
       if (cache) {
       // if (cache) {
         // interval 刷新间隔，对于缓存失效也要执行的。本质上表示本来内容更新就很慢，这个间隔内可能内容压根不会更新。

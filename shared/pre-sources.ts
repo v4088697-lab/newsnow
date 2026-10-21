@@ -107,7 +107,7 @@ export const originSources = {
     column: "world",
     color: "gray",
     title: "美国 · 近 7 天趋势",
-    desc: "TikTok 官方 Creative Center 热门话题，按官方趋势排名展示；数据不可用时显示获取失败或已有缓存。",
+    desc: "TikTok 官方 Creative Center 美国区近 7 天综合与分类热门话题，合并去重展示 10 条；分类条目已注明。数据不可用时使用已有完整缓存。",
     home: "https://www.tiktok.com",
   },
   hupu: {

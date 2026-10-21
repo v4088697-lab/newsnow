@@ -1,5 +1,6 @@
 import type { SourceID, SourceResponse } from "@shared/types"
 import { getCacheTable } from "#/database/cache"
+import { isCurrentTikTokCache } from "#/utils/tiktok-trends"
 
 export default defineEventHandler(async (event) => {
   try {
@@ -9,7 +10,7 @@ export default defineEventHandler(async (event) => {
     if (ids?.length && cacheTable) {
       const caches = await cacheTable.getEntire(ids)
       const now = Date.now()
-      return caches.map(cache => ({
+      return caches.filter(isCurrentTikTokCache).map(cache => ({
         status: "cache",
         id: cache.id,
         items: cache.items,
