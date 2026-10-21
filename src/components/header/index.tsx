@@ -3,6 +3,7 @@ import { useIsFetching } from "@tanstack/react-query"
 import type { SourceID } from "@shared/types"
 import { NavBar } from "../navbar"
 import { Menu } from "./menu"
+import { PageActions } from "./page-actions"
 import { currentSourcesAtom, goToTopAtom } from "~/atoms"
 
 function GoTop() {
@@ -59,7 +60,7 @@ export function Header() {
             </p>
           </span>
         </Link>
-        <a target="_blank" href={`${Homepage}/releases/tag/v${Version}`} className="btn text-sm ml-1 font-mono">
+        <a target="_blank" href={`${Homepage}/releases/tag/v${Version}`} className="btn text-sm ml-1 font-mono hidden sm:inline">
           {`v${Version}`}
         </a>
       </span>
@@ -68,9 +69,10 @@ export function Header() {
           <NavBar />
         </span>
       </span>
-      <span className="justify-self-end flex gap-2 items-center text-xl text-primary-600 dark:text-primary">
+      <span className="justify-self-end flex gap-1 sm:gap-2 items-center text-xl text-primary-600 dark:text-primary">
         <GoTop />
         <Refresh />
+        <PageActions />
         <Github />
         <Menu />
       </span>
