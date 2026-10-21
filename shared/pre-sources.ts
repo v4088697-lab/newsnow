@@ -13,7 +13,7 @@ const Time = {
 }
 
 export const originSources = {
-  "v2ex": {
+  v2ex: {
     name: "V2EX",
     color: "slate",
     home: "https://v2ex.com/",
@@ -24,14 +24,14 @@ export const originSources = {
       },
     },
   },
-  "zhihu": {
+  zhihu: {
     name: "知乎",
     type: "hottest",
     column: "china",
     color: "blue",
     home: "https://www.zhihu.com",
   },
-  "weibo": {
+  weibo: {
     name: "微博",
     title: "实时热搜",
     type: "hottest",
@@ -40,7 +40,7 @@ export const originSources = {
     interval: Time.Realtime,
     home: "https://weibo.com",
   },
-  "zaobao": {
+  zaobao: {
     name: "联合早报",
     interval: Time.Common,
     type: "realtime",
@@ -49,15 +49,16 @@ export const originSources = {
     desc: "来自第三方网站: 早晨报",
     home: "https://www.zaobao.com",
   },
-  "coolapk": {
-    name: "酷安",
+  wsj: {
+    name: "The Wall Street Journal 华尔街日报",
     type: "hottest",
-    column: "tech",
-    color: "green",
-    title: "今日最热",
-    home: "https://coolapk.com",
+    column: "finance",
+    color: "slate",
+    title: "最新新闻",
+    desc: "官方 RSS，部分文章需要订阅；订阅源不可用时使用 Google News 聚合并注明。",
+    home: "https://www.wsj.com",
   },
-  "mktnews": {
+  mktnews: {
     name: "MKTNews",
     column: "finance",
     home: "https://mktnews.net",
@@ -69,7 +70,7 @@ export const originSources = {
       },
     },
   },
-  "wallstreetcn": {
+  wallstreetcn: {
     name: "华尔街见闻",
     color: "blue",
     column: "finance",
@@ -91,31 +92,25 @@ export const originSources = {
       },
     },
   },
-  "36kr": {
-    name: "36氪",
-    type: "realtime",
-    color: "blue",
-    home: "https://36kr.com",
-    column: "tech",
-    disable: "cf",
-    sub: {
-      quick: {
-        title: "快讯",
-      },
-      renqi: {
-        type: "hottest",
-        title: "人气榜",
-      },
-    },
-  },
-  "douyin": {
-    name: "抖音",
+  cnn: {
+    name: "CNN 美国有线电视新闻网",
     type: "hottest",
-    column: "china",
-    color: "gray",
-    home: "https://www.douyin.com",
+    color: "red",
+    home: "https://www.cnn.com",
+    column: "world",
+    title: "最新新闻",
+    desc: "通过 Google News 聚合 CNN 新闻标题，点击查看报道。",
   },
-  "hupu": {
+  tiktok: {
+    name: "TikTok",
+    type: "hottest",
+    column: "world",
+    color: "gray",
+    title: "美国 · 近 7 天趋势",
+    desc: "TikTok 官方 Creative Center 热门话题，按官方趋势排名展示；数据不可用时显示获取失败或已有缓存。",
+    home: "https://www.tiktok.com",
+  },
+  hupu: {
     name: "虎扑",
     home: "https://hupu.com",
     column: "sports",
@@ -123,7 +118,7 @@ export const originSources = {
     type: "hottest",
     color: "red",
   },
-  "dongqiudi": {
+  dongqiudi: {
     name: "懂球帝",
     title: "头条",
     type: "realtime",
@@ -131,7 +126,7 @@ export const originSources = {
     color: "green",
     home: "https://www.dongqiudi.com",
   },
-  "aihot": {
+  aihot: {
     name: "AIHOT",
     type: "realtime",
     column: "tech",
@@ -139,7 +134,7 @@ export const originSources = {
     interval: Time.Fast,
     home: "https://aihot.news/all",
   },
-  "tieba": {
+  tieba: {
     name: "百度贴吧",
     title: "热议",
     column: "china",
@@ -147,21 +142,21 @@ export const originSources = {
     color: "blue",
     home: "https://tieba.baidu.com",
   },
-  "toutiao": {
+  toutiao: {
     name: "今日头条",
     type: "hottest",
     column: "china",
     color: "red",
     home: "https://www.toutiao.com",
   },
-  "ithome": {
+  ithome: {
     name: "IT之家",
     color: "red",
     column: "tech",
     type: "realtime",
     home: "https://www.ithome.com",
   },
-  "thepaper": {
+  thepaper: {
     name: "澎湃新闻",
     interval: Time.Common,
     type: "hottest",
@@ -170,20 +165,20 @@ export const originSources = {
     color: "gray",
     home: "https://www.thepaper.cn",
   },
-  "sputniknewscn": {
+  sputniknewscn: {
     name: "卫星通讯社",
     color: "orange",
     column: "world",
     home: "https://sputniknews.cn",
   },
-  "cankaoxiaoxi": {
+  cankaoxiaoxi: {
     name: "参考消息",
     color: "red",
     column: "world",
     interval: Time.Common,
     home: "https://china.cankaoxiaoxi.com",
   },
-  "pcbeta": {
+  pcbeta: {
     name: "远景论坛",
     color: "blue",
     column: "tech",
@@ -202,27 +197,16 @@ export const originSources = {
       },
     },
   },
-  "cls": {
-    name: "财联社",
-    color: "red",
-    column: "finance",
-    home: "https://www.cls.cn",
-    sub: {
-      telegraph: {
-        title: "电报",
-        interval: Time.Fast,
-        type: "realtime",
-      },
-      depth: {
-        title: "深度",
-      },
-      hot: {
-        title: "热门",
-        type: "hottest",
-      },
-    },
+  washingtonpost: {
+    name: "The Washington Post 华盛顿邮报",
+    color: "slate",
+    column: "world",
+    home: "https://www.washingtonpost.com",
+    type: "hottest",
+    title: "最新新闻",
+    desc: "官方 RSS，部分文章需要订阅；订阅源不可用时使用 Google News 聚合并注明。",
   },
-  "xueqiu": {
+  xueqiu: {
     name: "雪球",
     color: "blue",
     home: "https://xueqiu.com",
@@ -235,7 +219,7 @@ export const originSources = {
       },
     },
   },
-  "gelonghui": {
+  gelonghui: {
     name: "格隆汇",
     color: "blue",
     title: "事件",
@@ -244,7 +228,7 @@ export const originSources = {
     interval: Time.Realtime,
     home: "https://www.gelonghui.com",
   },
-  "fastbull": {
+  fastbull: {
     name: "法布财经",
     color: "emerald",
     home: "https://www.fastbull.cn",
@@ -261,28 +245,28 @@ export const originSources = {
       },
     },
   },
-  "solidot": {
+  solidot: {
     name: "Solidot",
     color: "teal",
     column: "tech",
     home: "https://solidot.org",
     interval: Time.Slow,
   },
-  "hackernews": {
+  hackernews: {
     name: "Hacker News",
     color: "orange",
     column: "tech",
     type: "hottest",
     home: "https://news.ycombinator.com/",
   },
-  "producthunt": {
+  producthunt: {
     name: "Product Hunt",
     color: "red",
     column: "tech",
     type: "hottest",
     home: "https://www.producthunt.com/",
   },
-  "github": {
+  github: {
     name: "Github",
     color: "gray",
     home: "https://github.com/",
@@ -294,32 +278,34 @@ export const originSources = {
       },
     },
   },
-  "bilibili": {
-    name: "哔哩哔哩",
-    color: "blue",
-    home: "https://www.bilibili.com",
-    sub: {
-      "hot-search": {
-        title: "热搜",
-        column: "china",
-        type: "hottest",
-      },
-      "hot-video": {
-        title: "热门视频",
-        disable: "cf",
-        column: "china",
-        type: "hottest",
-      },
-      "ranking": {
-        title: "排行榜",
-        column: "china",
-        disable: "cf",
-        type: "hottest",
-        interval: Time.Common,
-      },
-    },
+  apnews: {
+    name: "AP News 美联社",
+    color: "slate",
+    home: "https://apnews.com",
+    column: "world",
+    type: "hottest",
+    title: "最新新闻",
+    desc: "通过 Google News 聚合 AP News 新闻标题，点击查看报道。",
   },
-  "kuaishou": {
+  nytimes: {
+    name: "The New York Times 纽约时报",
+    color: "gray",
+    home: "https://www.nytimes.com",
+    column: "world",
+    type: "hottest",
+    title: "最新新闻",
+    desc: "官方 RSS，部分文章需要订阅；订阅源不可用时使用 Google News 聚合并注明。",
+  },
+  bbc: {
+    name: "BBC News 英国广播公司",
+    color: "red",
+    home: "https://www.bbc.com/news",
+    column: "world",
+    type: "hottest",
+    title: "最新新闻",
+    desc: "BBC 官方 RSS；订阅源不可用时使用 Google News 聚合并注明。",
+  },
+  kuaishou: {
     name: "快手",
     type: "hottest",
     column: "china",
@@ -328,7 +314,7 @@ export const originSources = {
     disable: "cf",
     home: "https://www.kuaishou.com",
   },
-  "kaopu": {
+  kaopu: {
     name: "靠谱新闻",
     column: "world",
     color: "gray",
@@ -336,21 +322,23 @@ export const originSources = {
     desc: "不一定靠谱，多看多思考",
     home: "https://kaopu.news/",
   },
-  "jin10": {
+  jin10: {
     name: "金十数据",
     column: "finance",
     color: "blue",
     type: "realtime",
     home: "https://www.jin10.com",
   },
-  "baidu": {
-    name: "百度热搜",
-    column: "china",
-    color: "blue",
+  reuters: {
+    name: "Reuters 路透社",
+    column: "world",
+    color: "orange",
     type: "hottest",
-    home: "https://www.baidu.com",
+    title: "最新新闻",
+    desc: "通过 Google News 聚合 Reuters 新闻标题，点击查看报道。",
+    home: "https://www.reuters.com",
   },
-  "linuxdo": {
+  linuxdo: {
     name: "LINUX DO",
     column: "tech",
     color: "slate",
@@ -369,14 +357,14 @@ export const originSources = {
       },
     },
   },
-  "ghxi": {
+  ghxi: {
     name: "果核剥壳",
     column: "china",
     color: "yellow",
     home: "https://www.ghxi.com/",
     disable: true,
   },
-  "smzdm": {
+  smzdm: {
     name: "什么值得买",
     column: "china",
     color: "red",
@@ -384,28 +372,28 @@ export const originSources = {
     home: "https://www.smzdm.com",
     disable: true,
   },
-  "nowcoder": {
+  nowcoder: {
     name: "牛客",
     column: "china",
     color: "blue",
     type: "hottest",
     home: "https://www.nowcoder.com",
   },
-  "sspai": {
+  sspai: {
     name: "少数派",
     column: "tech",
     color: "red",
     type: "hottest",
     home: "https://sspai.com",
   },
-  "juejin": {
+  juejin: {
     name: "稀土掘金",
     column: "tech",
     color: "blue",
     type: "hottest",
     home: "https://juejin.cn",
   },
-  "ifeng": {
+  ifeng: {
     name: "凤凰网",
     column: "china",
     color: "red",
@@ -413,34 +401,25 @@ export const originSources = {
     title: "热点资讯",
     home: "https://www.ifeng.com",
   },
-  "chongbuluo": {
-    name: "虫部落",
-    column: "china",
-    color: "green",
-    home: "https://www.chongbuluo.com",
-    sub: {
-      latest: {
-        title: "最新",
-        interval: Time.Common,
-        home: "https://www.chongbuluo.com/forum.php?mod=guide&view=newthread",
-      },
-      hot: {
-        title: "最热",
-        type: "hottest",
-        interval: Time.Common,
-        home: "https://www.chongbuluo.com/forum.php?mod=guide&view=hot",
-      },
-    },
-  },
-  "douban": {
-    name: "豆瓣",
-    column: "china",
-    title: "热门电影",
-    color: "green",
+  guardian: {
+    name: "The Guardian 卫报",
+    column: "world",
+    color: "blue",
+    home: "https://www.theguardian.com",
     type: "hottest",
-    home: "https://www.douban.com",
+    title: "最新新闻",
+    desc: "卫报官方 RSS；订阅源不可用时使用 Google News 聚合并注明。",
   },
-  "steam": {
+  bloomberg: {
+    name: "Bloomberg 彭博社",
+    column: "finance",
+    title: "最新新闻",
+    color: "purple",
+    type: "hottest",
+    desc: "彭博官方 RSS，部分文章需要订阅；订阅源不可用时使用 Google News 聚合并注明。",
+    home: "https://www.bloomberg.com",
+  },
+  steam: {
     name: "Steam",
     column: "world",
     title: "在线人数",
@@ -448,7 +427,7 @@ export const originSources = {
     type: "hottest",
     home: "https://store.steampowered.com",
   },
-  "tencent": {
+  tencent: {
     name: "腾讯新闻",
     column: "china",
     color: "blue",
@@ -462,16 +441,17 @@ export const originSources = {
       },
     },
   },
-  "freebuf": {
-    name: "Freebuf",
-    column: "china",
-    title: "网络安全",
-    color: "green",
+  ft: {
+    name: "Financial Times 金融时报",
+    column: "finance",
+    title: "最新新闻",
+    color: "orange",
     type: "hottest",
-    home: "https://www.freebuf.com/",
+    desc: "金融时报官方 RSS，部分文章需要订阅；订阅源不可用时使用 Google News 聚合并注明。",
+    home: "https://www.ft.com",
   },
 
-  "qqvideo": {
+  qqvideo: {
     name: "腾讯视频",
     column: "china",
     color: "blue",
@@ -486,7 +466,7 @@ export const originSources = {
       },
     },
   },
-  "iqiyi": {
+  iqiyi: {
     name: "爱奇艺",
     column: "china",
     color: "green",

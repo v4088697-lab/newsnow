@@ -107,9 +107,9 @@ function NewsCard({ id, setHandleRef }: NewsCardProps) {
   return (
     <>
       <div className={$("flex justify-between mx-2 mt-0 mb-2 items-center")}>
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-2 items-center min-w-0 flex-1">
           <a
-            className={$("w-8 h-8 rounded-full bg-cover")}
+            className={$("w-8 h-8 rounded-full bg-cover shrink-0")}
             target="_blank"
             href={sources[id].home}
             title={sources[id].desc}
@@ -117,10 +117,10 @@ function NewsCard({ id, setHandleRef }: NewsCardProps) {
               backgroundImage: `url(/icons/${id.split("-")[0]}.png)`,
             }}
           />
-          <span className="flex flex-col">
-            <span className="flex items-center gap-2">
+          <span className="flex flex-col min-w-0">
+            <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
               <span
-                className="text-xl font-bold"
+                className="text-xl font-bold break-words leading-tight"
                 title={sources[id].desc}
               >
                 {sources[id].name}
@@ -130,7 +130,7 @@ function NewsCard({ id, setHandleRef }: NewsCardProps) {
             <span className="text-xs op-70"><UpdatedTime isError={isError} updatedTime={data?.updatedTime} /></span>
           </span>
         </div>
-        <div className={$("flex gap-2 text-lg", `color-${sources[id].color}`)}>
+        <div className={$("flex gap-2 text-lg shrink-0 ml-2", `color-${sources[id].color}`)}>
           <button
             type="button"
             className={$("btn i-ph:arrow-counter-clockwise-duotone", isFetching && "animate-spin i-ph:circle-dashed-duotone")}

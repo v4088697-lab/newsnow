@@ -33,6 +33,14 @@
 
 你可以将 `BASE_URL` 修改为你的域名。
 
+## 国际媒体来源
+
+原有的 36氪、百度热搜、哔哩哔哩三个分项、虫部落、财联社、酷安、豆瓣、抖音和 Freebuf 已替换为 CNN、Reuters、AP News、The New York Times、BBC News、The Guardian、The Washington Post、The Wall Street Journal、Bloomberg、TikTok 和 Financial Times。已保存的关注列表会自动迁移，合并来源时保留顺序并去重。
+
+新闻列表按发布时间排序并保留原标题。优先使用媒体官方 RSS；CNN、Reuters、AP News 使用 Google News 聚合，其余媒体在官方订阅源不可用时也会回退到 Google News。聚合条目逐条校验发布媒体，并显示「Google News 聚合」，链接经 Google News 跳转；正文可能需要媒体订阅。
+
+TikTok 展示官方 Creative Center 的美国区近 7 天热门话题及视频数量，链接进入对应 TikTok 话题页，不将广告榜或官方公告当作热门视频。公开接口可能限制返回数量；无有效数据时使用已有缓存或显示获取失败，不生成占位趋势。
+
 ## 部署指南
 
 ### 基础部署

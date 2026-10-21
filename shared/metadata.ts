@@ -1,4 +1,5 @@
 import { sources } from "./sources"
+import { sourceSortKey } from "./source-replacements"
 import { typeSafeObjectEntries, typeSafeObjectFromEntries } from "./type.util"
 import { updatedSourceIds as _updatedSourceIds } from "./updated-sources"
 import type { ColumnID, HiddenColumnID, Metadata, SourceID } from "./types"
@@ -42,7 +43,7 @@ function getSortedSourceIds(type: "hottest" | "realtime") {
   return typeSafeObjectEntries(sources)
     .filter(([, v]) => v.type === type && !v.redirect)
     .map(([k]) => k)
-    .sort((m, n) => m.localeCompare(n))
+    .sort((m, n) => sourceSortKey(m).localeCompare(sourceSortKey(n)))
 }
 
 export const metadata: Metadata = typeSafeObjectFromEntries(typeSafeObjectEntries(columns).map(([k, v]) => {

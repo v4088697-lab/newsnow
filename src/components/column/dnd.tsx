@@ -143,16 +143,16 @@ function CardOverlay({ id }: { id: SourceID }) {
     )}
     >
       <div className={$("flex justify-between mx-2 items-center")}>
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-2 items-center min-w-0 flex-1">
           <div
-            className={$("w-8 h-8 rounded-full bg-cover")}
+            className={$("w-8 h-8 rounded-full bg-cover shrink-0")}
             style={{
               backgroundImage: `url(/icons/${id.split("-")[0]}.png)`,
             }}
           />
-          <span className="flex flex-col">
-            <span className="flex items-center gap-2">
-              <span className="text-xl font-bold">
+          <span className="flex flex-col min-w-0">
+            <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
+              <span className="text-xl font-bold break-words leading-tight">
                 {sources[id].name}
               </span>
               {sources[id]?.title && <span className={$("text-sm", `color-${sources[id].color} bg-base op-80 bg-op-50! px-1 rounded`)}>{sources[id].title}</span>}
@@ -160,7 +160,7 @@ function CardOverlay({ id }: { id: SourceID }) {
             <span className="text-xs op-70">拖拽中</span>
           </span>
         </div>
-        <div className={$("flex gap-2 text-lg", `color-${sources[id].color}`)}>
+        <div className={$("flex gap-2 text-lg shrink-0 ml-2", `color-${sources[id].color}`)}>
           <button
             type="button"
             className={$("i-ph:dots-six-vertical-duotone", "cursor-grabbing")}

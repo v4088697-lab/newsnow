@@ -1,5 +1,6 @@
 import type { PrimitiveAtom } from "jotai"
 import type { FixedColumnID, PrimitiveMetadata, SourceID } from "@shared/types"
+import { migrateSourceIds } from "@shared/source-replacements"
 import type { Update } from "./types"
 
 function createPrimitiveMetadataAtom(
@@ -43,7 +44,7 @@ export function preprocessMetadata(target: PrimitiveMetadata) {
         typeSafeObjectEntries(target.data)
           .filter(([id]) => initialMetadata[id])
           .map(([id, s]) => {
-            if (id === "focus") return [id, s.filter(k => sources[k]).map(k => sources[k].redirect ?? k)]
+            if (id === "focus") return [id, migrateSourceIds(s, sources)]
             return [id, initialMetadata[id]]
           }),
       ),

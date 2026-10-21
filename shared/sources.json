@@ -42,13 +42,14 @@
     "color": "red",
     "interval": 1800000
   },
-  "coolapk": {
-    "title": "今日最热",
-    "name": "酷安",
+  "wsj": {
+    "title": "最新新闻",
+    "name": "The Wall Street Journal 华尔街日报",
     "type": "hottest",
-    "column": "tech",
-    "home": "https://coolapk.com",
-    "color": "green",
+    "desc": "官方 RSS，部分文章需要订阅；订阅源不可用时使用 Google News 聚合并注明。",
+    "column": "finance",
+    "home": "https://www.wsj.com",
+    "color": "slate",
     "interval": 600000
   },
   "mktnews": {
@@ -104,42 +105,23 @@
     "interval": 1800000,
     "title": "最热"
   },
-  "36kr": {
-    "redirect": "36kr-quick",
-    "name": "36氪",
-    "type": "realtime",
-    "disable": "cf",
-    "column": "tech",
-    "home": "https://36kr.com",
-    "color": "blue",
-    "interval": 600000,
-    "title": "快讯"
-  },
-  "36kr-quick": {
-    "name": "36氪",
-    "type": "realtime",
-    "disable": "cf",
-    "column": "tech",
-    "home": "https://36kr.com",
-    "color": "blue",
-    "interval": 600000,
-    "title": "快讯"
-  },
-  "36kr-renqi": {
-    "name": "36氪",
+  "cnn": {
+    "title": "最新新闻",
+    "name": "CNN 美国有线电视新闻网",
     "type": "hottest",
-    "disable": "cf",
-    "column": "tech",
-    "home": "https://36kr.com",
-    "color": "blue",
-    "interval": 600000,
-    "title": "人气榜"
+    "desc": "通过 Google News 聚合 CNN 新闻标题，点击查看报道。",
+    "column": "world",
+    "home": "https://www.cnn.com",
+    "color": "red",
+    "interval": 600000
   },
-  "douyin": {
-    "name": "抖音",
+  "tiktok": {
+    "title": "美国 · 近 7 天趋势",
+    "name": "TikTok",
     "type": "hottest",
-    "column": "china",
-    "home": "https://www.douyin.com",
+    "desc": "TikTok 官方 Creative Center 热门话题，按官方趋势排名展示；数据不可用时显示获取失败或已有缓存。",
+    "column": "world",
+    "home": "https://www.tiktok.com",
     "color": "gray",
     "interval": 600000
   },
@@ -236,41 +218,15 @@
     "interval": 300000,
     "title": "Win11"
   },
-  "cls": {
-    "redirect": "cls-telegraph",
-    "name": "财联社",
-    "type": "realtime",
-    "column": "finance",
-    "home": "https://www.cls.cn",
-    "color": "red",
-    "interval": 300000,
-    "title": "电报"
-  },
-  "cls-telegraph": {
-    "name": "财联社",
-    "type": "realtime",
-    "column": "finance",
-    "home": "https://www.cls.cn",
-    "color": "red",
-    "interval": 300000,
-    "title": "电报"
-  },
-  "cls-depth": {
-    "name": "财联社",
-    "column": "finance",
-    "home": "https://www.cls.cn",
-    "color": "red",
-    "interval": 600000,
-    "title": "深度"
-  },
-  "cls-hot": {
-    "name": "财联社",
+  "washingtonpost": {
+    "title": "最新新闻",
+    "name": "The Washington Post 华盛顿邮报",
     "type": "hottest",
-    "column": "finance",
-    "home": "https://www.cls.cn",
-    "color": "red",
-    "interval": 600000,
-    "title": "热门"
+    "desc": "官方 RSS，部分文章需要订阅；订阅源不可用时使用 Google News 聚合并注明。",
+    "column": "world",
+    "home": "https://www.washingtonpost.com",
+    "color": "slate",
+    "interval": 600000
   },
   "xueqiu": {
     "redirect": "xueqiu-hotstock",
@@ -369,44 +325,35 @@
     "interval": 600000,
     "title": "Today"
   },
-  "bilibili": {
-    "redirect": "bilibili-hot-search",
-    "name": "哔哩哔哩",
+  "apnews": {
+    "title": "最新新闻",
+    "name": "AP News 美联社",
     "type": "hottest",
-    "column": "china",
-    "home": "https://www.bilibili.com",
-    "color": "blue",
-    "interval": 600000,
-    "title": "热搜"
+    "desc": "通过 Google News 聚合 AP News 新闻标题，点击查看报道。",
+    "column": "world",
+    "home": "https://apnews.com",
+    "color": "slate",
+    "interval": 600000
   },
-  "bilibili-hot-search": {
-    "name": "哔哩哔哩",
+  "nytimes": {
+    "title": "最新新闻",
+    "name": "The New York Times 纽约时报",
     "type": "hottest",
-    "column": "china",
-    "home": "https://www.bilibili.com",
-    "color": "blue",
-    "interval": 600000,
-    "title": "热搜"
+    "desc": "官方 RSS，部分文章需要订阅；订阅源不可用时使用 Google News 聚合并注明。",
+    "column": "world",
+    "home": "https://www.nytimes.com",
+    "color": "gray",
+    "interval": 600000
   },
-  "bilibili-hot-video": {
-    "name": "哔哩哔哩",
+  "bbc": {
+    "title": "最新新闻",
+    "name": "BBC News 英国广播公司",
     "type": "hottest",
-    "disable": "cf",
-    "column": "china",
-    "home": "https://www.bilibili.com",
-    "color": "blue",
-    "interval": 600000,
-    "title": "热门视频"
-  },
-  "bilibili-ranking": {
-    "name": "哔哩哔哩",
-    "type": "hottest",
-    "disable": "cf",
-    "column": "china",
-    "home": "https://www.bilibili.com",
-    "color": "blue",
-    "interval": 1800000,
-    "title": "排行榜"
+    "desc": "BBC 官方 RSS；订阅源不可用时使用 Google News 聚合并注明。",
+    "column": "world",
+    "home": "https://www.bbc.com/news",
+    "color": "red",
+    "interval": 600000
   },
   "kuaishou": {
     "name": "快手",
@@ -433,12 +380,14 @@
     "color": "blue",
     "interval": 600000
   },
-  "baidu": {
-    "name": "百度热搜",
+  "reuters": {
+    "title": "最新新闻",
+    "name": "Reuters 路透社",
     "type": "hottest",
-    "column": "china",
-    "home": "https://www.baidu.com",
-    "color": "blue",
+    "desc": "通过 Google News 聚合 Reuters 新闻标题，点击查看报道。",
+    "column": "world",
+    "home": "https://www.reuters.com",
+    "color": "orange",
     "interval": 600000
   },
   "nowcoder": {
@@ -474,39 +423,24 @@
     "color": "red",
     "interval": 600000
   },
-  "chongbuluo": {
-    "redirect": "chongbuluo-latest",
-    "name": "虫部落",
-    "column": "china",
-    "home": "https://www.chongbuluo.com/forum.php?mod=guide&view=newthread",
-    "color": "green",
-    "interval": 1800000,
-    "title": "最新"
-  },
-  "chongbuluo-latest": {
-    "name": "虫部落",
-    "column": "china",
-    "home": "https://www.chongbuluo.com/forum.php?mod=guide&view=newthread",
-    "color": "green",
-    "interval": 1800000,
-    "title": "最新"
-  },
-  "chongbuluo-hot": {
-    "name": "虫部落",
+  "guardian": {
+    "title": "最新新闻",
+    "name": "The Guardian 卫报",
     "type": "hottest",
-    "column": "china",
-    "home": "https://www.chongbuluo.com/forum.php?mod=guide&view=hot",
-    "color": "green",
-    "interval": 1800000,
-    "title": "最热"
+    "desc": "卫报官方 RSS；订阅源不可用时使用 Google News 聚合并注明。",
+    "column": "world",
+    "home": "https://www.theguardian.com",
+    "color": "blue",
+    "interval": 600000
   },
-  "douban": {
-    "title": "热门电影",
-    "name": "豆瓣",
+  "bloomberg": {
+    "title": "最新新闻",
+    "name": "Bloomberg 彭博社",
     "type": "hottest",
-    "column": "china",
-    "home": "https://www.douban.com",
-    "color": "green",
+    "desc": "彭博官方 RSS，部分文章需要订阅；订阅源不可用时使用 Google News 聚合并注明。",
+    "column": "finance",
+    "home": "https://www.bloomberg.com",
+    "color": "purple",
     "interval": 600000
   },
   "steam": {
@@ -537,13 +471,14 @@
     "interval": 1800000,
     "title": "综合早报"
   },
-  "freebuf": {
-    "title": "网络安全",
-    "name": "Freebuf",
+  "ft": {
+    "title": "最新新闻",
+    "name": "Financial Times 金融时报",
     "type": "hottest",
-    "column": "china",
-    "home": "https://www.freebuf.com/",
-    "color": "green",
+    "desc": "金融时报官方 RSS，部分文章需要订阅；订阅源不可用时使用 Google News 聚合并注明。",
+    "column": "finance",
+    "home": "https://www.ft.com",
+    "color": "orange",
     "interval": 600000
   },
   "qqvideo": {
