@@ -433,24 +433,24 @@
     "color": "blue",
     "interval": 600000
   },
-  "hbomax": {
+  "paramountplus": {
     "title": "新作与官方动态",
-    "name": "HBO Max",
+    "name": "Paramount+",
     "type": "hottest",
-    "desc": "HBO Max 官方新作与平台动态；需要新闻聚合时逐条标注来源。",
+    "desc": "Paramount+ 官方新作、预告与上线公告；无法直接获取时展示标注日期的官方新闻聚合。",
     "column": "world",
-    "home": "https://www.hbomax.com",
-    "color": "indigo",
+    "home": "https://www.paramountplus.com",
+    "color": "blue",
     "interval": 600000
   },
-  "hulu": {
-    "title": "新作与官方动态",
-    "name": "Hulu",
+  "peacock": {
+    "title": "热门与推荐",
+    "name": "Peacock",
     "type": "hottest",
-    "desc": "Hulu 官方新闻与新作公告，部分节目和服务受地区限制。",
+    "desc": "Peacock 官方博客热门与推荐内容；无法获取时展示并标注官方动态，不代表平台观看排行榜。",
     "column": "world",
-    "home": "https://www.hulu.com",
-    "color": "green",
+    "home": "https://www.peacocktv.com",
+    "color": "yellow",
     "interval": 600000
   },
   "x": {

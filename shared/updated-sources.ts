@@ -1,4 +1,6 @@
 export const updatedSourceIds = [
+  "paramountplus",
+  "peacock",
   "euronews",
   "lemonde",
   "youtube",
@@ -11,8 +13,6 @@ export const updatedSourceIds = [
   "kick",
   "netflix",
   "disneyplus",
-  "hbomax",
-  "hulu",
   "x",
   "quora",
   "cnn",

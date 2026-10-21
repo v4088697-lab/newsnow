@@ -33,18 +33,6 @@ export async function disneyUpdates() {
   })
 }
 
-export async function huluUpdates() {
-  return fetchPublicLinks("https://press.hulu.com/news/", {
-    selector: "h2 a[href*=\"/pressrelease/\"]",
-    path: /^\/pressrelease\/[^/]+\/?$/,
-    label: "官方动态",
-  })
-}
-
-export async function hboUpdates() {
-  return fetchOfficialAggregated("site:press.wbd.com (\"HBO Max\" OR \"HBO Original\" OR \"Max Original\")", ["press.wbd.com"], "官方公告")
-}
-
 export async function quoraUpdates() {
   const items = await fetchOfficialAggregated("site:quorablog.quora.com", ["quorablog.quora.com"], "官方博客（含归档）")
   return requireItems(items.filter(item => !/^the quora blog$/i.test(item.title)))

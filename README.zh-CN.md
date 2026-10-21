@@ -43,7 +43,7 @@ TikTok 展示官方 Creative Center 的美国区近 7 天热门话题及视频�
 
 ## 国际平台内容
 
-虎扑、凤凰网、爱奇艺、稀土掘金、快手、牛客、腾讯视频、少数派、腾讯新闻、澎湃新闻、百度贴吧、今日头条、华尔街见闻、微博、雪球、知乎依次替换为 Euronews、Le Monde、YouTube、Instagram、Facebook、Dailymotion、Rumble、Vimeo、Twitch、Kick、Netflix、Disney+、HBO Max、Hulu、X、Quora。原关注及排序自动迁移，原平台的多个子项合并去重。
+虎扑、凤凰网、爱奇艺、稀土掘金、快手、牛客、腾讯视频、少数派、腾讯新闻、澎湃新闻、百度贴吧、今日头条、华尔街见闻、微博、雪球、知乎依次替换为 Euronews、Le Monde、YouTube、Instagram、Facebook、Dailymotion、Rumble、Vimeo、Twitch、Kick、Netflix、Disney+、Paramount+、Peacock、X、Quora。原关注及排序自动迁移，原平台的多个子项合并去重。已保存的 HBO Max、Hulu 也分别迁移至 Paramount+、Peacock。
 
 优先使用公开热门或推荐内容，无法获取时显示并标注官方动态：
 
@@ -57,8 +57,9 @@ TikTok 展示官方 Creative Center 的美国区近 7 天热门话题及视频�
 | Kick | 公开直播分类；不可用时显示官方动态，不将列表序号当作人气排名 |
 | Netflix | 最新完整周的全球英语剧集 Top 10，注明榜单周；链接进入官方片名搜索 |
 | Instagram、Facebook | Meta 官方产品动态 |
-| Rumble、Disney+、Hulu | 官方公司动态或新作公告 |
-| HBO Max | 官方新闻稿，经 Google News 聚合并注明文章日期 |
+| Rumble、Disney+ | 官方公司动态或新作公告 |
+| Paramount+ | 官方新作、预告及上线公告；不可用时使用注明日期的官方新闻聚合 |
+| Peacock | 官方博客热门及推荐内容，分别标注；不可用时使用注明日期的官方动态聚合 |
 | X | 官方开发者更新日志，明确标注内容类型 |
 | Quora | 官方博客文章（含归档），经 Google News 聚合，逐条标注实际文章日期 |
 

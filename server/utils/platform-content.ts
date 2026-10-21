@@ -60,7 +60,8 @@ export function parsePublicLinks(html: string, options: PublicLinksOptions): New
     const titleNode = options.titleSelector ? anchor.find(options.titleSelector).first() : anchor
     const title = plainText(titleNode.html() ?? "")
     if (!title || title === "Post" || title.length < 3) return
-    const dateText = anchor.closest("article").find("time,.date").first().text()
+    const dateText = anchor.find("time,.date").first().text()
+      || anchor.closest("article").find("time,.date").first().text()
       || anchor.parent().parent().find("time,.date").first().text()
     const date = Date.parse(dateText)
     items.push({ id: url.href, title, url: url.href, pubDate: Number.isFinite(date) ? date : undefined, extra: { info: options.label } })

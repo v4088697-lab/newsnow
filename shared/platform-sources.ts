@@ -13,8 +13,8 @@ export const platformSources = {
   kick: { name: "Kick", title: "直播与动态", color: "green", home: "https://kick.com", column: "world", type: "hottest", desc: "优先公开直播分类；无法获取时展示并标注 Kick 官方动态。" },
   netflix: { name: "Netflix 奈飞", title: "全球英语剧集周榜", color: "red", home: "https://www.netflix.com", column: "world", type: "hottest", desc: "Netflix Tudum 官方最新完整周的全球英语剧集 Top 10。每条注明榜单周；地区片库可能不同。" },
   disneyplus: { name: "Disney+", title: "新作与官方动态", color: "blue", home: "https://www.disneyplus.com", column: "world", type: "hottest", desc: "Disney+ 官方新闻、新作及上线公告，不是订阅用户的个性化片单。" },
-  hbomax: { name: "HBO Max", title: "新作与官方动态", color: "indigo", home: "https://www.hbomax.com", column: "world", type: "hottest", desc: "HBO Max 官方新作与平台动态；需要新闻聚合时逐条标注来源。" },
-  hulu: { name: "Hulu", title: "新作与官方动态", color: "green", home: "https://www.hulu.com", column: "world", type: "hottest", desc: "Hulu 官方新闻与新作公告，部分节目和服务受地区限制。" },
+  paramountplus: { name: "Paramount+", title: "新作与官方动态", color: "blue", home: "https://www.paramountplus.com", column: "world", type: "hottest", desc: "Paramount+ 官方新作、预告与上线公告；无法直接获取时展示标注日期的官方新闻聚合。" },
+  peacock: { name: "Peacock", title: "热门与推荐", color: "yellow", home: "https://www.peacocktv.com", column: "world", type: "hottest", desc: "Peacock 官方博客热门与推荐内容；无法获取时展示并标注官方动态，不代表平台观看排行榜。" },
   x: { name: "X", title: "官方开发者动态", color: "gray", home: "https://x.com", column: "world", type: "hottest", desc: "X 官方开发者更新日志，不代表实时热帖或热搜。" },
   quora: { name: "Quora", title: "官方博客", color: "red", home: "https://www.quora.com", column: "world", type: "hottest", desc: "Quora 官方博客及归档文章，注明文章日期与聚合来源，不代表热门问答榜。" },
 } as const satisfies Record<string, OriginSource>
