@@ -14,6 +14,8 @@ export const internationalFeeds = {
   wsj: { domains: ["wsj.com"], feeds: ["https://feeds.content.dowjones.io/public/rss/RSSWorldNews"] },
   bloomberg: { domains: ["bloomberg.com"], feeds: ["https://feeds.bloomberg.com/markets/news.rss"] },
   ft: { domains: ["ft.com"], feeds: ["https://www.ft.com/rss/home"] },
+  euronews: { domains: ["euronews.com"], feeds: ["https://www.euronews.com/rss?level=theme&name=news"] },
+  lemonde: { domains: ["lemonde.fr"], feeds: ["https://www.lemonde.fr/rss/une.xml"] },
 } satisfies Record<string, { domains: string[], feeds: string[] }>
 
 function record(value: unknown): Record<string, unknown> {

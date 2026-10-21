@@ -2,6 +2,7 @@ import process from "node:process"
 import { Interval } from "./consts"
 import { typeSafeObjectFromEntries } from "./type.util"
 import type { OriginSource, Source, SourceID } from "./types"
+import { platformSources } from "./platform-sources"
 
 const Time = {
   Test: 1,
@@ -23,22 +24,6 @@ export const originSources = {
         column: "tech",
       },
     },
-  },
-  zhihu: {
-    name: "知乎",
-    type: "hottest",
-    column: "china",
-    color: "blue",
-    home: "https://www.zhihu.com",
-  },
-  weibo: {
-    name: "微博",
-    title: "实时热搜",
-    type: "hottest",
-    column: "china",
-    color: "red",
-    interval: Time.Realtime,
-    home: "https://weibo.com",
   },
   zaobao: {
     name: "联合早报",
@@ -70,28 +55,6 @@ export const originSources = {
       },
     },
   },
-  wallstreetcn: {
-    name: "华尔街见闻",
-    color: "blue",
-    column: "finance",
-    home: "https://wallstreetcn.com/",
-    sub: {
-      quick: {
-        type: "realtime",
-        interval: Time.Fast,
-        title: "快讯",
-      },
-      news: {
-        title: "最新",
-        interval: Time.Common,
-      },
-      hot: {
-        title: "最热",
-        type: "hottest",
-        interval: Time.Common,
-      },
-    },
-  },
   cnn: {
     name: "CNN 美国有线电视新闻网",
     type: "hottest",
@@ -110,14 +73,6 @@ export const originSources = {
     desc: "TikTok 官方 Creative Center 美国区近 7 天综合与分类热门话题，合并去重展示 10 条；分类条目已注明。数据不可用时使用已有完整缓存。",
     home: "https://www.tiktok.com",
   },
-  hupu: {
-    name: "虎扑",
-    home: "https://hupu.com",
-    column: "sports",
-    title: "主干道热帖",
-    type: "hottest",
-    color: "red",
-  },
   dongqiudi: {
     name: "懂球帝",
     title: "头条",
@@ -134,36 +89,12 @@ export const originSources = {
     interval: Time.Fast,
     home: "https://aihot.news/all",
   },
-  tieba: {
-    name: "百度贴吧",
-    title: "热议",
-    column: "china",
-    type: "hottest",
-    color: "blue",
-    home: "https://tieba.baidu.com",
-  },
-  toutiao: {
-    name: "今日头条",
-    type: "hottest",
-    column: "china",
-    color: "red",
-    home: "https://www.toutiao.com",
-  },
   ithome: {
     name: "IT之家",
     color: "red",
     column: "tech",
     type: "realtime",
     home: "https://www.ithome.com",
-  },
-  thepaper: {
-    name: "澎湃新闻",
-    interval: Time.Common,
-    type: "hottest",
-    column: "china",
-    title: "热榜",
-    color: "gray",
-    home: "https://www.thepaper.cn",
   },
   sputniknewscn: {
     name: "卫星通讯社",
@@ -205,19 +136,6 @@ export const originSources = {
     type: "hottest",
     title: "最新新闻",
     desc: "官方 RSS，部分文章需要订阅；订阅源不可用时使用 Google News 聚合并注明。",
-  },
-  xueqiu: {
-    name: "雪球",
-    color: "blue",
-    home: "https://xueqiu.com",
-    column: "finance",
-    sub: {
-      hotstock: {
-        title: "热门股票",
-        interval: Time.Realtime,
-        type: "hottest",
-      },
-    },
   },
   gelonghui: {
     name: "格隆汇",
@@ -305,15 +223,6 @@ export const originSources = {
     title: "最新新闻",
     desc: "BBC 官方 RSS；订阅源不可用时使用 Google News 聚合并注明。",
   },
-  kuaishou: {
-    name: "快手",
-    type: "hottest",
-    column: "china",
-    color: "orange",
-    // cloudflare pages cannot access
-    disable: "cf",
-    home: "https://www.kuaishou.com",
-  },
   kaopu: {
     name: "靠谱新闻",
     column: "world",
@@ -372,35 +281,6 @@ export const originSources = {
     home: "https://www.smzdm.com",
     disable: true,
   },
-  nowcoder: {
-    name: "牛客",
-    column: "china",
-    color: "blue",
-    type: "hottest",
-    home: "https://www.nowcoder.com",
-  },
-  sspai: {
-    name: "少数派",
-    column: "tech",
-    color: "red",
-    type: "hottest",
-    home: "https://sspai.com",
-  },
-  juejin: {
-    name: "稀土掘金",
-    column: "tech",
-    color: "blue",
-    type: "hottest",
-    home: "https://juejin.cn",
-  },
-  ifeng: {
-    name: "凤凰网",
-    column: "china",
-    color: "red",
-    type: "hottest",
-    title: "热点资讯",
-    home: "https://www.ifeng.com",
-  },
   guardian: {
     name: "The Guardian 卫报",
     column: "world",
@@ -427,20 +307,6 @@ export const originSources = {
     type: "hottest",
     home: "https://store.steampowered.com",
   },
-  tencent: {
-    name: "腾讯新闻",
-    column: "china",
-    color: "blue",
-    home: "https://news.qq.com",
-    sub: {
-      hot: {
-        title: "综合早报",
-        type: "hottest",
-        interval: Time.Common,
-        home: "https://news.qq.com/tag/aEWqxLtdgmQ=",
-      },
-    },
-  },
   ft: {
     name: "Financial Times 金融时报",
     column: "finance",
@@ -451,35 +317,7 @@ export const originSources = {
     home: "https://www.ft.com",
   },
 
-  qqvideo: {
-    name: "腾讯视频",
-    column: "china",
-    color: "blue",
-    home: "https://v.qq.com/",
-    sub: {
-      "tv-hotsearch": {
-        title: "热搜榜",
-        type: "hottest",
-        interval: Time.Common,
-        home: "https://v.qq.com/channel/tv",
-
-      },
-    },
-  },
-  iqiyi: {
-    name: "爱奇艺",
-    column: "china",
-    color: "green",
-    home: "https://www.iqiyi.com",
-    sub: {
-      "hot-ranklist": {
-        title: "热播榜",
-        type: "hottest",
-        interval: Time.Common,
-        home: "https://www.iqiyi.com",
-      },
-    },
-  },
+  ...platformSources,
 } as const satisfies Record<string, OriginSource>
 
 export function genSources() {

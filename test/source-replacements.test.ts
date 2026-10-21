@@ -5,9 +5,9 @@ import { migrateSourceIds, sourceReplacements, sourceSortKey } from "../shared/s
 const sources = genSources()
 
 describe("international source replacements", () => {
-  it("registers all 11 new sources and removes the replaced providers", () => {
+  it("registers all 27 replacement sources and removes the replaced providers", () => {
     const replacements = [...new Set(Object.values(sourceReplacements))]
-    expect(replacements).toHaveLength(11)
+    expect(replacements).toHaveLength(27)
     for (const id of replacements) {
       expect(sources[id]).toBeDefined()
       expect(sources[id].disable).toBeUndefined()
@@ -23,7 +23,12 @@ describe("international source replacements", () => {
 
   it("preserves favorite order and removes merged duplicates without losing unrelated sources", () => {
     expect(migrateSourceIds(["36kr-renqi", "zhihu", "36kr-quick", "bilibili-hot-video", "nytimes", "cls-hot", "cls-depth", "missing", "constructor"], sources))
-      .toEqual(["cnn", "zhihu", "nytimes", "washingtonpost"])
+      .toEqual(["cnn", "quora", "nytimes", "washingtonpost"])
+  })
+
+  it("migrates all platform sub-sources without retaining old identities", () => {
+    expect(migrateSourceIds(["hupu", "ifeng", "iqiyi-hot-ranklist", "juejin", "kuaishou", "nowcoder", "qqvideo-tv-hotsearch", "sspai", "tencent-hot", "thepaper", "tieba", "toutiao", "wallstreetcn-quick", "wallstreetcn-hot", "weibo", "xueqiu-hotstock", "zhihu"], sources))
+      .toEqual(["euronews", "lemonde", "youtube", "instagram", "facebook", "dailymotion", "rumble", "vimeo", "twitch", "kick", "netflix", "disneyplus", "hbomax", "hulu", "x", "quora"])
   })
 
   it("keeps the replacement cards in the previous default order", () => {

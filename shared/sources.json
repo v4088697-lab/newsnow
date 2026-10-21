@@ -16,23 +16,6 @@
     "interval": 600000,
     "title": "最新分享"
   },
-  "zhihu": {
-    "name": "知乎",
-    "type": "hottest",
-    "column": "china",
-    "home": "https://www.zhihu.com",
-    "color": "blue",
-    "interval": 600000
-  },
-  "weibo": {
-    "title": "实时热搜",
-    "name": "微博",
-    "type": "hottest",
-    "column": "china",
-    "home": "https://weibo.com",
-    "color": "red",
-    "interval": 120000
-  },
   "zaobao": {
     "name": "联合早报",
     "type": "realtime",
@@ -69,42 +52,6 @@
     "interval": 120000,
     "title": "快讯"
   },
-  "wallstreetcn": {
-    "redirect": "wallstreetcn-quick",
-    "name": "华尔街见闻",
-    "type": "realtime",
-    "column": "finance",
-    "home": "https://wallstreetcn.com/",
-    "color": "blue",
-    "interval": 300000,
-    "title": "快讯"
-  },
-  "wallstreetcn-quick": {
-    "name": "华尔街见闻",
-    "type": "realtime",
-    "column": "finance",
-    "home": "https://wallstreetcn.com/",
-    "color": "blue",
-    "interval": 300000,
-    "title": "快讯"
-  },
-  "wallstreetcn-news": {
-    "name": "华尔街见闻",
-    "column": "finance",
-    "home": "https://wallstreetcn.com/",
-    "color": "blue",
-    "interval": 1800000,
-    "title": "最新"
-  },
-  "wallstreetcn-hot": {
-    "name": "华尔街见闻",
-    "type": "hottest",
-    "column": "finance",
-    "home": "https://wallstreetcn.com/",
-    "color": "blue",
-    "interval": 1800000,
-    "title": "最热"
-  },
   "cnn": {
     "title": "最新新闻",
     "name": "CNN 美国有线电视新闻网",
@@ -125,15 +72,6 @@
     "color": "gray",
     "interval": 600000
   },
-  "hupu": {
-    "title": "主干道热帖",
-    "name": "虎扑",
-    "type": "hottest",
-    "column": "sports",
-    "home": "https://hupu.com",
-    "color": "red",
-    "interval": 600000
-  },
   "dongqiudi": {
     "title": "头条",
     "name": "懂球帝",
@@ -151,23 +89,6 @@
     "color": "blue",
     "interval": 300000
   },
-  "tieba": {
-    "title": "热议",
-    "name": "百度贴吧",
-    "type": "hottest",
-    "column": "china",
-    "home": "https://tieba.baidu.com",
-    "color": "blue",
-    "interval": 600000
-  },
-  "toutiao": {
-    "name": "今日头条",
-    "type": "hottest",
-    "column": "china",
-    "home": "https://www.toutiao.com",
-    "color": "red",
-    "interval": 600000
-  },
   "ithome": {
     "name": "IT之家",
     "type": "realtime",
@@ -175,15 +96,6 @@
     "home": "https://www.ithome.com",
     "color": "red",
     "interval": 600000
-  },
-  "thepaper": {
-    "title": "热榜",
-    "name": "澎湃新闻",
-    "type": "hottest",
-    "column": "china",
-    "home": "https://www.thepaper.cn",
-    "color": "gray",
-    "interval": 1800000
   },
   "sputniknewscn": {
     "name": "卫星通讯社",
@@ -227,25 +139,6 @@
     "home": "https://www.washingtonpost.com",
     "color": "slate",
     "interval": 600000
-  },
-  "xueqiu": {
-    "redirect": "xueqiu-hotstock",
-    "name": "雪球",
-    "type": "hottest",
-    "column": "finance",
-    "home": "https://xueqiu.com",
-    "color": "blue",
-    "interval": 120000,
-    "title": "热门股票"
-  },
-  "xueqiu-hotstock": {
-    "name": "雪球",
-    "type": "hottest",
-    "column": "finance",
-    "home": "https://xueqiu.com",
-    "color": "blue",
-    "interval": 120000,
-    "title": "热门股票"
   },
   "gelonghui": {
     "title": "事件",
@@ -355,15 +248,6 @@
     "color": "red",
     "interval": 600000
   },
-  "kuaishou": {
-    "name": "快手",
-    "type": "hottest",
-    "disable": "cf",
-    "column": "china",
-    "home": "https://www.kuaishou.com",
-    "color": "orange",
-    "interval": 600000
-  },
   "kaopu": {
     "name": "靠谱新闻",
     "desc": "不一定靠谱，多看多思考",
@@ -388,39 +272,6 @@
     "column": "world",
     "home": "https://www.reuters.com",
     "color": "orange",
-    "interval": 600000
-  },
-  "nowcoder": {
-    "name": "牛客",
-    "type": "hottest",
-    "column": "china",
-    "home": "https://www.nowcoder.com",
-    "color": "blue",
-    "interval": 600000
-  },
-  "sspai": {
-    "name": "少数派",
-    "type": "hottest",
-    "column": "tech",
-    "home": "https://sspai.com",
-    "color": "red",
-    "interval": 600000
-  },
-  "juejin": {
-    "name": "稀土掘金",
-    "type": "hottest",
-    "column": "tech",
-    "home": "https://juejin.cn",
-    "color": "blue",
-    "interval": 600000
-  },
-  "ifeng": {
-    "title": "热点资讯",
-    "name": "凤凰网",
-    "type": "hottest",
-    "column": "china",
-    "home": "https://www.ifeng.com",
-    "color": "red",
     "interval": 600000
   },
   "guardian": {
@@ -452,25 +303,6 @@
     "color": "blue",
     "interval": 600000
   },
-  "tencent": {
-    "redirect": "tencent-hot",
-    "name": "腾讯新闻",
-    "type": "hottest",
-    "column": "china",
-    "home": "https://news.qq.com/tag/aEWqxLtdgmQ=",
-    "color": "blue",
-    "interval": 1800000,
-    "title": "综合早报"
-  },
-  "tencent-hot": {
-    "name": "腾讯新闻",
-    "type": "hottest",
-    "column": "china",
-    "home": "https://news.qq.com/tag/aEWqxLtdgmQ=",
-    "color": "blue",
-    "interval": 1800000,
-    "title": "综合早报"
-  },
   "ft": {
     "title": "最新新闻",
     "name": "Financial Times 金融时报",
@@ -481,42 +313,164 @@
     "color": "orange",
     "interval": 600000
   },
-  "qqvideo": {
-    "redirect": "qqvideo-tv-hotsearch",
-    "name": "腾讯视频",
+  "euronews": {
+    "title": "最新新闻",
+    "name": "Euronews 欧洲新闻台",
     "type": "hottest",
-    "column": "china",
-    "home": "https://v.qq.com/channel/tv",
+    "desc": "Euronews 官方新闻订阅；订阅不可用时使用标注来源的新闻聚合。",
+    "column": "world",
+    "home": "https://www.euronews.com",
     "color": "blue",
-    "interval": 1800000,
-    "title": "热搜榜"
+    "interval": 600000
   },
-  "qqvideo-tv-hotsearch": {
-    "name": "腾讯视频",
+  "lemonde": {
+    "title": "最新新闻",
+    "name": "Le Monde 世界报",
     "type": "hottest",
-    "column": "china",
-    "home": "https://v.qq.com/channel/tv",
+    "desc": "Le Monde 官方新闻订阅，保留法文原标题；部分文章需要订阅。",
+    "column": "world",
+    "home": "https://www.lemonde.fr",
+    "color": "slate",
+    "interval": 600000
+  },
+  "youtube": {
+    "title": "视频与动态",
+    "name": "YouTube",
+    "type": "hottest",
+    "desc": "优先公开音乐视频周榜；无法获取时展示并标注 YouTube 官方动态，不代表个性化推荐。",
+    "column": "world",
+    "home": "https://www.youtube.com",
+    "color": "red",
+    "interval": 600000
+  },
+  "instagram": {
+    "title": "官方动态",
+    "name": "Instagram",
+    "type": "hottest",
+    "desc": "Meta 官方 Instagram 新闻与产品动态，不代表用户热帖或个人信息流。",
+    "column": "world",
+    "home": "https://www.instagram.com",
+    "color": "fuchsia",
+    "interval": 600000
+  },
+  "facebook": {
+    "title": "官方动态",
+    "name": "Facebook",
+    "type": "hottest",
+    "desc": "Meta 官方 Facebook 新闻与产品动态，不代表用户热帖或个人信息流。",
+    "column": "world",
+    "home": "https://www.facebook.com",
     "color": "blue",
-    "interval": 1800000,
-    "title": "热搜榜"
+    "interval": 600000
   },
-  "iqiyi": {
-    "redirect": "iqiyi-hot-ranklist",
-    "name": "爱奇艺",
+  "dailymotion": {
+    "title": "热门视频",
+    "name": "Dailymotion",
     "type": "hottest",
-    "column": "china",
-    "home": "https://www.iqiyi.com",
-    "color": "green",
-    "interval": 1800000,
-    "title": "热播榜"
+    "desc": "Dailymotion 官方公开热门视频列表。",
+    "column": "world",
+    "home": "https://www.dailymotion.com",
+    "color": "blue",
+    "interval": 600000
   },
-  "iqiyi-hot-ranklist": {
-    "name": "爱奇艺",
+  "rumble": {
+    "title": "官方动态",
+    "name": "Rumble",
     "type": "hottest",
-    "column": "china",
-    "home": "https://www.iqiyi.com",
+    "desc": "公开推荐无法获取时，展示 Rumble 官方公司动态，并明确标注。",
+    "column": "world",
+    "home": "https://rumble.com",
+    "color": "lime",
+    "interval": 600000
+  },
+  "vimeo": {
+    "title": "编辑精选",
+    "name": "Vimeo",
+    "type": "hottest",
+    "desc": "Vimeo 官方 Staff Picks 编辑精选；不可用时展示并标注官方动态。",
+    "column": "world",
+    "home": "https://vimeo.com",
+    "color": "cyan",
+    "interval": 600000
+  },
+  "twitch": {
+    "title": "直播与动态",
+    "name": "Twitch",
+    "type": "hottest",
+    "desc": "优先公开热门直播分类；无法获取时展示并标注 Twitch 官方动态。",
+    "column": "world",
+    "home": "https://www.twitch.tv",
+    "color": "purple",
+    "interval": 600000
+  },
+  "kick": {
+    "title": "直播与动态",
+    "name": "Kick",
+    "type": "hottest",
+    "desc": "优先公开直播分类；无法获取时展示并标注 Kick 官方动态。",
+    "column": "world",
+    "home": "https://kick.com",
     "color": "green",
-    "interval": 1800000,
-    "title": "热播榜"
+    "interval": 600000
+  },
+  "netflix": {
+    "title": "全球英语剧集周榜",
+    "name": "Netflix 奈飞",
+    "type": "hottest",
+    "desc": "Netflix Tudum 官方最新完整周的全球英语剧集 Top 10。每条注明榜单周；地区片库可能不同。",
+    "column": "world",
+    "home": "https://www.netflix.com",
+    "color": "red",
+    "interval": 600000
+  },
+  "disneyplus": {
+    "title": "新作与官方动态",
+    "name": "Disney+",
+    "type": "hottest",
+    "desc": "Disney+ 官方新闻、新作及上线公告，不是订阅用户的个性化片单。",
+    "column": "world",
+    "home": "https://www.disneyplus.com",
+    "color": "blue",
+    "interval": 600000
+  },
+  "hbomax": {
+    "title": "新作与官方动态",
+    "name": "HBO Max",
+    "type": "hottest",
+    "desc": "HBO Max 官方新作与平台动态；需要新闻聚合时逐条标注来源。",
+    "column": "world",
+    "home": "https://www.hbomax.com",
+    "color": "indigo",
+    "interval": 600000
+  },
+  "hulu": {
+    "title": "新作与官方动态",
+    "name": "Hulu",
+    "type": "hottest",
+    "desc": "Hulu 官方新闻与新作公告，部分节目和服务受地区限制。",
+    "column": "world",
+    "home": "https://www.hulu.com",
+    "color": "green",
+    "interval": 600000
+  },
+  "x": {
+    "title": "官方开发者动态",
+    "name": "X",
+    "type": "hottest",
+    "desc": "X 官方开发者更新日志，不代表实时热帖或热搜。",
+    "column": "world",
+    "home": "https://x.com",
+    "color": "gray",
+    "interval": 600000
+  },
+  "quora": {
+    "title": "官方博客",
+    "name": "Quora",
+    "type": "hottest",
+    "desc": "Quora 官方博客及归档文章，注明文章日期与聚合来源，不代表热门问答榜。",
+    "column": "world",
+    "home": "https://www.quora.com",
+    "color": "red",
+    "interval": 600000
   }
 }
