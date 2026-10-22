@@ -1,6 +1,7 @@
 import type { OriginSource } from "./types"
 
 export const platformSources = {
+  reddit: { name: "Reddit", title: "兴趣热门", color: "orange", home: "https://www.reddit.com/r/popular/", column: "interests", type: "hottest", desc: "Reddit r/popular 官方公开 RSS，展示热门讨论和所属社区；不可用时展示并标注官方动态，不代表个人订阅信息流。" },
   pinterest: { name: "Pinterest", title: "图文灵感", color: "rose", home: "https://www.pinterest.com/ideas/", column: "visual", type: "hottest", desc: "Pinterest 公开精选与灵感分类，展示原始图片和标题，不代表个人推荐或热门排名；不可用时标注官方动态。" },
   euronews: { name: "Euronews 欧洲新闻台", title: "最新新闻", color: "blue", home: "https://www.euronews.com", column: "world", type: "hottest", desc: "Euronews 官方新闻订阅；订阅不可用时使用标注来源的新闻聚合。" },
   lemonde: { name: "Le Monde 世界报", title: "最新新闻", color: "slate", home: "https://www.lemonde.fr", column: "world", type: "hottest", desc: "Le Monde 官方新闻订阅，保留法文原标题；部分文章需要订阅。" },

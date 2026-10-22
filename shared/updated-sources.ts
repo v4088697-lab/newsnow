@@ -1,4 +1,5 @@
 export const updatedSourceIds = [
+  "reddit",
   "pinterest",
   "paramountplus",
   "peacock",

@@ -14,6 +14,9 @@ export const columns = {
   visual: {
     zh: "图文",
   },
+  interests: {
+    zh: "兴趣",
+  },
   tech: {
     zh: "科技",
   },

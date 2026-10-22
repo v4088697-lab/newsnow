@@ -313,6 +313,16 @@
     "color": "orange",
     "interval": 600000
   },
+  "reddit": {
+    "title": "兴趣热门",
+    "name": "Reddit",
+    "type": "hottest",
+    "desc": "Reddit r/popular 官方公开 RSS，展示热门讨论和所属社区；不可用时展示并标注官方动态，不代表个人订阅信息流。",
+    "column": "interests",
+    "home": "https://www.reddit.com/r/popular/",
+    "color": "orange",
+    "interval": 600000
+  },
   "pinterest": {
     "title": "图文灵感",
     "name": "Pinterest",
