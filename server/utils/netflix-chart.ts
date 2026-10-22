@@ -60,8 +60,8 @@ export function parseNetflixChart(tsv: string): NewsItem[] {
       title,
       url: `https://www.netflix.com/search?q=${encodeURIComponent(show)}`,
       extra: {
-        info: `全球英语剧集周榜 · ${latest}${Number.isFinite(views) && views > 0 ? ` · ${views.toLocaleString("en-US")} 次观看` : ""}`,
-        hover: `Netflix 官方周榜，第 ${rank} 名；点击在 Netflix 搜索片名。`,
+        info: `Global English TV weekly chart · ${latest}${Number.isFinite(views) && views > 0 ? ` · ${views.toLocaleString("en-US")} views` : ""}`,
+        hover: `Netflix official weekly chart, rank #${rank}. Click to search for the title on Netflix.`,
       },
     }
   })

@@ -8,6 +8,6 @@ export default async () => {
     const html = await myFetch<string, "text">("https://www.amazon.com/Best-Sellers/zgbs", { responseType: "text", retry: 0, timeout: 5000, headers: { "User-Agent": `NewsNow/${Version}` } })
     return parseAmazonBestsellers(html)
   } catch {
-    return fetchOfficialAggregated("site:aboutamazon.com/news", ["aboutamazon.com"], "官方动态")
+    return fetchOfficialAggregated("site:aboutamazon.com/news", ["aboutamazon.com"], "Official updates")
   }
 }

@@ -22,7 +22,7 @@ describe("international news feed parsing", () => {
   it("sorts fresh headlines, decodes text, deduplicates and rejects unrelated or unsafe URLs", () => {
     const items = parseInternationalFeed(official, ["bbc.com", "bbc.co.uk"])
     expect(items.map(item => item.title)).toEqual(["Latest headline", "Earlier & verified"])
-    expect(items[0].extra?.info).toBe("官方 RSS")
+    expect(items[0].extra?.info).toBe("Official RSS")
   })
 
   it("supports an Atom feed with alternate links", () => {
@@ -34,7 +34,7 @@ describe("international news feed parsing", () => {
     const items = parseInternationalFeed(aggregated, ["reuters.com"], true)
     expect(items).toHaveLength(1)
     expect(items[0].title).toBe("A Reuters headline")
-    expect(items[0].extra?.info).toBe("Google News 聚合")
+    expect(items[0].extra?.info).toBe("Google News aggregation")
   })
 
   it.each(["<html>Access denied</html>", "<rss><channel/></rss>", "not xml"])("rejects empty or blocked feeds so existing server cache can be used", (xml) => {
@@ -50,7 +50,7 @@ describe("international news feed parsing", () => {
   it("falls back to filtered aggregation when an official feed fails", async () => {
     vi.mocked(myFetch).mockRejectedValueOnce(new Error("Unavailable")).mockResolvedValueOnce(aggregated.split("reuters.com").join("washingtonpost.com"))
     const items = await defineInternationalFeed("washingtonpost")()
-    expect(items[0].extra?.info).toBe("Google News 聚合")
+    expect(items[0].extra?.info).toBe("Google News aggregation")
     expect(myFetch).toHaveBeenCalledTimes(2)
     const url = new URL(vi.mocked(myFetch).mock.calls[1][0] as string)
     expect(url.searchParams.get("q")).toBe("site:washingtonpost.com when:7d")

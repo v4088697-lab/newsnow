@@ -12,13 +12,13 @@ describe("reddit interest content", () => {
   beforeEach(() => fetchMock.mockReset())
 
   it("registers Reddit in the interest category", () => {
-    expect(genSources().reddit).toMatchObject({ name: "Reddit", title: "兴趣热门", column: "interests", type: "hottest" })
+    expect(genSources().reddit).toMatchObject({ name: "Reddit", title: "Popular discussions", column: "interests", type: "hottest" })
   })
 
   it("keeps the public feed order, title, community and publication date", () => {
     const items = parseRedditFeed(`<feed>${entry("abc", "Science &amp; nature")}${entry("def")}</feed>`)
     expect(items.map(item => item.id)).toEqual(["abc", "def"])
-    expect(items[0]).toMatchObject({ title: "Science & nature", pubDate: Date.parse("2026-10-22T12:00:00Z"), extra: { info: "r/science · 公开热门 · 官方 RSS" } })
+    expect(items[0]).toMatchObject({ title: "Science & nature", pubDate: Date.parse("2026-10-22T12:00:00Z"), extra: { info: "r/science · Public popular feed · Official RSS" } })
   })
 
   it("uses alternate links instead of Atom self links", () => {
@@ -39,7 +39,7 @@ describe("reddit interest content", () => {
 
   it("labels the official fallback when the public feed is unavailable", async () => {
     fetchMock.mockRejectedValueOnce(new Error("Unavailable")).mockResolvedValueOnce("<rss><channel><item><title>Reddit announcement</title><link>https://news.google.com/rss/articles/announcement</link><source url=\"https://redditinc.com\">Reddit</source><pubDate>Thu, 22 Oct 2026 12:00:00 GMT</pubDate></item></channel></rss>")
-    expect((await reddit())[0].extra?.info).toBe("官方动态 · 2026-10-22 · Google News")
+    expect((await reddit())[0].extra?.info).toBe("Official updates · 2026-10-22 · Google News")
     expect(new URL(String(fetchMock.mock.calls[1][0])).searchParams.get("q")).toBe("site:redditinc.com/news")
   })
 })

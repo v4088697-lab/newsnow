@@ -124,7 +124,7 @@ function NewsCard({ id, setHandleRef }: NewsCardProps) {
 
 function PinterestList({ items }: { items: NewsItem[] }) {
   return (
-    <ol className="flex flex-col gap-3" aria-label="Pinterest 图文灵感">
+    <ol className="flex flex-col gap-3" aria-label="Pinterest visual inspiration">
       {items.map(item => (
         <li key={item.id}>
           <a href={item.url} target="_blank" rel="noopener noreferrer" className="flex gap-3 items-center p-1 rounded-md hover:bg-neutral-400/10 transition-colors">
@@ -144,9 +144,9 @@ function PinterestList({ items }: { items: NewsItem[] }) {
 
 function UpdatedTime({ isError, updatedTime }: { updatedTime: any, isError: boolean }) {
   const relativeTime = useRelativeTime(updatedTime ?? "")
-  if (relativeTime) return `${relativeTime}更新`
-  if (isError) return "获取失败"
-  return "加载中..."
+  if (relativeTime) return `Updated ${relativeTime}`
+  if (isError) return "Failed to load"
+  return "Loading..."
 }
 
 function DiffNumber({ diff }: { diff: number }) {

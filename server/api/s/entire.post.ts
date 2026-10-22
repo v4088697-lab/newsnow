@@ -3,6 +3,7 @@ import { defineEventHandler, readBody } from "h3"
 import { sources } from "@shared/sources"
 import { getCacheTable } from "#/database/cache"
 import { isCurrentTikTokCache } from "#/utils/tiktok-trends"
+import { englishCacheItems } from "#/utils/english-cache"
 
 export default defineEventHandler(async (event) => {
   try {
@@ -14,7 +15,7 @@ export default defineEventHandler(async (event) => {
       return caches.filter(isCurrentTikTokCache).map(cache => ({
         status: "cache",
         id: cache.id,
-        items: cache.items,
+        items: englishCacheItems(cache.items),
         updatedTime: cache.updated,
       })) as SourceResponse[]
     }

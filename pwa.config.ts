@@ -9,6 +9,7 @@ const pwaOption: Partial<VitePWAOptions> = {
   manifest: {
     name: "NewsNow",
     short_name: "NewsNow",
+    lang: "en",
     description: "Elegant reading of real-time and hottest news",
     theme_color: "#F14D42",
     icons: [

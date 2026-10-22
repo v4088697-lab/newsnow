@@ -6,7 +6,7 @@
     "home": "https://v2ex.com/",
     "color": "slate",
     "interval": 600000,
-    "title": "最新分享"
+    "title": "Latest discussions"
   },
   "v2ex-share": {
     "name": "V2EX",
@@ -14,22 +14,22 @@
     "home": "https://v2ex.com/",
     "color": "slate",
     "interval": 600000,
-    "title": "最新分享"
+    "title": "Latest discussions"
   },
   "zaobao": {
-    "name": "联合早报",
+    "name": "Lianhe Zaobao",
     "type": "realtime",
-    "desc": "来自第三方网站: 早晨报",
+    "desc": "Via third-party provider: Zaichenbao",
     "column": "world",
     "home": "https://www.zaobao.com",
     "color": "red",
     "interval": 1800000
   },
   "wsj": {
-    "title": "最新新闻",
-    "name": "The Wall Street Journal 华尔街日报",
+    "title": "Latest news",
+    "name": "The Wall Street Journal",
     "type": "hottest",
-    "desc": "官方 RSS，部分文章需要订阅；订阅源不可用时使用 Google News 聚合并注明。",
+    "desc": "Official RSS. Some articles require a subscription. Labeled Google News aggregation is used if the feed is unavailable.",
     "column": "finance",
     "home": "https://www.wsj.com",
     "color": "slate",
@@ -42,7 +42,7 @@
     "home": "https://mktnews.net",
     "color": "indigo",
     "interval": 120000,
-    "title": "快讯"
+    "title": "Breaking news"
   },
   "mktnews-flash": {
     "name": "MKTNews",
@@ -50,31 +50,31 @@
     "home": "https://mktnews.net",
     "color": "indigo",
     "interval": 120000,
-    "title": "快讯"
+    "title": "Breaking news"
   },
   "cnn": {
-    "title": "最新新闻",
-    "name": "CNN 美国有线电视新闻网",
+    "title": "Latest news",
+    "name": "CNN",
     "type": "hottest",
-    "desc": "通过 Google News 聚合 CNN 新闻标题，点击查看报道。",
+    "desc": "CNN headlines aggregated via Google News. Open a headline to read the report.",
     "column": "world",
     "home": "https://www.cnn.com",
     "color": "red",
     "interval": 600000
   },
   "tiktok": {
-    "title": "美国 · 近 7 天趋势",
+    "title": "US · 7-day trends",
     "name": "TikTok",
     "type": "hottest",
-    "desc": "TikTok 官方 Creative Center 美国区近 7 天综合与分类热门话题，合并去重展示 10 条；分类条目已注明。数据不可用时使用已有完整缓存。",
+    "desc": "Ten deduplicated US hashtag trends from the official TikTok Creative Center over the past 7 days, combining overall and labeled category trends. Existing complete cache is retained if unavailable.",
     "column": "world",
     "home": "https://www.tiktok.com",
     "color": "gray",
     "interval": 600000
   },
   "dongqiudi": {
-    "title": "头条",
-    "name": "懂球帝",
+    "title": "Headlines",
+    "name": "Dongqiudi",
     "type": "realtime",
     "column": "sports",
     "home": "https://www.dongqiudi.com",
@@ -90,7 +90,7 @@
     "interval": 300000
   },
   "ithome": {
-    "name": "IT之家",
+    "name": "IT Home",
     "type": "realtime",
     "column": "tech",
     "home": "https://www.ithome.com",
@@ -98,14 +98,14 @@
     "interval": 600000
   },
   "sputniknewscn": {
-    "name": "卫星通讯社",
+    "name": "Sputnik",
     "column": "world",
     "home": "https://sputniknews.cn",
     "color": "orange",
     "interval": 600000
   },
   "cankaoxiaoxi": {
-    "name": "参考消息",
+    "name": "Reference News",
     "column": "world",
     "home": "https://china.cankaoxiaoxi.com",
     "color": "red",
@@ -113,7 +113,7 @@
   },
   "pcbeta": {
     "redirect": "pcbeta-windows11",
-    "name": "远景论坛",
+    "name": "PCBeta",
     "type": "realtime",
     "column": "tech",
     "home": "https://bbs.pcbeta.com",
@@ -122,7 +122,7 @@
     "title": "Win11"
   },
   "pcbeta-windows11": {
-    "name": "远景论坛",
+    "name": "PCBeta",
     "type": "realtime",
     "column": "tech",
     "home": "https://bbs.pcbeta.com",
@@ -131,18 +131,18 @@
     "title": "Win11"
   },
   "washingtonpost": {
-    "title": "最新新闻",
-    "name": "The Washington Post 华盛顿邮报",
+    "title": "Latest news",
+    "name": "The Washington Post",
     "type": "hottest",
-    "desc": "官方 RSS，部分文章需要订阅；订阅源不可用时使用 Google News 聚合并注明。",
+    "desc": "Official RSS. Some articles require a subscription. Labeled Google News aggregation is used if the feed is unavailable.",
     "column": "world",
     "home": "https://www.washingtonpost.com",
     "color": "slate",
     "interval": 600000
   },
   "gelonghui": {
-    "title": "事件",
-    "name": "格隆汇",
+    "title": "Events",
+    "name": "Gelonghui",
     "type": "realtime",
     "column": "finance",
     "home": "https://www.gelonghui.com",
@@ -151,30 +151,30 @@
   },
   "fastbull": {
     "redirect": "fastbull-express",
-    "name": "法布财经",
+    "name": "FastBull",
     "type": "realtime",
     "column": "finance",
     "home": "https://www.fastbull.cn",
     "color": "emerald",
     "interval": 120000,
-    "title": "快讯"
+    "title": "Breaking news"
   },
   "fastbull-express": {
-    "name": "法布财经",
+    "name": "FastBull",
     "type": "realtime",
     "column": "finance",
     "home": "https://www.fastbull.cn",
     "color": "emerald",
     "interval": 120000,
-    "title": "快讯"
+    "title": "Breaking news"
   },
   "fastbull-news": {
-    "name": "法布财经",
+    "name": "FastBull",
     "column": "finance",
     "home": "https://www.fastbull.cn",
     "color": "emerald",
     "interval": 1800000,
-    "title": "头条"
+    "title": "Headlines"
   },
   "solidot": {
     "name": "Solidot",
@@ -219,45 +219,45 @@
     "title": "Today"
   },
   "apnews": {
-    "title": "最新新闻",
-    "name": "AP News 美联社",
+    "title": "Latest news",
+    "name": "AP News",
     "type": "hottest",
-    "desc": "通过 Google News 聚合 AP News 新闻标题，点击查看报道。",
+    "desc": "AP News headlines aggregated via Google News. Open a headline to read the report.",
     "column": "world",
     "home": "https://apnews.com",
     "color": "slate",
     "interval": 600000
   },
   "nytimes": {
-    "title": "最新新闻",
-    "name": "The New York Times 纽约时报",
+    "title": "Latest news",
+    "name": "The New York Times",
     "type": "hottest",
-    "desc": "官方 RSS，部分文章需要订阅；订阅源不可用时使用 Google News 聚合并注明。",
+    "desc": "Official RSS. Some articles require a subscription. Labeled Google News aggregation is used if the feed is unavailable.",
     "column": "world",
     "home": "https://www.nytimes.com",
     "color": "gray",
     "interval": 600000
   },
   "bbc": {
-    "title": "最新新闻",
-    "name": "BBC News 英国广播公司",
+    "title": "Latest news",
+    "name": "BBC News",
     "type": "hottest",
-    "desc": "BBC 官方 RSS；订阅源不可用时使用 Google News 聚合并注明。",
+    "desc": "Official BBC RSS, with labeled Google News aggregation if unavailable.",
     "column": "world",
     "home": "https://www.bbc.com/news",
     "color": "red",
     "interval": 600000
   },
   "kaopu": {
-    "name": "靠谱新闻",
-    "desc": "不一定靠谱，多看多思考",
+    "name": "Kaopu News",
+    "desc": "Read widely and think critically.",
     "column": "world",
     "home": "https://kaopu.news/",
     "color": "gray",
     "interval": 1800000
   },
   "jin10": {
-    "name": "金十数据",
+    "name": "Jin10",
     "type": "realtime",
     "column": "finance",
     "home": "https://www.jin10.com",
@@ -265,37 +265,37 @@
     "interval": 600000
   },
   "reuters": {
-    "title": "最新新闻",
-    "name": "Reuters 路透社",
+    "title": "Latest news",
+    "name": "Reuters",
     "type": "hottest",
-    "desc": "通过 Google News 聚合 Reuters 新闻标题，点击查看报道。",
+    "desc": "Reuters headlines aggregated via Google News. Open a headline to read the report.",
     "column": "world",
     "home": "https://www.reuters.com",
     "color": "orange",
     "interval": 600000
   },
   "guardian": {
-    "title": "最新新闻",
-    "name": "The Guardian 卫报",
+    "title": "Latest news",
+    "name": "The Guardian",
     "type": "hottest",
-    "desc": "卫报官方 RSS；订阅源不可用时使用 Google News 聚合并注明。",
+    "desc": "Official Guardian RSS, with labeled Google News aggregation if unavailable.",
     "column": "world",
     "home": "https://www.theguardian.com",
     "color": "blue",
     "interval": 600000
   },
   "bloomberg": {
-    "title": "最新新闻",
-    "name": "Bloomberg 彭博社",
+    "title": "Latest news",
+    "name": "Bloomberg",
     "type": "hottest",
-    "desc": "彭博官方 RSS，部分文章需要订阅；订阅源不可用时使用 Google News 聚合并注明。",
+    "desc": "Official Bloomberg RSS. Some articles require a subscription. Labeled Google News aggregation is used if unavailable.",
     "column": "finance",
     "home": "https://www.bloomberg.com",
     "color": "purple",
     "interval": 600000
   },
   "steam": {
-    "title": "在线人数",
+    "title": "Online players",
     "name": "Steam",
     "type": "hottest",
     "column": "world",
@@ -304,230 +304,230 @@
     "interval": 600000
   },
   "ft": {
-    "title": "最新新闻",
-    "name": "Financial Times 金融时报",
+    "title": "Latest news",
+    "name": "Financial Times",
     "type": "hottest",
-    "desc": "金融时报官方 RSS，部分文章需要订阅；订阅源不可用时使用 Google News 聚合并注明。",
+    "desc": "Official Financial Times RSS. Some articles require a subscription. Labeled Google News aggregation is used if unavailable.",
     "column": "finance",
     "home": "https://www.ft.com",
     "color": "orange",
     "interval": 600000
   },
   "spotify": {
-    "title": "7天上升最快",
+    "title": "7-day fastest risers",
     "name": "Spotify",
     "type": "hottest",
-    "desc": "按最新已发布完整7天周榜的名次涨幅排序，范围为全球周榜公开前50首。标注榜单起止日期和上周→本周排名；新上榜及重新入榜不参与，并非截至今天的滚动7天或播放量增幅榜。",
+    "desc": "Ranks the latest published complete 7-day global weekly chart by position gain, limited to the public top 50 tracks. Each entry shows the chart dates and previous-to-current rank. New entries and reentries are excluded. This is not a rolling 7-day or streaming-growth chart.",
     "column": "music",
     "home": "https://charts.spotify.com/charts/view/regional-global-weekly/latest",
     "color": "green",
     "interval": 600000
   },
   "amazon": {
-    "title": "分类畅销",
+    "title": "Category best sellers",
     "name": "Amazon",
     "type": "hottest",
-    "desc": "Amazon 美国站公开分类畅销商品，标注所属分类和真实分类排名，并非全站总榜；不可用时展示官方动态。",
+    "desc": "Public US Amazon category best sellers, showing category and actual category rank, not a sitewide chart. Falls back to labeled official updates if unavailable.",
     "column": "ecommerce",
     "home": "https://www.amazon.com/Best-Sellers/zgbs",
     "color": "amber",
     "interval": 600000
   },
   "temu": {
-    "title": "商品分类",
+    "title": "Product categories",
     "name": "Temu",
     "type": "hottest",
-    "desc": "Temu 公开商品分类入口，不代表热销排行；不可用时显示标注来源的 Temu 公司新闻稿。",
+    "desc": "Public Temu product category links, not a sales ranking. Falls back to labeled Temu company press releases if unavailable.",
     "column": "ecommerce",
     "home": "https://www.temu.com",
     "color": "orange",
     "interval": 600000
   },
   "ebay": {
-    "title": "拍卖与翻新",
+    "title": "Auctions & refurbished",
     "name": "eBay",
     "type": "hottest",
-    "desc": "优先公开二手藏品拍卖；受限时展示并标注官方翻新推荐，再回退官方动态。翻新推荐不是拍卖榜；价格以商品页为准。",
+    "desc": "Prioritizes public used collectible auctions, then labeled official refurbished recommendations and official updates. Refurbished recommendations are not an auction chart. Check product pages for current prices.",
     "column": "auctions",
     "home": "https://www.ebay.com",
     "color": "blue",
     "interval": 600000
   },
   "reddit": {
-    "title": "兴趣热门",
+    "title": "Popular discussions",
     "name": "Reddit",
     "type": "hottest",
-    "desc": "Reddit r/popular 官方公开 RSS，展示热门讨论和所属社区；不可用时展示并标注官方动态，不代表个人订阅信息流。",
+    "desc": "Public Reddit r/popular RSS, showing popular discussions and their communities. Falls back to labeled official updates. This is not a personal subscription feed.",
     "column": "interests",
     "home": "https://www.reddit.com/r/popular/",
     "color": "orange",
     "interval": 600000
   },
   "pinterest": {
-    "title": "图文灵感",
+    "title": "Visual inspiration",
     "name": "Pinterest",
     "type": "hottest",
-    "desc": "Pinterest 公开精选与灵感分类，展示原始图片和标题，不代表个人推荐或热门排名；不可用时标注官方动态。",
+    "desc": "Public Pinterest features and inspiration categories with original images and titles. These are not personalized recommendations or popularity rankings. Official updates are labeled if used as a fallback.",
     "column": "visual",
     "home": "https://www.pinterest.com/ideas/",
     "color": "rose",
     "interval": 600000
   },
   "euronews": {
-    "title": "最新新闻",
-    "name": "Euronews 欧洲新闻台",
+    "title": "Latest news",
+    "name": "Euronews",
     "type": "hottest",
-    "desc": "Euronews 官方新闻订阅；订阅不可用时使用标注来源的新闻聚合。",
+    "desc": "Official Euronews news feed, with labeled news aggregation if unavailable.",
     "column": "world",
     "home": "https://www.euronews.com",
     "color": "blue",
     "interval": 600000
   },
   "lemonde": {
-    "title": "最新新闻",
-    "name": "Le Monde 世界报",
+    "title": "Latest news",
+    "name": "Le Monde",
     "type": "hottest",
-    "desc": "Le Monde 官方新闻订阅，保留法文原标题；部分文章需要订阅。",
+    "desc": "Official Le Monde news feed. Original French headlines are preserved. Some articles require a subscription.",
     "column": "world",
     "home": "https://www.lemonde.fr",
     "color": "slate",
     "interval": 600000
   },
   "youtube": {
-    "title": "视频与动态",
+    "title": "Videos & updates",
     "name": "YouTube",
     "type": "hottest",
-    "desc": "优先公开音乐视频周榜；无法获取时展示并标注 YouTube 官方动态，不代表个性化推荐。",
+    "desc": "Public weekly music video charts when available, otherwise labeled official YouTube updates. Not personalized recommendations.",
     "column": "world",
     "home": "https://www.youtube.com",
     "color": "red",
     "interval": 600000
   },
   "instagram": {
-    "title": "官方动态",
+    "title": "Official updates",
     "name": "Instagram",
     "type": "hottest",
-    "desc": "Meta 官方 Instagram 新闻与产品动态，不代表用户热帖或个人信息流。",
+    "desc": "Official Instagram news and product updates from Meta, not popular user posts or a personal feed.",
     "column": "world",
     "home": "https://www.instagram.com",
     "color": "fuchsia",
     "interval": 600000
   },
   "facebook": {
-    "title": "官方动态",
+    "title": "Official updates",
     "name": "Facebook",
     "type": "hottest",
-    "desc": "Meta 官方 Facebook 新闻与产品动态，不代表用户热帖或个人信息流。",
+    "desc": "Official Facebook news and product updates from Meta, not popular user posts or a personal feed.",
     "column": "world",
     "home": "https://www.facebook.com",
     "color": "blue",
     "interval": 600000
   },
   "dailymotion": {
-    "title": "热门视频",
+    "title": "Popular videos",
     "name": "Dailymotion",
     "type": "hottest",
-    "desc": "Dailymotion 官方公开热门视频列表。",
+    "desc": "Official public Dailymotion popular video list.",
     "column": "world",
     "home": "https://www.dailymotion.com",
     "color": "blue",
     "interval": 600000
   },
   "rumble": {
-    "title": "官方动态",
+    "title": "Official updates",
     "name": "Rumble",
     "type": "hottest",
-    "desc": "公开推荐无法获取时，展示 Rumble 官方公司动态，并明确标注。",
+    "desc": "Labeled official Rumble company updates when public recommendations are unavailable.",
     "column": "world",
     "home": "https://rumble.com",
     "color": "lime",
     "interval": 600000
   },
   "vimeo": {
-    "title": "编辑精选",
+    "title": "Staff Picks",
     "name": "Vimeo",
     "type": "hottest",
-    "desc": "Vimeo 官方 Staff Picks 编辑精选；不可用时展示并标注官方动态。",
+    "desc": "Official Vimeo Staff Picks, with labeled official updates if unavailable.",
     "column": "world",
     "home": "https://vimeo.com",
     "color": "cyan",
     "interval": 600000
   },
   "twitch": {
-    "title": "直播与动态",
+    "title": "Live & updates",
     "name": "Twitch",
     "type": "hottest",
-    "desc": "优先公开热门直播分类；无法获取时展示并标注 Twitch 官方动态。",
+    "desc": "Public popular live categories when available, otherwise labeled official Twitch updates.",
     "column": "world",
     "home": "https://www.twitch.tv",
     "color": "purple",
     "interval": 600000
   },
   "kick": {
-    "title": "直播与动态",
+    "title": "Live & updates",
     "name": "Kick",
     "type": "hottest",
-    "desc": "优先公开直播分类；无法获取时展示并标注 Kick 官方动态。",
+    "desc": "Public live categories when available, otherwise labeled official Kick updates.",
     "column": "world",
     "home": "https://kick.com",
     "color": "green",
     "interval": 600000
   },
   "netflix": {
-    "title": "全球英语剧集周榜",
-    "name": "Netflix 奈飞",
+    "title": "Weekly global English TV",
+    "name": "Netflix",
     "type": "hottest",
-    "desc": "Netflix Tudum 官方最新完整周的全球英语剧集 Top 10。每条注明榜单周；地区片库可能不同。",
+    "desc": "The latest complete Netflix Tudum global English TV Top 10 week. Chart dates are shown. Regional availability may vary.",
     "column": "world",
     "home": "https://www.netflix.com",
     "color": "red",
     "interval": 600000
   },
   "disneyplus": {
-    "title": "新作与官方动态",
+    "title": "Releases & updates",
     "name": "Disney+",
     "type": "hottest",
-    "desc": "Disney+ 官方新闻、新作及上线公告，不是订阅用户的个性化片单。",
+    "desc": "Official Disney+ news, releases and availability announcements, not a personalized watchlist.",
     "column": "world",
     "home": "https://www.disneyplus.com",
     "color": "blue",
     "interval": 600000
   },
   "paramountplus": {
-    "title": "新作与官方动态",
+    "title": "Releases & updates",
     "name": "Paramount+",
     "type": "hottest",
-    "desc": "Paramount+ 官方新作、预告与上线公告；无法直接获取时展示标注日期的官方新闻聚合。",
+    "desc": "Official Paramount+ releases, trailers and availability announcements. Falls back to dated official news aggregation if unavailable.",
     "column": "world",
     "home": "https://www.paramountplus.com",
     "color": "blue",
     "interval": 600000
   },
   "peacock": {
-    "title": "热门与推荐",
+    "title": "Popular & recommended",
     "name": "Peacock",
     "type": "hottest",
-    "desc": "Peacock 官方博客热门与推荐内容；无法获取时展示并标注官方动态，不代表平台观看排行榜。",
+    "desc": "Popular and recommended content from the official Peacock blog, with labeled official updates if unavailable. Not a platform viewing chart.",
     "column": "world",
     "home": "https://www.peacocktv.com",
     "color": "yellow",
     "interval": 600000
   },
   "x": {
-    "title": "官方开发者动态",
+    "title": "Developer updates",
     "name": "X",
     "type": "hottest",
-    "desc": "X 官方开发者更新日志，不代表实时热帖或热搜。",
+    "desc": "Official X developer changelog, not trending posts or searches.",
     "column": "world",
     "home": "https://x.com",
     "color": "gray",
     "interval": 600000
   },
   "quora": {
-    "title": "官方博客",
+    "title": "Official blog",
     "name": "Quora",
     "type": "hottest",
-    "desc": "Quora 官方博客及归档文章，注明文章日期与聚合来源，不代表热门问答榜。",
+    "desc": "Official and archived Quora blog articles with dates and aggregation sources. Not a popular Q&A ranking.",
     "column": "world",
     "home": "https://www.quora.com",
     "color": "red",

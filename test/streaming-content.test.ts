@@ -17,7 +17,7 @@ describe("streaming platform replacements", () => {
       <a class="release-link" href="https://evil.example/paramount-plus/releases/?view=456"><h4 class="release-title">External</h4></a>`)
     expect(items).toHaveLength(2)
     expect(items.map(item => item.pubDate)).toEqual([Date.parse("2026-10-20T12:00:00Z"), Date.parse("2026-10-15T12:00:00Z")])
-    expect(items[0]).toMatchObject({ title: "Official trailer", url: "https://www.paramountpressexpress.com/paramount-plus/shows/example/releases/?view=123-trailer", extra: { info: "官方动态" } })
+    expect(items[0]).toMatchObject({ title: "Official trailer", url: "https://www.paramountpressexpress.com/paramount-plus/shows/example/releases/?view=123-trailer", extra: { info: "Official updates" } })
   })
 
   it("puts Peacock popular articles first and labels recommendations separately", () => {
@@ -26,11 +26,11 @@ describe("streaming platform replacements", () => {
       <a href="/blog/popular"><div class="headline">Duplicate popular show</div></a>
       <a href="/blog/topic/movies"><div class="headline">Category</div></a>`)
     expect(items.map(item => item.title)).toEqual(["Popular show", "Recommended show"])
-    expect(items.map(item => item.extra?.info)).toEqual(["官方博客热门", "官方推荐"])
+    expect(items.map(item => item.extra?.info)).toEqual(["Popular on the official blog", "Official recommendations"])
   })
 
   it("uses Peacock recommendations even if the popular section is missing", () => {
-    expect(parsePeacockRecommendations("<a href=\"/blog/new-show\"><div class=\"headline\">New show</div></a>")[0].extra?.info).toBe("官方推荐")
+    expect(parsePeacockRecommendations("<a href=\"/blog/new-show\"><div class=\"headline\">New show</div></a>")[0].extra?.info).toBe("Official recommendations")
     expect(() => parsePeacockRecommendations("<h1>Unavailable</h1>")).toThrow()
   })
 
@@ -43,6 +43,6 @@ describe("streaming platform replacements", () => {
       <source url="${publisher}">Official publisher</source><pubDate>Tue, 20 Oct 2026 12:00:00 GMT</pubDate>
       </item></channel></rss>`)
     const items = await getter()
-    expect(items[0].extra?.info).toBe("官方动态 · 2026-10-20 · Google News")
+    expect(items[0].extra?.info).toBe("Official updates · 2026-10-20 · Google News")
   })
 })

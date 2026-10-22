@@ -6,7 +6,7 @@ export function parseParamountReleases(html: string) {
     selector: "a.release-link[href*=\"?view=\"]",
     titleSelector: ".release-title",
     path: /^\/paramount-plus\/(?:shows\/[^/]+\/)?releases\/$/,
-    label: "官方动态",
+    label: "Official updates",
   })
 }
 
@@ -18,11 +18,11 @@ export function parsePeacockRecommendations(html: string) {
   }
   let popular: ReturnType<typeof parsePublicLinks> = []
   try {
-    popular = parsePublicLinks(html, { ...options, selector: ".teaser--microsite-most-popular a", label: "官方博客热门" })
+    popular = parsePublicLinks(html, { ...options, selector: ".teaser--microsite-most-popular a", label: "Popular on the official blog" })
   } catch { /* The recommendation section may still be available. */ }
   let recommended: ReturnType<typeof parsePublicLinks> = []
   try {
-    recommended = parsePublicLinks(html, { ...options, selector: "a[href*=\"/blog/\"]", label: "官方推荐" })
+    recommended = parsePublicLinks(html, { ...options, selector: "a[href*=\"/blog/\"]", label: "Official recommendations" })
   } catch { /* Keep valid popular articles if the remaining sections are unavailable. */ }
   return requireItems([...popular, ...recommended])
 }

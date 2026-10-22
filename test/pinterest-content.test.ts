@@ -13,7 +13,7 @@ describe("pinterest image and text content", () => {
   beforeEach(() => fetchMock.mockReset())
 
   it("registers Pinterest in the image and text category", () => {
-    expect(genSources().pinterest).toMatchObject({ name: "Pinterest", title: "图文灵感", column: "visual", type: "hottest" })
+    expect(genSources().pinterest).toMatchObject({ name: "Pinterest", title: "Visual inspiration", column: "visual", type: "hottest" })
   })
 
   it("retains real images, distinguishes featured stories and categories, and deduplicates", () => {
@@ -21,8 +21,8 @@ describe("pinterest image and text content", () => {
       <a href="/editorialsponsorships/beauty/"><h2>Beauty story</h2><img src="https://i.pinimg.com/474x/beauty.jpg"></a>
       <a href="/ideas/art/12345/">Art<img src="https://i.pinimg.com/originals/art.png"></a>`)
     expect(items).toHaveLength(3)
-    expect(items[0]).toMatchObject({ title: "Autumn & style", extra: { image: "https://i.pinimg.com/474x/photo.jpg", info: "公开精选" } })
-    expect(items.map(item => item.extra?.info)).toEqual(["公开精选", "精选合作专题", "灵感分类"])
+    expect(items[0]).toMatchObject({ title: "Autumn & style", extra: { image: "https://i.pinimg.com/474x/photo.jpg", info: "Public features" } })
+    expect(items.map(item => item.extra?.info)).toEqual(["Public features", "Sponsored feature", "Inspiration categories"])
   })
 
   it("rejects off-platform links and insecure or unrelated thumbnails", () => {
@@ -40,18 +40,18 @@ describe("pinterest image and text content", () => {
   })
 
   it("parses dated official updates and normalizes trusted CDN images", () => {
-    expect(parsePinterestUpdates(update)[0]).toMatchObject({ title: "Official update", url: "https://newsroom.pinterest.com/news/example/", extra: { info: "官方动态", image: "https://images.ctfassets.net/photo.jpg" } })
+    expect(parsePinterestUpdates(update)[0]).toMatchObject({ title: "Official update", url: "https://newsroom.pinterest.com/news/example/", extra: { info: "Official updates", image: "https://images.ctfassets.net/photo.jpg" } })
     expect(parsePinterestUpdates(update)[0].pubDate).toBeDefined()
     expect(parsePinterestUpdates(update.replace("//images.ctfassets.net/photo.jpg", "https://evil.example/image.jpg"))[0].extra?.image).toBeUndefined()
   })
 
   it("uses official image and text updates when public ideas are unavailable", async () => {
     fetchMock.mockRejectedValueOnce(new Error("Unavailable")).mockResolvedValueOnce(update)
-    expect((await pinterest())[0].extra?.info).toBe("官方动态")
+    expect((await pinterest())[0].extra?.info).toBe("Official updates")
   })
 
   it("uses publisher-verified aggregation as the final fallback", async () => {
     fetchMock.mockRejectedValueOnce(new Error("Unavailable")).mockRejectedValueOnce(new Error("Unavailable")).mockResolvedValueOnce("<rss><channel><item><title>Pinterest update</title><link>https://news.google.com/rss/articles/example</link><source url=\"https://newsroom.pinterest.com\">Pinterest</source><pubDate>Tue, 20 Oct 2026 12:00:00 GMT</pubDate></item></channel></rss>")
-    expect((await pinterest())[0].extra?.info).toBe("官方动态 · 2026-10-20 · Google News")
+    expect((await pinterest())[0].extra?.info).toBe("Official updates · 2026-10-20 · Google News")
   })
 })

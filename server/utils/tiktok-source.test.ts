@@ -26,8 +26,8 @@ describe("tikTok ten-trend collection", () => {
     const items = await tiktok()
     expect(items).toHaveLength(10)
     expect(new Set(items.map(item => item.id)).size).toBe(10)
-    expect(items.slice(0, 3).every(item => !String(item.extra?.info ?? "").includes("分类趋势"))).toBe(true)
-    expect(items.slice(3).every(item => String(item.extra?.info ?? "").includes("分类趋势"))).toBe(true)
+    expect(items.slice(0, 3).every(item => !String(item.extra?.info ?? "").includes("Category trends"))).toBe(true)
+    expect(items.slice(3).every(item => String(item.extra?.info ?? "").includes("Category trends"))).toBe(true)
     expect(myFetch).toHaveBeenCalledTimes(5)
     for (const [, options] of vi.mocked(myFetch).mock.calls) {
       expect(options?.body).toMatchObject({ countryCode: "US", timeRange: 7, limit: 10 })

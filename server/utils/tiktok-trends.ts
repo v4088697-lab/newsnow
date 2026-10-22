@@ -27,7 +27,7 @@ export function parseTikTokTrends(response: TikTokTrendsResponse, category = fal
     title: `#${item.hashtagName.trim().replace(/^#/, "")}`,
     url: `https://www.tiktok.com/tag/${encodeURIComponent(item.hashtagName.trim().replace(/^#/, ""))}`,
     extra: {
-      info: `${typeof item.publishCnt === "number" ? `${item.publishCnt.toLocaleString("en-US")} 条视频 · ` : ""}美国近 7 天${category ? " · 分类趋势" : ""}`,
+      info: `${typeof item.publishCnt === "number" ? `${item.publishCnt.toLocaleString("en-US")} videos · ` : ""}US · past 7 days${category ? " · Category trends" : ""}`,
     },
   }))
   if (!items.length) throw new Error("TikTok returned no trending hashtags")

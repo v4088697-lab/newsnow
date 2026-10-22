@@ -20,7 +20,7 @@ export function parsePinterestIdeas(html: string): NewsItem[] {
     const image = anchor.find("img").first().attr("src")
     const title = plainText(isFeatured ? anchor.find("h2").first().html() ?? "" : anchor.text())
     if (!title || !image || !validPlatformUrl(image, ["i.pinimg.com"])) return
-    const info = url.pathname.startsWith("/editorialsponsorships/") ? "精选合作专题" : isFeatured ? "公开精选" : "灵感分类"
+    const info = url.pathname.startsWith("/editorialsponsorships/") ? "Sponsored feature" : isFeatured ? "Public features" : "Inspiration categories"
     items.push({ id: url.href, title, url: url.href, extra: { image, info } })
   })
   return requireItems(items)
@@ -48,7 +48,7 @@ export function parsePinterestUpdates(html: string): NewsItem[] {
       title,
       url: url.href,
       pubDate: Number.isFinite(date) ? date : undefined,
-      extra: { info: "官方动态", image: image && validPlatformUrl(image, ["images.ctfassets.net"]) ? image : undefined },
+      extra: { info: "Official updates", image: image && validPlatformUrl(image, ["images.ctfassets.net"]) ? image : undefined },
     })
   })
   return requireItems(items)

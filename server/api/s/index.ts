@@ -5,6 +5,7 @@ import { getters } from "#/getters"
 import { getCacheTable } from "#/database/cache"
 import type { CacheInfo } from "#/types"
 import { isCurrentTikTokCache } from "#/utils/tiktok-trends"
+import { englishCacheItems } from "#/utils/english-cache"
 
 const info = {
   LICENCE: "MIT",
@@ -37,7 +38,7 @@ export default defineEventHandler(async (event): Promise<SourceResponse> => {
           status: "cache",
           id,
           updatedTime: cache.updated,
-          items: cache.items,
+          items: englishCacheItems(cache.items),
           info,
         }
       }
@@ -64,7 +65,7 @@ export default defineEventHandler(async (event): Promise<SourceResponse> => {
           status: "cache",
           id,
           updatedTime: cache.updated,
-          items: cache.items,
+          items: englishCacheItems(cache.items),
           info,
         }
       } else {

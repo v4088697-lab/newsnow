@@ -38,15 +38,15 @@ describe("install instructions", () => {
     ["Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X)", 5],
     ["Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15) AppleWebKit/605.1.15", 5],
   ])("explains Add to Home Screen on iOS and iPadOS", (agent, touches) => {
-    expect(getInstallInstructions(agent, touches)).toContain("添加到主屏幕")
+    expect(getInstallInstructions(agent, touches)).toContain("Add to Home Screen")
     expect(getInstallInstructions(agent, touches)).toContain("Safari")
   })
 
   it("uses Android browser menu instructions", () => {
-    expect(getInstallInstructions("Mozilla/5.0 (Linux; Android 15)", 5)).toContain("浏览器菜单")
+    expect(getInstallInstructions("Mozilla/5.0 (Linux; Android 15)", 5)).toContain("browser menu")
   })
 
   it("uses desktop installation instructions for Macs without a touchscreen", () => {
-    expect(getInstallInstructions("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15)", 0)).toContain("Chrome 或 Edge")
+    expect(getInstallInstructions("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15)", 0)).toContain("Chrome or Edge")
   })
 })

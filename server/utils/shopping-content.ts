@@ -23,7 +23,7 @@ export function parseAmazonBestsellers(html: string): NewsItem[] {
     if (!asin || !title) return
     const category = plainText(row.closest(".a-carousel-container").find("h2").first().html() ?? "").replace(/^Best Sellers in\s+/i, "")
     const rank = /^#(\d+)$/.exec(row.find(".zg-bdg-text").first().text().trim())?.[1]
-    items.push({ id: asin, title, url: `https://www.amazon.com/dp/${asin}`, extra: { info: ["分类畅销", category, rank ? `分类第 ${rank} 名` : ""].filter(Boolean).join(" · ") } })
+    items.push({ id: asin, title, url: `https://www.amazon.com/dp/${asin}`, extra: { info: ["Category best sellers", category, rank ? `Category #${rank}` : ""].filter(Boolean).join(" · ") } })
   })
   return requireItems(items)
 }
@@ -37,7 +37,7 @@ export function parseTemuCategories(html: string): NewsItem[] {
     const id = url && /^\/[^/?]+-o3-(\d+)\.html$/.exec(url.pathname)?.[1]
     const title = plainText(anchor.html() ?? "")
     if (!id || !title || title.includes("*")) return
-    items.push({ id, title, url: `${url!.origin}${url!.pathname}`, extra: { info: "官方商品分类" } })
+    items.push({ id, title, url: `${url!.origin}${url!.pathname}`, extra: { info: "Official product categories" } })
   })
   return requireItems(items)
 }
@@ -54,7 +54,7 @@ export function parseTemuReleases(html: string): NewsItem[] {
     heading.find("small").remove()
     const title = plainText(heading.html() ?? "")
     if (!title) return
-    items.push({ id: url.href, title, url: url.href, extra: { info: `Temu 新闻稿 · PR Newswire${date ? ` · ${date}` : ""}` } })
+    items.push({ id: url.href, title, url: url.href, extra: { info: `Temu press release · PR Newswire${date ? ` · ${date}` : ""}` } })
   })
   return requireItems(items)
 }
@@ -71,7 +71,7 @@ export function parseEbayRefurbished(html: string): NewsItem[] {
     const id = url && /^\/itm\/(?:[^/]+\/)?(\d+)(?:\/|$)/.exec(url.pathname)?.[1]
     if (!id || !title) return
     const price = row.find(".dne-itemtile-price [itemprop=\"price\"]").first().text().trim()
-    items.push({ id, title, url: `https://www.ebay.com/itm/${id}`, extra: { info: `官方翻新推荐${price ? ` · 页面价格 ${price}` : ""}` } })
+    items.push({ id, title, url: `https://www.ebay.com/itm/${id}`, extra: { info: `Official refurbished picks${price ? ` · Listed price ${price}` : ""}` } })
   })
   return requireItems(items)
 }
@@ -89,7 +89,7 @@ export function parseEbayAuctions(html: string): NewsItem[] {
     const id = url && /^\/itm\/(?:[^/]+\/)?(\d+)(?:\/|$)/.exec(url.pathname)?.[1]
     if (!id || !title) return
     const price = row.find(".s-item__price,.s-card__price").first().text().trim()
-    items.push({ id, title, url: `https://www.ebay.com/itm/${id}`, extra: { info: `二手藏品拍卖 · ${bids}${price ? ` · 页面价格 ${price}` : ""}` } })
+    items.push({ id, title, url: `https://www.ebay.com/itm/${id}`, extra: { info: `Used collectible auctions · ${bids}${price ? ` · Listed price ${price}` : ""}` } })
   })
   return requireItems(items)
 }

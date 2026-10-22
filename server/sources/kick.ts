@@ -8,7 +8,7 @@ export default async () => {
       selector: "a[href^=\"/category/\"]",
       titleSelector: "h3",
       path: /^\/category\/[^/]+\/?$/,
-      label: "公开直播分类",
+      label: "Public live categories",
     }, { "User-Agent": `NewsNow/${Version}` })
   } catch {
     return kickUpdates()

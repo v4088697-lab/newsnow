@@ -20,11 +20,11 @@ describe("public platform content", () => {
       selector: "a",
       titleSelector: "h2",
       path: /^\/news\/[^/]+$/,
-      label: "官方动态",
+      label: "Official updates",
     })
     expect(items).toHaveLength(1)
-    expect(items[0]).toMatchObject({ title: "First & second", url: "https://official.example/news/one", extra: { info: "官方动态" } })
-    expect(() => parsePublicLinks("<h1>Access denied</h1>", { base: "https://official.example", selector: "a", path: /./, label: "官方动态" })).toThrow()
+    expect(items[0]).toMatchObject({ title: "First & second", url: "https://official.example/news/one", extra: { info: "Official updates" } })
+    expect(() => parsePublicLinks("<h1>Access denied</h1>", { base: "https://official.example", selector: "a", path: /./, label: "Official updates" })).toThrow()
   })
 
   it("filters invalid Dailymotion videos and preserves real counts", () => {
@@ -34,7 +34,7 @@ describe("public platform content", () => {
       { id: "bad", title: "Wrong host", url: "https://evil.example/video/bad" },
     ] })
     expect(items).toHaveLength(1)
-    expect(items[0]).toMatchObject({ pubDate: 100000, extra: { info: "热门视频 · 12,345 次观看" } })
+    expect(items[0]).toMatchObject({ pubDate: 100000, extra: { info: "Popular videos · 12,345 views" } })
     expect(() => parseDailymotion({ list: [] })).toThrow()
   })
 
@@ -48,7 +48,7 @@ describe("public platform content", () => {
       ] }],
     } } }] } } })
     expect(items).toHaveLength(1)
-    expect(items[0].extra?.info).toBe("美国音乐视频周榜 · 第 7 名 · 2026-10-15")
+    expect(items[0].extra?.info).toBe("US weekly music video chart · Rank #7 · 2026-10-15")
     expect(items[0].url).toBe("https://www.youtube.com/watch?v=abcdefghijk")
   })
 
@@ -59,14 +59,14 @@ describe("public platform content", () => {
       { node: { id: "3", name: "Invalid", slug: "../invalid", viewersCount: 9000 } },
     ] } } })
     expect(items.map(item => item.title)).toEqual(["Large", "Small"])
-    expect(items[0].extra?.info).toBe("热门直播分类 · 5,000 人观看")
+    expect(items[0].extra?.info).toBe("Popular live categories · 5,000 viewers")
   })
 
   it("labels X change log entries as developer updates", () => {
     expect(parseXUpdates("<h3 id=\"october-2026\">October 2026<br>API changes</h3>")[0]).toMatchObject({
       title: "October 2026 API changes",
       url: "https://docs.x.com/changelog#october-2026",
-      extra: { info: "官方开发者动态" },
+      extra: { info: "Official developer updates" },
     })
   })
 })

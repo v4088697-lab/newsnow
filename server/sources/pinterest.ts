@@ -12,7 +12,7 @@ export default async () => {
       const html = await myFetch<string, "text">("https://newsroom.pinterest.com/en/", { responseType: "text", retry: 0, timeout: 5000 })
       return parsePinterestUpdates(html)
     } catch {
-      return fetchOfficialAggregated("site:newsroom.pinterest.com/news", ["newsroom.pinterest.com"], "官方动态")
+      return fetchOfficialAggregated("site:newsroom.pinterest.com/news", ["newsroom.pinterest.com"], "Official updates")
     }
   }
 }

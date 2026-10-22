@@ -11,14 +11,14 @@ export function usePWA() {
     }
     return subscribePwaUpdateState((state) => {
       if (state === "ready") {
-        toaster("网站有新版本，5 秒后自动更新", {
+        toaster("A new version is available. Updating in 5 seconds.", {
           action: {
-            label: "立刻更新",
+            label: "Update now",
             onClick: update,
           },
         })
       } else if (state === "successful") {
-        toaster("网站已更新为最新版本", { type: "success" })
+        toaster("The website is up to date.", { type: "success" })
       }
     })
   }, [toaster])

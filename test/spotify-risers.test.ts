@@ -16,14 +16,14 @@ const response = (entries: unknown[]) => ({ chartEntryViewResponses: [chart(entr
 
 describe("spotify weekly rank risers", () => {
   it("registers the music category and discloses the public top 50 scope", () => {
-    expect(genSources().spotify).toMatchObject({ name: "Spotify", column: "music", title: "7天上升最快" })
-    expect(genSources().spotify.desc).toContain("前50")
+    expect(genSources().spotify).toMatchObject({ name: "Spotify", column: "music", title: "7-day fastest risers" })
+    expect(genSources().spotify.desc).toContain("top 50")
   })
 
   it("sorts by real weekly rank gain, not current popularity", () => {
     const items = parseSpotifyRisers(response([track(1, 1, 2), track(2, 47, 65), track(3, 22, 39)]))
     expect(items.map(item => item.title.split(" — ")[0])).toEqual(["Song 2", "Song 3", "Song 1"])
-    expect(items[0].extra?.info).toBe("↑18 位 · 65→47 · 全球公开前50 · 2026-10-09～2026-10-15")
+    expect(items[0].extra?.info).toBe("↑18 places · 65→47 · Global public top 50 · 2026-10-09 to 2026-10-15")
     expect(items[0].title).toContain("Artist & Guest")
     expect(items[0].url).toMatch(/^https:\/\/open\.spotify\.com\/track\/[a-z0-9]{22}$/)
   })

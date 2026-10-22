@@ -42,8 +42,8 @@ export function parseSpotifyRisers(data: unknown): NewsItem[] {
         title: `${name}${artists ? ` — ${artists}` : ""}`,
         url: `https://open.spotify.com/track/${id}`,
         extra: {
-          info: `↑${gain} 位 · ${previous}→${rank} · 全球公开前50 · ${start}～${end}`,
-          hover: `Spotify 官方周榜 ${start} 至 ${end}；上周第 ${previous} 名，本周第 ${rank} 名，上升 ${gain} 位。按公开前50首中的名次涨幅排序，同幅度时本周排名靠前者优先。`,
+          info: `↑${gain} places · ${previous}→${rank} · Global public top 50 · ${start} to ${end}`,
+          hover: `Spotify official weekly chart, ${start} to ${end}. Previous rank: ${previous}; current rank: ${rank}; up ${gain} places. Ranked by position gain among the public top 50, with ties resolved by current rank.`,
         },
       },
     })

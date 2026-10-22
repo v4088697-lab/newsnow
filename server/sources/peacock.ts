@@ -7,6 +7,6 @@ export default async () => {
     const html = await myFetch<string, "text">("https://www.peacocktv.com/blog", { responseType: "text", retry: 0, timeout: 5000 })
     return parsePeacockRecommendations(html)
   } catch {
-    return fetchOfficialAggregated("site:peacocktv.com/blog", ["peacocktv.com"], "官方动态")
+    return fetchOfficialAggregated("site:peacocktv.com/blog", ["peacocktv.com"], "Official updates")
   }
 }

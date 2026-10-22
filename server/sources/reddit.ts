@@ -13,6 +13,6 @@ export default async () => {
     })
     return parseRedditFeed(xml)
   } catch {
-    return fetchOfficialAggregated("site:redditinc.com/news", ["redditinc.com"], "官方动态")
+    return fetchOfficialAggregated("site:redditinc.com/news", ["redditinc.com"], "Official updates")
   }
 }

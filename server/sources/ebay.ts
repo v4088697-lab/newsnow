@@ -12,7 +12,7 @@ export default async () => {
       const html = await myFetch<string, "text">("https://www.ebay.com/deals", { responseType: "text", retry: 0, timeout: 5000 })
       return parseEbayRefurbished(html)
     } catch {
-      return fetchOfficialAggregated("site:ebayinc.com/stories/news", ["ebayinc.com"], "官方动态")
+      return fetchOfficialAggregated("site:ebayinc.com/stories/news", ["ebayinc.com"], "Official updates")
     }
   }
 }

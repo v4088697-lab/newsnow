@@ -23,7 +23,7 @@ export function parseRedditFeed(xml: string): NewsItem[] {
       title,
       url,
       pubDate: Number.isFinite(date) ? date : undefined,
-      extra: { info: `r/${match[1]} · 公开热门 · 官方 RSS` },
+      extra: { info: `r/${match[1]} · Public popular feed · Official RSS` },
     })
   }
   return requireItems(items)

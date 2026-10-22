@@ -20,9 +20,9 @@ export function PageActions() {
     try {
       const url = window.location.href
       const result = await sharePage({ title: document.title, url }, navigator)
-      if (result === "copied") toaster("当前页面链接已复制", { type: "success" })
+      if (result === "copied") toaster("Page link copied", { type: "success" })
       if (result === "manual") {
-        setHelp({ title: "分享当前页面", text: "请选中并复制下方链接，发送给朋友。", url })
+        setHelp({ title: "Share this page", text: "Select and copy the link below to share it.", url })
       }
     } finally {
       setSharing(false)
@@ -30,7 +30,7 @@ export function PageActions() {
   }
 
   const showInstallHelp = () => setHelp({
-    title: "安装 NewsNow 应用",
+    title: "Install NewsNow",
     text: getInstallInstructions(navigator.userAgent, navigator.maxTouchPoints),
   })
 
@@ -50,8 +50,8 @@ export function PageActions() {
     <>
       <button
         type="button"
-        title="分享当前页面"
-        aria-label="分享当前页面"
+        title="Share this page"
+        aria-label="Share this page"
         className="btn flex items-center justify-center min-h-7 min-w-6"
         disabled={sharing}
         onClick={share}
@@ -60,8 +60,8 @@ export function PageActions() {
       </button>
       <button
         type="button"
-        title={installed ? "已安装应用" : "安装此页面为应用"}
-        aria-label={installed ? "已安装应用" : "安装此页面为应用"}
+        title={installed ? "App installed" : "Install as app"}
+        aria-label={installed ? "App installed" : "Install as app"}
         className="btn flex items-center justify-center min-h-7 min-w-6"
         disabled={installed || installing}
         onClick={installApp}
@@ -79,7 +79,7 @@ export function PageActions() {
         <p id="page-actions-description" className="leading-relaxed">{help?.text}</p>
         {help?.url && (
           <input
-            aria-label="当前页面链接"
+            aria-label="Current page link"
             readOnly
             value={help.url}
             onFocus={event => event.currentTarget.select()}
@@ -88,7 +88,7 @@ export function PageActions() {
           />
         )}
         <form method="dialog" className="mt-4 flex justify-end">
-          <button type="submit" className="btn rounded px-3 py-1 bg-primary/10">关闭</button>
+          <button type="submit" className="btn rounded px-3 py-1 bg-primary/10">Close</button>
         </form>
       </dialog>
     </>

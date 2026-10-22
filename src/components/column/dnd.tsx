@@ -89,7 +89,7 @@ export function Dnd() {
       </OverlayScrollbar>
       {isMobile && (
         <div className="flex justify-center">
-          <span className="text-sm text-gray-500 text-center">左右滑动查看更多</span>
+          <span className="text-sm text-gray-500 text-center">Swipe left or right to see more</span>
         </div>
       )}
     </DndWrapper>
@@ -157,7 +157,7 @@ function CardOverlay({ id }: { id: SourceID }) {
               </span>
               {sources[id]?.title && <span className={$("text-sm", `color-${sources[id].color} bg-base op-80 bg-op-50! px-1 rounded`)}>{sources[id].title}</span>}
             </span>
-            <span className="text-xs op-70">拖拽中</span>
+            <span className="text-xs op-70">Dragging</span>
           </span>
         </div>
         <div className={$("flex gap-2 text-lg shrink-0 ml-2", `color-${sources[id].color}`)}>

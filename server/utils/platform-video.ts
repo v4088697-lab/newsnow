@@ -15,7 +15,7 @@ export function parseDailymotion(data: unknown): NewsItem[] {
       title: plainText(video.title),
       url: video.url,
       pubDate: typeof video.created_time === "number" ? video.created_time * 1000 : undefined,
-      extra: { info: `热门视频${typeof video.views_total === "number" ? ` · ${video.views_total.toLocaleString("en-US")} 次观看` : ""}` },
+      extra: { info: `Popular videos${typeof video.views_total === "number" ? ` · ${video.views_total.toLocaleString("en-US")} views` : ""}` },
     }]
   }))
 }
@@ -47,7 +47,7 @@ export function parseYouTubeCharts(data: unknown): NewsItem[] {
           id: video.id,
           title: plainText(video.title),
           url: `https://www.youtube.com/watch?v=${video.id}`,
-          extra: { info: `美国音乐视频周榜${typeof rank === "number" ? ` · 第 ${rank} 名` : ""}${typeof date === "string" ? ` · ${date}` : ""}` },
+          extra: { info: `US weekly music video chart${typeof rank === "number" ? ` · Rank #${rank}` : ""}${typeof date === "string" ? ` · ${date}` : ""}` },
         })
       }
     }
@@ -65,6 +65,6 @@ export function parseTwitchDirectory(data: unknown): NewsItem[] {
       id: game.id as string,
       title: plainText(game.name),
       url: `https://www.twitch.tv/directory/category/${game.slug}`,
-      extra: { info: `热门直播分类${typeof game.viewersCount === "number" ? ` · ${game.viewersCount.toLocaleString("en-US")} 人观看` : ""}` },
+      extra: { info: `Popular live categories${typeof game.viewersCount === "number" ? ` · ${game.viewersCount.toLocaleString("en-US")} viewers` : ""}` },
     })))
 }

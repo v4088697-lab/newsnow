@@ -73,7 +73,7 @@ export function parseInternationalFeed(xml: string, domains: string[], aggregate
       title,
       url,
       pubDate: Number.isFinite(date) ? date : undefined,
-      extra: { info: aggregated ? "Google News 聚合" : "官方 RSS" },
+      extra: { info: aggregated ? "Google News aggregation" : "Official RSS" },
     })
   }
 

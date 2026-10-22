@@ -60,10 +60,10 @@ describe("automatic source queries", () => {
   it("does not mix Spotify weekly rank gains with changes since the last page request", async () => {
     const { QueryClient } = await import("@tanstack/react-query")
     cacheSources.set("spotify", { id: "spotify", status: "cache", updatedTime: Date.now(), items: [{ id: "a", title: "A", url: "https://open.spotify.com/track/a" }, { id: "b", title: "B", url: "https://open.spotify.com/track/b" }] })
-    fetchMock.mockResolvedValueOnce({ id: "spotify", status: "success", updatedTime: Date.now(), items: [{ id: "b", title: "B", url: "https://open.spotify.com/track/b", extra: { info: "↑18 位 · 65→47" } }] })
+    fetchMock.mockResolvedValueOnce({ id: "spotify", status: "success", updatedTime: Date.now(), items: [{ id: "b", title: "B", url: "https://open.spotify.com/track/b", extra: { info: "↑18 places · 65→47" } }] })
     const client = new QueryClient()
     const result = await client.fetchQuery({ ...sourceQueryOptions("spotify"), staleTime: 0 })
-    expect(result.items[0].extra?.info).toBe("↑18 位 · 65→47")
+    expect(result.items[0].extra?.info).toBe("↑18 places · 65→47")
     expect(result.items[0].extra?.diff).toBeUndefined()
     client.clear()
   })

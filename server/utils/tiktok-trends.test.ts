@@ -19,7 +19,7 @@ describe("tikTok official trending hashtags", () => {
     })
     expect(items.map(item => item.title)).toEqual(["#first topic", "#second"])
     expect(items[0].url).toBe("https://www.tiktok.com/tag/first%20topic")
-    expect(items[1].extra?.info).toBe("1,200 条视频 · 美国近 7 天")
+    expect(items[1].extra?.info).toBe("1,200 videos · US · past 7 days")
   })
 
   it.each([

@@ -58,4 +58,22 @@ describe("source cache refresh", () => {
     cacheTable.getEntire.mockResolvedValue([{ id: "cnn", updated, items }])
     expect(await entireHandler(request("POST"))).toEqual([{ id: "cnn", status: "cache", updatedTime: updated, items }])
   })
+
+  it.each([60000, 3600000])("shows English annotations from existing cache aged %i ms without translating headlines", async (age) => {
+    const updated = now - age
+    const original = Object.freeze({ id: "old", title: "新闻原标题", url: "https://www.cnn.com/old", extra: Object.freeze({ info: "官方动态 · 2026-10-20 · Google News" }) })
+    cacheTable.get.mockResolvedValue({ id: "cnn", updated, items: [original] })
+    vi.mocked(getters.cnn).mockRejectedValue(new Error("Publisher unavailable"))
+    const result = await sourceHandler(request())
+    expect(result.updatedTime).toBe(updated)
+    expect(result.items[0]).toMatchObject({ title: original.title, url: original.url, extra: { info: "Official updates · 2026-10-20 · Google News" } })
+    expect(original.extra.info).toBe("官方动态 · 2026-10-20 · Google News")
+  })
+
+  it("localizes old bulk chart annotations while preserving ranks, dates and original titles", async () => {
+    const updated = now - 60000
+    const original = { id: "track", title: "歌曲原名 — Artiste", url: "https://open.spotify.com/track/example", extra: { info: "↑18 位 · 65→47 · 全球公开前50 · 2026-10-09～2026-10-15" } }
+    cacheTable.getEntire.mockResolvedValue([{ id: "spotify", updated, items: [original] }])
+    expect(await entireHandler(request("POST"))).toEqual([{ id: "spotify", status: "cache", updatedTime: updated, items: [{ ...original, extra: { info: "↑18 places · 65→47 · Global public top 50 · 2026-10-09 to 2026-10-15" } }] }])
+  })
 })
