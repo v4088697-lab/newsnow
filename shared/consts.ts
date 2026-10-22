@@ -1,11 +1,7 @@
-/**
- * 缓存过期时间
- */
 import packageJSON from "../package.json"
 
-export const TTL = 30 * 60 * 1000
 /**
- * 默认刷新间隔, 10 min
+ * 默认内容刷新间隔；服务端缓存与浏览器自动轮询共同遵守。
  */
 export const Interval = 10 * 60 * 1000
 

@@ -20,11 +20,10 @@ export class Cache {
     logger.success(`init cache table`)
   }
 
-  async set(key: string, value: NewsItem[]) {
-    const now = Date.now()
+  async set(key: string, value: NewsItem[], updated = Date.now()) {
     await this.db.prepare(
       `INSERT OR REPLACE INTO cache (id, data, updated) VALUES (?, ?, ?)`,
-    ).run(key, JSON.stringify(value), now)
+    ).run(key, JSON.stringify(value), updated)
     logger.success(`set ${key} cache`)
   }
 

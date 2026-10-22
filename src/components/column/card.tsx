@@ -1,10 +1,10 @@
-import type { NewsItem, SourceID, SourceResponse } from "@shared/types"
+import type { NewsItem, SourceID } from "@shared/types"
 import { useQuery } from "@tanstack/react-query"
 import { AnimatePresence, motion, useInView } from "framer-motion"
 import { useWindowSize } from "react-use"
 import { forwardRef, useImperativeHandle } from "react"
 import { OverlayScrollbar } from "../common/overlay-scrollbar"
-import { safeParseString } from "~/utils"
+import { sourceQueryOptions } from "~/utils/source-query"
 
 export interface ItemsProps extends React.HTMLAttributes<HTMLDivElement> {
   id: SourceID
@@ -52,55 +52,7 @@ export const CardWrapper = forwardRef<HTMLElement, ItemsProps>(({ id, isDragging
 
 function NewsCard({ id, setHandleRef }: NewsCardProps) {
   const { refresh } = useRefetch()
-  const { data, isFetching, isError } = useQuery({
-    queryKey: ["source", id],
-    queryFn: async ({ queryKey }) => {
-      const id = queryKey[1] as SourceID
-      let url = `/s?id=${id}`
-      const headers: Record<string, any> = {}
-      if (refetchSources.has(id)) {
-        url = `/s?id=${id}&latest`
-        const jwt = safeParseString(localStorage.getItem("jwt"))
-        if (jwt) headers.Authorization = `Bearer ${jwt}`
-        refetchSources.delete(id)
-      } else if (cacheSources.has(id)) {
-        // wait animation
-        await delay(200)
-        return cacheSources.get(id)
-      }
-
-      const response: SourceResponse = await myFetch(url, {
-        headers,
-      })
-
-      function diff() {
-        try {
-          if (response.items && sources[id].type === "hottest" && cacheSources.has(id)) {
-            response.items.forEach((item, i) => {
-              const o = cacheSources.get(id)!.items.findIndex(k => k.id === item.id)
-              item.extra = {
-                ...item?.extra,
-                diff: o === -1 ? undefined : o - i,
-              }
-            })
-          }
-        } catch (e) {
-          console.error(e)
-        }
-      }
-
-      diff()
-
-      cacheSources.set(id, response)
-      return response
-    },
-    placeholderData: prev => prev,
-    staleTime: Infinity,
-    refetchOnMount: false,
-    refetchOnReconnect: false,
-    refetchOnWindowFocus: false,
-    retry: false,
-  })
+  const { data, isFetching, isError } = useQuery(sourceQueryOptions(id))
 
   const { isFocused, toggleFocus } = useFocusWith(id)
 

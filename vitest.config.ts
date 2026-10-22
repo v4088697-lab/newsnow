@@ -7,12 +7,13 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "node",
-    include: ["server/**/*.test.ts", "shared/**/*.test.ts", "test/**/*.test.ts"],
+    include: ["server/**/*.test.ts", "shared/**/*.test.ts", "src/**/*.test.ts", "test/**/*.test.ts"],
   },
   resolve: {
     alias: {
       "@shared": join(projectDir, "shared"),
       "#": join(projectDir, "server"),
+      "virtual:pwa-register": join(projectDir, "test/fixtures/pwa-register.ts"),
     },
   },
   plugins: [

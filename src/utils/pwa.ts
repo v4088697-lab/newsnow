@@ -12,7 +12,10 @@ const SUCCESS_KEY = "newsnow:pwa-update-successful"
 localStorage.removeItem("updated")
 
 // 浏览器默认只在页面加载时检查 SW 更新，定时检查让长时间打开的页面也能拿到更新
-const UPDATE_CHECK_INTERVAL = 60 * 60 * 1000
+const UPDATE_CHECK_INTERVAL = 5 * 60 * 1000
+const AUTO_APPLY_DELAY = 5000
+let autoApplyTimer: ReturnType<typeof setTimeout> | undefined
+let retryUpdate = false
 
 const pendingAtStartup = localStorage.getItem(PENDING_KEY) === "true"
 const successfulAtStartup = sessionStorage.getItem(SUCCESS_KEY) === "true"
@@ -36,6 +39,9 @@ function markPwaUpdateReady(apply: ApplyUpdate) {
   applyUpdateImpl = apply
   localStorage.setItem(PENDING_KEY, "true")
   setUpdateState("ready")
+  clearTimeout(autoApplyTimer)
+  // Hovering or dismissing a toast must not block installation of a new version.
+  autoApplyTimer = setTimeout(applyUpdate, AUTO_APPLY_DELAY)
 }
 
 function markPwaUpdateSuccessful() {
@@ -45,14 +51,17 @@ function markPwaUpdateSuccessful() {
 
 export async function applyPwaUpdate() {
   if (!applyUpdateImpl || updateState === "applying") return
+  clearTimeout(autoApplyTimer)
 
   setUpdateState("applying")
+  retryUpdate = false
   sessionStorage.setItem(SUCCESS_KEY, "true")
   localStorage.removeItem(PENDING_KEY)
 
   try {
     await applyUpdateImpl()
   } catch (error) {
+    retryUpdate = true
     sessionStorage.removeItem(SUCCESS_KEY)
     localStorage.setItem(PENDING_KEY, "true")
     setUpdateState("ready")
@@ -87,11 +96,25 @@ const updateServiceWorker = registerSW({
   onRegisteredSW(_swUrl, registration) {
     if (!registration) return
 
-    setInterval(() => {
-      registration.update().catch(() => {
-        // registration 可能已被注销，忽略即可
+    let checking = false
+    let lastChecked = -Infinity
+    const checkForUpdate = () => {
+      if (document.visibilityState === "hidden" || !navigator.onLine || checking || Date.now() - lastChecked < 30000) return
+      lastChecked = Date.now()
+      checking = true
+      registration.update().then(() => {
+        if (retryUpdate && updateState === "ready") applyUpdate()
+      }).catch(() => {
+        // Offline or unregistered workers are checked again on the next trigger.
+      }).finally(() => {
+        checking = false
       })
-    }, UPDATE_CHECK_INTERVAL)
+    }
+    setInterval(checkForUpdate, UPDATE_CHECK_INTERVAL)
+    window.addEventListener("focus", checkForUpdate)
+    window.addEventListener("online", checkForUpdate)
+    document.addEventListener("visibilitychange", checkForUpdate)
+    checkForUpdate()
 
     if (!pendingAtStartup) return
 
