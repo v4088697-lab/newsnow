@@ -313,6 +313,36 @@
     "color": "orange",
     "interval": 600000
   },
+  "amazon": {
+    "title": "分类畅销",
+    "name": "Amazon",
+    "type": "hottest",
+    "desc": "Amazon 美国站公开分类畅销商品，标注所属分类和真实分类排名，并非全站总榜；不可用时展示官方动态。",
+    "column": "ecommerce",
+    "home": "https://www.amazon.com/Best-Sellers/zgbs",
+    "color": "amber",
+    "interval": 600000
+  },
+  "temu": {
+    "title": "商品分类",
+    "name": "Temu",
+    "type": "hottest",
+    "desc": "Temu 公开商品分类入口，不代表热销排行；不可用时显示标注来源的 Temu 公司新闻稿。",
+    "column": "ecommerce",
+    "home": "https://www.temu.com",
+    "color": "orange",
+    "interval": 600000
+  },
+  "ebay": {
+    "title": "拍卖与翻新",
+    "name": "eBay",
+    "type": "hottest",
+    "desc": "优先公开二手藏品拍卖；受限时展示并标注官方翻新推荐，再回退官方动态。翻新推荐不是拍卖榜；价格以商品页为准。",
+    "column": "auctions",
+    "home": "https://www.ebay.com",
+    "color": "blue",
+    "interval": 600000
+  },
   "reddit": {
     "title": "兴趣热门",
     "name": "Reddit",

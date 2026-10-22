@@ -17,6 +17,12 @@ export const columns = {
   interests: {
     zh: "兴趣",
   },
+  ecommerce: {
+    zh: "电商",
+  },
+  auctions: {
+    zh: "二手拍卖",
+  },
   tech: {
     zh: "科技",
   },

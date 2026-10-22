@@ -2,6 +2,7 @@
 
 declare module 'glob:./sources/{*.ts,**/index.ts}' {
   export const aihot: typeof import('./sources/aihot')
+  export const amazon: typeof import('./sources/amazon')
   export const apnews: typeof import('./sources/apnews')
   export const bbc: typeof import('./sources/bbc')
   export const bloomberg: typeof import('./sources/bloomberg')
@@ -10,6 +11,7 @@ declare module 'glob:./sources/{*.ts,**/index.ts}' {
   export const dailymotion: typeof import('./sources/dailymotion')
   export const disneyplus: typeof import('./sources/disneyplus')
   export const dongqiudi: typeof import('./sources/dongqiudi')
+  export const ebay: typeof import('./sources/ebay')
   export const euronews: typeof import('./sources/euronews')
   export const facebook: typeof import('./sources/facebook')
   export const fastbull: typeof import('./sources/fastbull')
@@ -42,6 +44,7 @@ declare module 'glob:./sources/{*.ts,**/index.ts}' {
   export const solidot: typeof import('./sources/solidot')
   export const sputniknewscn: typeof import('./sources/sputniknewscn')
   export const steam: typeof import('./sources/steam')
+  export const temu: typeof import('./sources/temu')
   export const tiktok: typeof import('./sources/tiktok')
   export const twitch: typeof import('./sources/twitch')
   export const v2ex: typeof import('./sources/v2ex')

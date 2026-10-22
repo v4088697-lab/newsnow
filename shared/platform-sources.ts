@@ -1,6 +1,9 @@
 import type { OriginSource } from "./types"
 
 export const platformSources = {
+  amazon: { name: "Amazon", title: "分类畅销", color: "amber", home: "https://www.amazon.com/Best-Sellers/zgbs", column: "ecommerce", type: "hottest", desc: "Amazon 美国站公开分类畅销商品，标注所属分类和真实分类排名，并非全站总榜；不可用时展示官方动态。" },
+  temu: { name: "Temu", title: "商品分类", color: "orange", home: "https://www.temu.com", column: "ecommerce", type: "hottest", desc: "Temu 公开商品分类入口，不代表热销排行；不可用时显示标注来源的 Temu 公司新闻稿。" },
+  ebay: { name: "eBay", title: "拍卖与翻新", color: "blue", home: "https://www.ebay.com", column: "auctions", type: "hottest", desc: "优先公开二手藏品拍卖；受限时展示并标注官方翻新推荐，再回退官方动态。翻新推荐不是拍卖榜；价格以商品页为准。" },
   reddit: { name: "Reddit", title: "兴趣热门", color: "orange", home: "https://www.reddit.com/r/popular/", column: "interests", type: "hottest", desc: "Reddit r/popular 官方公开 RSS，展示热门讨论和所属社区；不可用时展示并标注官方动态，不代表个人订阅信息流。" },
   pinterest: { name: "Pinterest", title: "图文灵感", color: "rose", home: "https://www.pinterest.com/ideas/", column: "visual", type: "hottest", desc: "Pinterest 公开精选与灵感分类，展示原始图片和标题，不代表个人推荐或热门排名；不可用时标注官方动态。" },
   euronews: { name: "Euronews 欧洲新闻台", title: "最新新闻", color: "blue", home: "https://www.euronews.com", column: "world", type: "hottest", desc: "Euronews 官方新闻订阅；订阅不可用时使用标注来源的新闻聚合。" },
