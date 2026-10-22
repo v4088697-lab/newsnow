@@ -17,6 +17,9 @@ export const columns = {
   interests: {
     zh: "兴趣",
   },
+  music: {
+    zh: "音乐",
+  },
   ecommerce: {
     zh: "电商",
   },

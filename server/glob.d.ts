@@ -42,6 +42,7 @@ declare module 'glob:./sources/{*.ts,**/index.ts}' {
   export const rumble: typeof import('./sources/rumble')
   export const smzdm: typeof import('./sources/smzdm')
   export const solidot: typeof import('./sources/solidot')
+  export const spotify: typeof import('./sources/spotify')
   export const sputniknewscn: typeof import('./sources/sputniknewscn')
   export const steam: typeof import('./sources/steam')
   export const temu: typeof import('./sources/temu')

@@ -57,6 +57,17 @@ describe("automatic source queries", () => {
     client.clear()
   })
 
+  it("does not mix Spotify weekly rank gains with changes since the last page request", async () => {
+    const { QueryClient } = await import("@tanstack/react-query")
+    cacheSources.set("spotify", { id: "spotify", status: "cache", updatedTime: Date.now(), items: [{ id: "a", title: "A", url: "https://open.spotify.com/track/a" }, { id: "b", title: "B", url: "https://open.spotify.com/track/b" }] })
+    fetchMock.mockResolvedValueOnce({ id: "spotify", status: "success", updatedTime: Date.now(), items: [{ id: "b", title: "B", url: "https://open.spotify.com/track/b", extra: { info: "↑18 位 · 65→47" } }] })
+    const client = new QueryClient()
+    const result = await client.fetchQuery({ ...sourceQueryOptions("spotify"), staleTime: 0 })
+    expect(result.items[0].extra?.info).toBe("↑18 位 · 65→47")
+    expect(result.items[0].extra?.diff).toBeUndefined()
+    client.clear()
+  })
+
   it("refreshes on reconnect and returning to the page while pausing hidden polling", async () => {
     const { QueryClient, QueryObserver, focusManager, onlineManager } = await import("@tanstack/react-query")
     cacheSources.set("cnn", snapshot("Cached"))

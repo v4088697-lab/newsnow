@@ -1,6 +1,7 @@
 import type { OriginSource } from "./types"
 
 export const platformSources = {
+  spotify: { name: "Spotify", title: "7天上升最快", color: "green", home: "https://charts.spotify.com/charts/view/regional-global-weekly/latest", column: "music", type: "hottest", desc: "按最新已发布完整7天周榜的名次涨幅排序，范围为全球周榜公开前50首。标注榜单起止日期和上周→本周排名；新上榜及重新入榜不参与，并非截至今天的滚动7天或播放量增幅榜。" },
   amazon: { name: "Amazon", title: "分类畅销", color: "amber", home: "https://www.amazon.com/Best-Sellers/zgbs", column: "ecommerce", type: "hottest", desc: "Amazon 美国站公开分类畅销商品，标注所属分类和真实分类排名，并非全站总榜；不可用时展示官方动态。" },
   temu: { name: "Temu", title: "商品分类", color: "orange", home: "https://www.temu.com", column: "ecommerce", type: "hottest", desc: "Temu 公开商品分类入口，不代表热销排行；不可用时显示标注来源的 Temu 公司新闻稿。" },
   ebay: { name: "eBay", title: "拍卖与翻新", color: "blue", home: "https://www.ebay.com", column: "auctions", type: "hottest", desc: "优先公开二手藏品拍卖；受限时展示并标注官方翻新推荐，再回退官方动态。翻新推荐不是拍卖榜；价格以商品页为准。" },

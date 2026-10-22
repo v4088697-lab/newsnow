@@ -313,6 +313,16 @@
     "color": "orange",
     "interval": 600000
   },
+  "spotify": {
+    "title": "7天上升最快",
+    "name": "Spotify",
+    "type": "hottest",
+    "desc": "按最新已发布完整7天周榜的名次涨幅排序，范围为全球周榜公开前50首。标注榜单起止日期和上周→本周排名；新上榜及重新入榜不参与，并非截至今天的滚动7天或播放量增幅榜。",
+    "column": "music",
+    "home": "https://charts.spotify.com/charts/view/regional-global-weekly/latest",
+    "color": "green",
+    "interval": 600000
+  },
   "amazon": {
     "title": "分类畅销",
     "name": "Amazon",
