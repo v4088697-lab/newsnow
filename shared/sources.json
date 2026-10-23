@@ -313,6 +313,16 @@
     "color": "orange",
     "interval": 600000
   },
+  "progameguides": {
+    "title": "Recent games & guides",
+    "name": "Pro Game Guides",
+    "type": "hottest",
+    "desc": "Recent Pro Game Guides coverage from the past 30 days, prioritizing new-game announcements, reviews and beginner guides, then other recent game guides. Up to 10 deduplicated articles, excluding code-only posts, hardware and unrelated content. Official RSS first, supplemented by labeled Google News aggregation. Article dates do not establish a game's launch date or measured popularity; updates to established games may be included.",
+    "column": "games",
+    "home": "https://progameguides.com",
+    "color": "violet",
+    "interval": 600000
+  },
   "ign": {
     "title": "Recent picks & guides",
     "name": "IGN Guides",
