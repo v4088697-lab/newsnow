@@ -1,4 +1,5 @@
 import { useMount } from "react-use"
+import { useLocale } from "~/i18n"
 
 /**
  * changed every minute
@@ -27,18 +28,16 @@ function useVisibility() {
 }
 
 export function useRelativeTime(timestamp: string | number) {
+  const { locale } = useLocale()
   const [time, setTime] = useState<string>()
   const timer = useAtomValue(timerAtom)
   const visible = useVisibility()
 
   useEffect(() => {
     if (visible) {
-      const t = relativeTime(timestamp)
-      if (t) {
-        setTime(t)
-      }
+      setTime(relativeTime(timestamp, locale))
     }
-  }, [timestamp, timer, visible])
+  }, [timestamp, timer, visible, locale])
 
   return time
 }

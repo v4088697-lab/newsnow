@@ -3,6 +3,7 @@ import { useMount, useWindowSize } from "react-use"
 import { useAutoAnimate } from "@formkit/auto-animate/react"
 import type { ToastItem } from "~/atoms/types"
 import { Timer } from "~/utils"
+import { useLocale } from "~/i18n"
 
 const WIDTH = 320
 export function Toast() {
@@ -37,6 +38,7 @@ const colors = {
 }
 
 function Item({ info }: { info: ToastItem }) {
+  const { t } = useLocale()
   const color = colors[info.type ?? "info"]
   const setToastItems = useSetAtom(toastAtom)
   const hidden = useCallback((dismiss = true) => {
@@ -83,7 +85,7 @@ function Item({ info }: { info: ToastItem }) {
         }
         <div className="flex justify-between w-full">
           <span className="op-90 dark:op-100">
-            {info.msg}
+            {t(info.msg)}
           </span>
           {info.action && (
             <button
@@ -91,7 +93,7 @@ function Item({ info }: { info: ToastItem }) {
               className={`text-sm color-${color}-500 bg-base op-80 bg-op-50! px-1 rounded min-w-10 hover:bg-op-70!`}
               onClick={info.action.onClick}
             >
-              {info.action.label}
+              {t(info.action.label)}
             </button>
           )}
         </div>

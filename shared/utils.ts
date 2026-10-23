@@ -1,4 +1,4 @@
-export function relativeTime(timestamp: string | number) {
+export function relativeTime(timestamp: string | number, locale = "en") {
   if (!timestamp) return undefined
   const date = new Date(timestamp)
   if (Number.isNaN(date.getDay())) return undefined
@@ -7,17 +7,18 @@ export function relativeTime(timestamp: string | number) {
   const diffInSeconds = (now.getTime() - date.getTime()) / 1000
   const diffInMinutes = diffInSeconds / 60
   const diffInHours = diffInMinutes / 60
+  const format = new Intl.RelativeTimeFormat(locale, { numeric: "auto" })
 
   if (diffInSeconds < 60) {
-    return "just now"
+    return locale === "en" ? "just now" : format.format(0, "second")
   } else if (diffInMinutes < 60) {
     const minutes = Math.floor(diffInMinutes)
-    return `${minutes} min ago`
+    return locale === "en" ? `${minutes} min ago` : format.format(-minutes, "minute")
   } else if (diffInHours < 24) {
     const hours = Math.floor(diffInHours)
-    return `${hours} hr ago`
+    return locale === "en" ? `${hours} hr ago` : format.format(-hours, "hour")
   } else {
-    return new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric" }).format(date)
+    return new Intl.DateTimeFormat(locale, { month: "short", day: "numeric" }).format(date)
   }
 }
 

@@ -1,15 +1,19 @@
 import { fixedColumnIds, metadata } from "@shared/metadata"
 import { Link } from "@tanstack/react-router"
 import { currentColumnIDAtom } from "~/atoms"
+import { useLocale } from "~/i18n"
 
 export function NavBar() {
+  const { locale, t } = useLocale()
   const currentId = useAtomValue(currentColumnIDAtom)
   const { toggle } = useSearchBar()
   return (
-    <span className={$([
-      "flex p-3 rounded-2xl bg-primary/1 text-sm",
-      "shadow shadow-primary/20 hover:shadow-primary/50 transition-shadow-500",
-    ])}
+    <span
+      className={$([
+        "flex p-3 rounded-2xl bg-primary/1 text-sm max-w-full overflow-x-auto whitespace-nowrap",
+        "shadow shadow-primary/20 hover:shadow-primary/50 transition-shadow-500",
+      ])}
+      dir={locale === "ar" ? "rtl" : "ltr"}
     >
       <button
         type="button"
@@ -19,7 +23,7 @@ export function NavBar() {
           "cursor-pointer transition-all",
         )}
       >
-        More
+        {t("More")}
       </button>
       {fixedColumnIds.map(columnId => (
         <Link
@@ -31,7 +35,7 @@ export function NavBar() {
             currentId === columnId ? "color-primary font-bold" : "op-70 dark:op-90",
           )}
         >
-          {metadata[columnId].name}
+          {t(metadata[columnId].name)}
         </Link>
       ))}
     </span>

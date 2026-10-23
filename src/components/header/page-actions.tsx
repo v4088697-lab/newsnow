@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react"
 import { getInstallInstructions, sharePage } from "@shared/page-actions"
 import { useInstallApp } from "~/hooks/useInstallApp"
+import { useLocale } from "~/i18n"
 import { useToast } from "~/hooks/useToast"
 
 export function PageActions() {
+  const { t } = useLocale()
   const toaster = useToast()
   const { installed, installing, canInstall, install } = useInstallApp()
   const [sharing, setSharing] = useState(false)
@@ -50,8 +52,8 @@ export function PageActions() {
     <>
       <button
         type="button"
-        title="Share this page"
-        aria-label="Share this page"
+        title={t("Share this page")}
+        aria-label={t("Share this page")}
         className="btn flex items-center justify-center min-h-7 min-w-6"
         disabled={sharing}
         onClick={share}
@@ -60,8 +62,8 @@ export function PageActions() {
       </button>
       <button
         type="button"
-        title={installed ? "App installed" : "Install as app"}
-        aria-label={installed ? "App installed" : "Install as app"}
+        title={t(installed ? "App installed" : "Install as app")}
+        aria-label={t(installed ? "App installed" : "Install as app")}
         className="btn flex items-center justify-center min-h-7 min-w-6"
         disabled={installed || installing}
         onClick={installApp}
@@ -75,11 +77,11 @@ export function PageActions() {
         className="m-auto w-[calc(100%-2rem)] max-w-sm rounded-xl bg-base color-base p-5 shadow-xl backdrop:bg-black/40 text-base"
         onClose={() => setHelp(undefined)}
       >
-        <h2 id="page-actions-title" className="text-lg font-bold mb-3">{help?.title}</h2>
-        <p id="page-actions-description" className="leading-relaxed">{help?.text}</p>
+        <h2 id="page-actions-title" className="text-lg font-bold mb-3">{help?.title && t(help.title)}</h2>
+        <p id="page-actions-description" className="leading-relaxed">{help?.text && t(help.text)}</p>
         {help?.url && (
           <input
-            aria-label="Current page link"
+            aria-label={t("Current page link")}
             readOnly
             value={help.url}
             onFocus={event => event.currentTarget.select()}
@@ -88,7 +90,7 @@ export function PageActions() {
           />
         )}
         <form method="dialog" className="mt-4 flex justify-end">
-          <button type="submit" className="btn rounded px-3 py-1 bg-primary/10">Close</button>
+          <button type="submit" className="btn rounded px-3 py-1 bg-primary/10">{t("Close")}</button>
         </form>
       </dialog>
     </>

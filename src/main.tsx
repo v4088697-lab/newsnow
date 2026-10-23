@@ -3,6 +3,7 @@ import { RouterProvider, createRouter } from "@tanstack/react-router"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { routeTree } from "./routeTree.gen"
 import "./utils/pwa"
+import { LocaleProvider } from "./i18n"
 
 const queryClient = new QueryClient()
 
@@ -18,9 +19,11 @@ const rootElement = document.getElementById("app")!
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement)
   root.render(
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>,
+    <LocaleProvider>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </LocaleProvider>,
   )
 }
 

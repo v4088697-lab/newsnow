@@ -4,6 +4,7 @@ import type { SourceID } from "@shared/types"
 import { useMemo, useRef, useState } from "react"
 import pinyin from "@shared/pinyin.json"
 import { OverlayScrollbar } from "../overlay-scrollbar"
+import { useLocale } from "~/i18n"
 import { CardWrapper } from "~/components/column/card"
 
 import "./cmdk.css"
@@ -12,6 +13,8 @@ interface SourceItemProps {
   id: SourceID
   name: string
   title?: string
+  originalTitle?: string
+  columnLabel: string
   column: any
   pinyin: string
 }
@@ -26,17 +29,18 @@ function groupByColumn(items: SourceItemProps[]) {
     column: string
     sources: SourceItemProps[]
   }[]).sort((m, n) => {
-    if (m.column === "Technology") return -1
-    if (n.column === "Technology") return 1
+    if (m.column === "tech") return -1
+    if (n.column === "tech") return 1
 
-    if (m.column === "Uncategorized") return 1
-    if (n.column === "Uncategorized") return -1
+    if (m.column === "uncategorized") return 1
+    if (n.column === "uncategorized") return -1
 
     return m.column < n.column ? -1 : 1
   })
 }
 
 export function SearchBar() {
+  const { t } = useLocale()
   const { opened, toggle } = useSearchBar()
   const sourceItems = useMemo(
     () =>
@@ -44,12 +48,14 @@ export function SearchBar() {
         .filter(([_, source]) => !source.redirect)
         .map(([k, source]) => ({
           id: k,
-          title: source.title,
-          column: source.column ? columns[source.column].en : "Uncategorized",
+          title: source.title ? t(source.title) : undefined,
+          originalTitle: source.title,
+          column: source.column ?? "uncategorized",
+          columnLabel: source.column ? t(metadata[source.column].name) : t("Uncategorized"),
           name: source.name,
           pinyin: pinyin?.[k as keyof typeof pinyin] ?? "",
         })))
-    , [],
+    , [t],
   )
   const inputRef = useRef<HTMLInputElement | null>(null)
 
@@ -71,7 +77,7 @@ export function SearchBar() {
 
   return (
     <Command.Dialog
-      label="Search sources"
+      label={t("Search sources")}
       open={opened}
       onOpenChange={toggle}
       value={value}
@@ -84,15 +90,15 @@ export function SearchBar() {
       <Command.Input
         ref={inputRef}
         autoFocus
-        placeholder="Search sources"
+        placeholder={t("Search sources")}
       />
       <div className="md:flex pt-2">
         <OverlayScrollbar defer className="overflow-y-auto md:min-w-275px">
-          <Command.List>
-            <Command.Empty> No sources found. You can request one on GitHub. </Command.Empty>
+          <Command.List aria-label={t("Search sources")}>
+            <Command.Empty>{t("No sources found. You can request one on GitHub.")}</Command.Empty>
             {
               sourceItems.map(({ column, sources }) => (
-                <Command.Group heading={column} key={column}>
+                <Command.Group heading={t(column in metadata ? metadata[column as keyof typeof metadata].name : "Uncategorized")} key={column}>
                   {
                     sources.map(item => <SourceItem item={item} key={item.id} />)
                   }
@@ -116,7 +122,7 @@ function SourceItem({ item }: {
   const { isFocused, toggleFocus } = useFocusWith(item.id)
   return (
     <Command.Item
-      keywords={[item.name, item.title ?? "", item.pinyin]}
+      keywords={[item.name, item.title ?? "", item.originalTitle ?? "", item.columnLabel, item.pinyin]}
       value={item.id}
       className="flex justify-between items-center p-2"
       onSelect={toggleFocus}

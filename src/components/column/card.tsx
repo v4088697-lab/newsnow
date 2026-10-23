@@ -1,9 +1,11 @@
+import { localizeAnnotation, sourceDescription } from "@shared/i18n/content"
 import type { NewsItem, SourceID } from "@shared/types"
 import { useQuery } from "@tanstack/react-query"
 import { AnimatePresence, motion, useInView } from "framer-motion"
 import { useWindowSize } from "react-use"
 import { forwardRef, useImperativeHandle } from "react"
 import { OverlayScrollbar } from "../common/overlay-scrollbar"
+import { useLocale } from "~/i18n"
 import { sourceQueryOptions } from "~/utils/source-query"
 
 export interface ItemsProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -51,6 +53,8 @@ export const CardWrapper = forwardRef<HTMLElement, ItemsProps>(({ id, isDragging
 })
 
 function NewsCard({ id, setHandleRef }: NewsCardProps) {
+  const { locale, t } = useLocale()
+  const description = sourceDescription(id, sources[id].desc, locale)
   const { refresh } = useRefetch()
   const { data, isFetching, isError } = useQuery(sourceQueryOptions(id))
 
@@ -64,7 +68,7 @@ function NewsCard({ id, setHandleRef }: NewsCardProps) {
             className={$("w-8 h-8 rounded-full bg-cover shrink-0")}
             target="_blank"
             href={sources[id].home}
-            title={sources[id].desc}
+            title={description}
             style={{
               backgroundImage: `url(/icons/${id.split("-")[0]}.png)`,
             }}
@@ -73,24 +77,26 @@ function NewsCard({ id, setHandleRef }: NewsCardProps) {
             <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
               <span
                 className="text-xl font-bold break-words leading-tight"
-                title={sources[id].desc}
+                title={description}
               >
-                {sources[id].name}
+                <bdi>{sources[id].name}</bdi>
               </span>
-              {sources[id]?.title && <span className={$("text-sm", `color-${sources[id].color} bg-base op-80 bg-op-50! px-1 rounded`)}>{sources[id].title}</span>}
+              {sources[id]?.title && <span className={$("text-sm", `color-${sources[id].color} bg-base op-80 bg-op-50! px-1 rounded`)}>{t(sources[id].title!)}</span>}
             </span>
             <span className="text-xs op-70"><UpdatedTime isError={isError} updatedTime={data?.updatedTime} /></span>
           </span>
         </div>
-        <div className={$("flex gap-2 text-lg shrink-0 ml-2", `color-${sources[id].color}`)}>
+        <div className={$("flex gap-2 text-lg shrink-0 ms-2", `color-${sources[id].color}`)}>
           <button
             type="button"
             className={$("btn i-ph:arrow-counter-clockwise-duotone", isFetching && "animate-spin i-ph:circle-dashed-duotone")}
+            aria-label={t("Refresh source")}
             onClick={() => refresh(id)}
           />
           <button
             type="button"
             className={$("btn", isFocused ? "i-ph:star-fill" : "i-ph:star-duotone")}
+            aria-label={t(isFocused ? "Unfollow source" : "Follow source")}
             onClick={toggleFocus}
           />
           {/* firefox cannot drag a button */}
@@ -115,7 +121,7 @@ function NewsCard({ id, setHandleRef }: NewsCardProps) {
         defer
       >
         <div className={$("transition-opacity-500", isFetching && "op-20")}>
-          {!!data?.items?.length && (id === "pinterest" ? <PinterestList items={data.items} /> : sources[id].type === "hottest" ? <NewsListHot items={data.items} /> : <NewsListTimeLine items={data.items} />)}
+          {!!data?.items?.length && (id === "pinterest" ? <PinterestList items={data.items} /> : sources[id].type === "hottest" ? <NewsListHot items={data.items} description={description} /> : <NewsListTimeLine items={data.items} description={description} />)}
         </div>
       </OverlayScrollbar>
     </>
@@ -123,8 +129,9 @@ function NewsCard({ id, setHandleRef }: NewsCardProps) {
 }
 
 function PinterestList({ items }: { items: NewsItem[] }) {
+  const { locale, t } = useLocale()
   return (
-    <ol className="flex flex-col gap-3" aria-label="Pinterest visual inspiration">
+    <ol className="flex flex-col gap-3" aria-label={t("Pinterest visual inspiration")}>
       {items.map(item => (
         <li key={item.id}>
           <a href={item.url} target="_blank" rel="noopener noreferrer" className="flex gap-3 items-center p-1 rounded-md hover:bg-neutral-400/10 transition-colors">
@@ -132,8 +139,8 @@ function PinterestList({ items }: { items: NewsItem[] }) {
               <img src={item.extra.image} alt="" loading="lazy" decoding="async" referrerPolicy="no-referrer" width={80} height={80} className="w-20 h-20 shrink-0 object-cover rounded-lg bg-neutral-400/10" onError={event => event.currentTarget.hidden = true} />
             )}
             <span className="flex flex-col gap-1 min-w-0">
-              <span className="text-base break-words leading-snug">{item.title}</span>
-              <span className="text-xs text-neutral-400/80">{item.extra?.info}</span>
+              <bdi className="text-base break-words leading-snug">{item.title}</bdi>
+              <span className="text-xs text-neutral-400/80">{localizeAnnotation(locale, item.extra?.info)}</span>
             </span>
           </a>
         </li>
@@ -143,10 +150,11 @@ function PinterestList({ items }: { items: NewsItem[] }) {
 }
 
 function UpdatedTime({ isError, updatedTime }: { updatedTime: any, isError: boolean }) {
+  const { t } = useLocale()
   const relativeTime = useRelativeTime(updatedTime ?? "")
-  if (relativeTime) return `Updated ${relativeTime}`
-  if (isError) return "Failed to load"
-  return "Loading..."
+  if (relativeTime) return t("Updated {time}", { time: relativeTime })
+  if (isError) return t("Failed to load")
+  return t("Loading...")
 }
 
 function DiffNumber({ diff }: { diff: number }) {
@@ -175,8 +183,9 @@ function DiffNumber({ diff }: { diff: number }) {
   )
 }
 function ExtraInfo({ item }: { item: NewsItem }) {
+  const { locale } = useLocale()
   if (item?.extra?.info) {
-    return <>{item.extra.info}</>
+    return <>{localizeAnnotation(locale, item.extra.info)}</>
   }
   if (item?.extra?.icon) {
     const { url, scale } = typeof item.extra.icon === "string" ? { url: item.extra.icon, scale: undefined } : item.extra.icon
@@ -198,7 +207,8 @@ function NewsUpdatedTime({ date }: { date: string | number }) {
   const relativeTime = useRelativeTime(date)
   return <>{relativeTime}</>
 }
-function NewsListHot({ items }: { items: NewsItem[] }) {
+function NewsListHot({ items, description }: { items: NewsItem[], description?: string }) {
+  const { locale } = useLocale()
   const { width } = useWindowSize()
   return (
     <ol className="flex flex-col gap-2">
@@ -207,7 +217,7 @@ function NewsListHot({ items }: { items: NewsItem[] }) {
           href={width < 768 ? item.mobileUrl || item.url : item.url}
           target="_blank"
           key={item.id}
-          title={item.extra?.hover}
+          title={locale === "en" ? item.extra?.hover : item.extra?.hover ? `${description ?? ""}\n${localizeAnnotation(locale, item.extra.info) ?? ""}` : undefined}
           className={$(
             "flex gap-2 items-center items-stretch relative cursor-pointer [&_*]:cursor-pointer transition-all",
             "hover:bg-neutral-400/10 rounded-md pr-1 visited:(text-neutral-400)",
@@ -217,11 +227,11 @@ function NewsListHot({ items }: { items: NewsItem[] }) {
             {i + 1}
           </span>
           {!!item.extra?.diff && <DiffNumber diff={item.extra.diff} />}
-          <span className="self-start line-height-none">
-            <span className="mr-2 text-base">
+          <span className="self-start line-height-none flex-1 min-w-0">
+            <bdi dir="auto" className={$("me-2 text-base", locale === "ar" && "block text-start")}>
               {item.title}
-            </span>
-            <span className="text-xs text-neutral-400/80 truncate align-middle">
+            </bdi>
+            <span className={$("text-xs text-neutral-400/80 align-middle", locale === "ar" ? "block mt-1 text-start" : "truncate")}>
               <ExtraInfo item={item} />
             </span>
           </span>
@@ -231,13 +241,14 @@ function NewsListHot({ items }: { items: NewsItem[] }) {
   )
 }
 
-function NewsListTimeLine({ items }: { items: NewsItem[] }) {
+function NewsListTimeLine({ items, description }: { items: NewsItem[], description?: string }) {
+  const { locale } = useLocale()
   const { width } = useWindowSize()
   return (
-    <ol className="border-s border-neutral-400/50 flex flex-col ml-1">
+    <ol className="border-s border-neutral-400/50 flex flex-col ms-1">
       {items?.map(item => (
         <li key={`${item.id}-${item.pubDate || item?.extra?.date || ""}`} className="flex flex-col">
-          <span className="flex items-center gap-1 text-neutral-400/50 ml--1px">
+          <span className="flex items-center gap-1 text-neutral-400/50 ms--1px">
             <span className="">-</span>
             <span className="text-xs text-neutral-400/80">
               {(item.pubDate || item?.extra?.date) && <NewsUpdatedTime date={(item.pubDate || item?.extra?.date)!} />}
@@ -247,16 +258,17 @@ function NewsListTimeLine({ items }: { items: NewsItem[] }) {
             </span>
           </span>
           <a
+            dir="auto"
             className={$(
-              "ml-2 px-1 hover:bg-neutral-400/10 rounded-md visited:(text-neutral-400/80)",
+              "ms-2 px-1 hover:bg-neutral-400/10 rounded-md visited:(text-neutral-400/80)",
               "cursor-pointer [&_*]:cursor-pointer transition-all",
             )}
             href={width < 768 ? item.mobileUrl || item.url : item.url}
-            title={item.extra?.hover}
+            title={locale === "en" ? item.extra?.hover : item.extra?.hover ? `${description ?? ""}\n${localizeAnnotation(locale, item.extra.info) ?? ""}` : undefined}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {item.title}
+            <bdi>{item.title}</bdi>
           </a>
         </li>
       ))}

@@ -14,11 +14,13 @@ import { useSortable } from "../common/dnd/useSortable"
 import { OverlayScrollbar } from "../common/overlay-scrollbar"
 import type { ItemsProps } from "./card"
 import { CardWrapper } from "./card"
+import { useLocale } from "~/i18n"
 import { currentColumnIDAtom, currentSourcesAtom } from "~/atoms"
 
 const AnimationDuration = 200
 const WIDTH = 350
 export function Dnd() {
+  const { t } = useLocale()
   const [items, setItems] = useAtom(currentSourcesAtom)
   const currentColumnID = useAtomValue(currentColumnIDAtom)
   const sortable = currentColumnID === "focus"
@@ -89,7 +91,7 @@ export function Dnd() {
       </OverlayScrollbar>
       {isMobile && (
         <div className="flex justify-center">
-          <span className="text-sm text-gray-500 text-center">Swipe left or right to see more</span>
+          <span className="text-sm text-gray-500 text-center">{t("Swipe left or right to see more")}</span>
         </div>
       )}
     </DndWrapper>
@@ -135,6 +137,7 @@ function DndWrapper({ items, setItems, isSingleColumn, sortable, children }: Pro
 }
 
 function CardOverlay({ id }: { id: SourceID }) {
+  const { t } = useLocale()
   return (
     <div className={$(
       "flex flex-col p-4 backdrop-blur-5",
@@ -153,11 +156,11 @@ function CardOverlay({ id }: { id: SourceID }) {
           <span className="flex flex-col min-w-0">
             <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
               <span className="text-xl font-bold break-words leading-tight">
-                {sources[id].name}
+                <bdi>{sources[id].name}</bdi>
               </span>
-              {sources[id]?.title && <span className={$("text-sm", `color-${sources[id].color} bg-base op-80 bg-op-50! px-1 rounded`)}>{sources[id].title}</span>}
+              {sources[id]?.title && <span className={$("text-sm", `color-${sources[id].color} bg-base op-80 bg-op-50! px-1 rounded`)}>{t(sources[id].title!)}</span>}
             </span>
-            <span className="text-xs op-70">Dragging</span>
+            <span className="text-xs op-70">{t("Dragging")}</span>
           </span>
         </div>
         <div className={$("flex gap-2 text-lg shrink-0 ml-2", `color-${sources[id].color}`)}>

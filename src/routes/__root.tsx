@@ -46,7 +46,8 @@ function RootComponent() {
             "sticky top-0 z-10 backdrop-blur-md",
           ])}
           style={{
-            gridTemplateColumns: "50px auto 50px",
+            gridTemplateColumns: "auto minmax(0, 1fr) auto",
+            direction: "ltr",
           }}
         >
           <Header />
