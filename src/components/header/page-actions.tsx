@@ -81,6 +81,7 @@ export function PageActions() {
         <p id="page-actions-description" className="leading-relaxed">{help?.text && t(help.text)}</p>
         {help?.url && (
           <input
+            dir="ltr"
             aria-label={t("Current page link")}
             readOnly
             value={help.url}

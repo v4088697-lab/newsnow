@@ -94,7 +94,7 @@ export function SearchBar() {
       />
       <div className="md:flex pt-2">
         <OverlayScrollbar defer className="overflow-y-auto md:min-w-275px">
-          <Command.List aria-label={t("Search sources")}>
+          <Command.List label={t("Search sources")}>
             <Command.Empty>{t("No sources found. You can request one on GitHub.")}</Command.Empty>
             {
               sourceItems.map(({ column, sources }) => (
