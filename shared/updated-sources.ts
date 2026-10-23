@@ -1,4 +1,6 @@
 export const updatedSourceIds = [
+  "ign",
+  "gamefaqs",
   "spotify",
   "amazon",
   "temu",

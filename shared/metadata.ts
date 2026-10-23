@@ -25,6 +25,10 @@ export const columns = {
     zh: "音乐",
     en: "Music",
   },
+  games: {
+    zh: "游戏",
+    en: "Games",
+  },
   ecommerce: {
     zh: "电商",
     en: "Shopping",

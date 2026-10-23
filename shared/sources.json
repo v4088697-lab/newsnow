@@ -313,6 +313,26 @@
     "color": "orange",
     "interval": 600000
   },
+  "ign": {
+    "title": "Recent picks & guides",
+    "name": "IGN Guides",
+    "type": "hottest",
+    "desc": "Recent IGN game recommendations and guides from the past 30 days, with recommendations first, then guides. This is editorial coverage, not a measured popularity ranking. Uses official RSS where available, otherwise labeled Google News aggregation. Aggregated dates are reported by Google News and may differ from guide revision dates.",
+    "column": "games",
+    "home": "https://www.ign.com/wikis",
+    "color": "red",
+    "interval": 600000
+  },
+  "gamefaqs": {
+    "title": "Recent story walkthroughs",
+    "name": "GameFAQs",
+    "type": "hottest",
+    "desc": "GameFAQs walkthroughs and main-story chapters dated within the past 30 days in Google News. Excludes side-quest, collectible and discussion entries. Links open the original coverage through Google News. Index dates do not verify the latest guide revision or game release date. Up to 10 available entries; older guides are not used to fill the list.",
+    "column": "games",
+    "home": "https://gamefaqs.gamespot.com/games/new",
+    "color": "blue",
+    "interval": 600000
+  },
   "spotify": {
     "title": "7-day fastest risers",
     "name": "Spotify",

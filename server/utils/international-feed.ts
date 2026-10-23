@@ -45,7 +45,7 @@ function matchesDomain(url: string, domains: string[]) {
   }
 }
 
-export function parseInternationalFeed(xml: string, domains: string[], aggregated = false): NewsItem[] {
+export function parseInternationalFeed(xml: string, domains: string[], aggregated = false, limit = 30): NewsItem[] {
   const parsed = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "" }).parse(xml)
   const channel = record(record(parsed).rss).channel ?? record(parsed).feed
   const entries = record(channel).item ?? record(channel).entry
@@ -78,7 +78,7 @@ export function parseInternationalFeed(xml: string, domains: string[], aggregate
   }
 
   if (!news.length) throw new Error("No valid publisher headlines in feed")
-  return news.sort((a, b) => Number(b.pubDate ?? 0) - Number(a.pubDate ?? 0)).slice(0, 30)
+  return news.sort((a, b) => Number(b.pubDate ?? 0) - Number(a.pubDate ?? 0)).slice(0, limit)
 }
 
 export function defineInternationalFeed(id: keyof typeof internationalFeeds) {
