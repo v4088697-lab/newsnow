@@ -434,10 +434,10 @@
     "interval": 600000
   },
   "instagram": {
-    "title": "Official updates",
+    "title": "7-day video & photo picks",
     "name": "Instagram",
     "type": "hottest",
-    "desc": "Official Instagram news and product updates from Meta, not popular user posts or a personal feed.",
+    "desc": "Public Reels and posts indexed by Google News within the past 7 days, ranked by visible cumulative likes from official Instagram embeds. Up to 10 recommendations; this is a sampled discovery list, not a sitewide weekly chart or seven-day like growth. Index dates do not verify original post dates. Unavailable or hidden-count posts are omitted.",
     "column": "world",
     "home": "https://www.instagram.com",
     "color": "fuchsia",

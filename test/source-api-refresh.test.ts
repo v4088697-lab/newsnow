@@ -6,7 +6,7 @@ import sourceHandler from "../server/api/s/index"
 import { getters } from "#/getters"
 import { getCacheTable } from "#/database/cache"
 
-vi.mock("#/getters", () => ({ getters: { cnn: vi.fn(), youtube: vi.fn() } }))
+vi.mock("#/getters", () => ({ getters: { cnn: vi.fn(), youtube: vi.fn(), instagram: vi.fn() } }))
 vi.mock("#/database/cache", () => ({ getCacheTable: vi.fn() }))
 
 describe("source cache refresh", () => {
@@ -77,6 +77,22 @@ describe("source cache refresh", () => {
     expect(await sourceHandler(request("GET", "youtube"))).toMatchObject({ updatedTime: updated, items: videoItems })
     cacheTable.get.mockResolvedValue({ id: "youtube", updated, items: [{ ...videoItems[0], extra: { youtube: { expiresAt: now, views: 1234 } } }] })
     await expect(sourceHandler(request("GET", "youtube"))).rejects.toThrow("YouTube unavailable")
+  })
+
+  it("replaces Instagram company news in both the single source and bulk cache paths", async () => {
+    const old = { id: "instagram", updated: now - 60000, items: [{ id: "blog", title: "Meta update", url: "https://about.fb.com/news/" }] }
+    const fresh = [{ id: "abcdefghijk", title: "Public post", url: "https://www.instagram.com/p/abcdefghijk/", extra: { instagram: { indexedAt: now - 86400000, likes: 100 } } }]
+    cacheTable.get.mockResolvedValue(old)
+    cacheTable.getEntire.mockResolvedValue([old])
+    vi.mocked(getters.instagram).mockResolvedValue(fresh)
+    expect((await sourceHandler(request("GET", "instagram"))).items).toEqual(fresh)
+    expect(await entireHandler(request("POST", "instagram"))).toEqual([])
+    const expired = { id: "instagram", updated: now - 60000, items: [{ ...fresh[0], extra: { instagram: { indexedAt: now - 7 * 86400000, likes: 100 } } }] }
+    cacheTable.get.mockResolvedValue(expired)
+    cacheTable.getEntire.mockResolvedValue([expired])
+    vi.mocked(getters.instagram).mockRejectedValue(new Error("Instagram unavailable"))
+    await expect(sourceHandler(request("GET", "instagram"))).rejects.toThrow("Instagram unavailable")
+    expect(await entireHandler(request("POST", "instagram"))).toEqual([])
   })
 
   it.each([60000, 3600000])("shows English annotations from existing cache aged %i ms without translating headlines", async (age) => {

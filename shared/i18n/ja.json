@@ -132,5 +132,12 @@
   "7-day popular videos": "過去7日間の人気動画",
   "7-day video picks": "過去7日間のおすすめ動画",
   "Uploaded {time}": "公開：{time}",
-  "Recent video picks from YouTube's US English searches for music, gaming, entertainment, sports, science and technology, filtered to this week and sorted by public views. Up to 10 videos; not a sitewide chart or seven-day view growth. Rounded ages are checked conservatively.": "YouTubeの米国向け英語検索で音楽、ゲーム、エンタメ、スポーツ、科学・技術の今週の動画を抽出し、公開再生回数順で最大10本を紹介します。全体ランキングや7日間の再生増加ランキングではありません。丸められた経過時間は保守的に判定します。"
+  "Recent video picks from YouTube's US English searches for music, gaming, entertainment, sports, science and technology, filtered to this week and sorted by public views. Up to 10 videos; not a sitewide chart or seven-day view growth. Rounded ages are checked conservatively.": "YouTubeの米国向け英語検索で音楽、ゲーム、エンタメ、スポーツ、科学・技術の今週の動画を抽出し、公開再生回数順で最大10本を紹介します。全体ランキングや7日間の再生増加ランキングではありません。丸められた経過時間は保守的に判定します。",
+  "7-day video & photo picks": "過去7日間の動画・写真おすすめ",
+  "7-day indexed picks": "過去7日間の収録からおすすめ",
+  "Reel": "リール",
+  "Post": "投稿",
+  "{count} likes": "いいね{count}件",
+  "Instagram video and photo picks": "Instagramの動画・写真おすすめ",
+  "Public Reels and posts indexed by Google News within the past 7 days, ranked by visible cumulative likes from official Instagram embeds. Up to 10 recommendations; this is a sampled discovery list, not a sitewide weekly chart or seven-day like growth. Index dates do not verify original post dates. Unavailable or hidden-count posts are omitted.": "Google Newsが過去7日間に収録した公開リールと投稿を、Instagram公式埋め込みの公開累計いいね数で並べ、最大10件紹介します。抽出されたおすすめであり全体の週間順位や7日間の増加数ではありません。収録日は元の公開日を保証しません。非公開やいいね数を確認できない投稿は除外します。"
 }

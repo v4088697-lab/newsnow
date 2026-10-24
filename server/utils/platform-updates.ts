@@ -4,10 +4,6 @@ import { Version } from "../../shared/consts"
 import { myFetch } from "./fetch"
 import { fetchOfficialAggregated, fetchOfficialFeed, fetchPublicLinks, plainText, requireItems } from "./platform-content"
 
-export async function instagramUpdates() {
-  return fetchOfficialFeed("https://about.fb.com/news/category/technologies/instagram/feed/", ["about.fb.com"], "Official updates")
-}
-
 export async function facebookUpdates() {
   return fetchOfficialFeed("https://about.fb.com/news/category/technologies/facebook-app/feed/", ["about.fb.com"], "Official updates")
 }

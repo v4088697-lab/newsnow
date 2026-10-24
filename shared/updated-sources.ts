@@ -1,4 +1,5 @@
 export const updatedSourceIds = [
+  "instagram",
   "youtube",
   "progameguides",
   "ign",
@@ -13,7 +14,6 @@ export const updatedSourceIds = [
   "peacock",
   "euronews",
   "lemonde",
-  "instagram",
   "facebook",
   "dailymotion",
   "rumble",

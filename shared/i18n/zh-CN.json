@@ -132,5 +132,12 @@
   "7-day popular videos": "近7天热门视频",
   "7-day video picks": "近7天视频推荐",
   "Uploaded {time}": "发布于{time}",
-  "Recent video picks from YouTube's US English searches for music, gaming, entertainment, sports, science and technology, filtered to this week and sorted by public views. Up to 10 videos; not a sitewide chart or seven-day view growth. Rounded ages are checked conservatively.": "从 YouTube 美国英语搜索中的音乐、游戏、娱乐、体育、科学与科技主题筛选本周视频，按公开播放量排序，最多推荐10条。这不是全站榜单或7天播放增量榜；对取整后的发布时间采用保守筛选。"
+  "Recent video picks from YouTube's US English searches for music, gaming, entertainment, sports, science and technology, filtered to this week and sorted by public views. Up to 10 videos; not a sitewide chart or seven-day view growth. Rounded ages are checked conservatively.": "从 YouTube 美国英语搜索中的音乐、游戏、娱乐、体育、科学与科技主题筛选本周视频，按公开播放量排序，最多推荐10条。这不是全站榜单或7天播放增量榜；对取整后的发布时间采用保守筛选。",
+  "7-day video & photo picks": "近7天视频与图文推荐",
+  "7-day indexed picks": "近7天收录推荐",
+  "Reel": "短视频",
+  "Post": "帖子",
+  "{count} likes": "{count} 次点赞",
+  "Instagram video and photo picks": "Instagram 视频与图文推荐",
+  "Public Reels and posts indexed by Google News within the past 7 days, ranked by visible cumulative likes from official Instagram embeds. Up to 10 recommendations; this is a sampled discovery list, not a sitewide weekly chart or seven-day like growth. Index dates do not verify original post dates. Unavailable or hidden-count posts are omitted.": "推荐 Google News 近7天收录的公开短视频与帖子，按 Instagram 官方嵌入页可见的累计点赞数排序，最多10条。这是抽样推荐，不是全站周榜或7天点赞增量榜；索引日期不能证明原帖发布日期。无法访问或隐藏点赞数的帖子会被排除。"
 }

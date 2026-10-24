@@ -132,5 +132,12 @@
   "7-day popular videos": "최근 7일 인기 동영상",
   "7-day video picks": "최근 7일 추천 동영상",
   "Uploaded {time}": "게시: {time}",
-  "Recent video picks from YouTube's US English searches for music, gaming, entertainment, sports, science and technology, filtered to this week and sorted by public views. Up to 10 videos; not a sitewide chart or seven-day view growth. Rounded ages are checked conservatively.": "YouTube 미국 영어 검색에서 음악, 게임, 엔터테인먼트, 스포츠, 과학 및 기술 분야의 이번 주 동영상을 추려 공개 조회수순으로 최대 10개를 추천합니다. 전체 순위나 7일 조회수 증가 순위가 아닙니다. 반올림된 게시 경과 시간은 보수적으로 확인합니다."
+  "Recent video picks from YouTube's US English searches for music, gaming, entertainment, sports, science and technology, filtered to this week and sorted by public views. Up to 10 videos; not a sitewide chart or seven-day view growth. Rounded ages are checked conservatively.": "YouTube 미국 영어 검색에서 음악, 게임, 엔터테인먼트, 스포츠, 과학 및 기술 분야의 이번 주 동영상을 추려 공개 조회수순으로 최대 10개를 추천합니다. 전체 순위나 7일 조회수 증가 순위가 아닙니다. 반올림된 게시 경과 시간은 보수적으로 확인합니다.",
+  "7-day video & photo picks": "최근 7일 영상·사진 추천",
+  "7-day indexed picks": "최근 7일 수집 콘텐츠 추천",
+  "Reel": "릴스",
+  "Post": "게시물",
+  "{count} likes": "좋아요 {count}개",
+  "Instagram video and photo picks": "Instagram 영상·사진 추천",
+  "Public Reels and posts indexed by Google News within the past 7 days, ranked by visible cumulative likes from official Instagram embeds. Up to 10 recommendations; this is a sampled discovery list, not a sitewide weekly chart or seven-day like growth. Index dates do not verify original post dates. Unavailable or hidden-count posts are omitted.": "Google News가 최근 7일 동안 색인한 공개 릴스와 게시물을 Instagram 공식 임베드의 공개 누적 좋아요순으로 최대 10개 추천합니다. 표본 추천이며 전체 주간 순위나 7일 좋아요 증가 순위가 아닙니다. 색인 날짜는 원래 게시일을 확인하지 못합니다. 접근 불가 또는 좋아요 수가 숨겨진 게시물은 제외됩니다."
 }

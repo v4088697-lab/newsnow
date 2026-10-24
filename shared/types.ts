@@ -91,6 +91,7 @@ export interface NewsItem {
   mobileUrl?: string
   pubDate?: number | string
   extra?: {
+    instagram?: { indexedAt: number, likes: number }
     youtube?: { expiresAt: number, views: number }
     image?: string
     hover?: string
