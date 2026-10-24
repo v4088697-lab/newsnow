@@ -1,57 +1,114 @@
-import { beforeEach, describe, expect, it, vi } from "vitest"
-import { parsePinterestIdeas, parsePinterestUpdates } from "../server/utils/pinterest-content"
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
+import { isCurrentPinterestCache, parsePinterestDiscovery, parsePinterestPin, pinterestPinUrl, selectPinterestPins } from "../server/utils/pinterest-content"
 import pinterest from "../server/sources/pinterest"
 import { myFetch } from "../server/utils/fetch"
 import { genSources } from "../shared/pre-sources"
 
 vi.mock("../server/utils/fetch", () => ({ myFetch: vi.fn() }))
 const fetchMock = vi.mocked(myFetch)
-const featured = "<a href=\"/fashion/autumn-outfits/\"><h2>Autumn &amp; style</h2><img src=\"https://i.pinimg.com/474x/photo.jpg\"></a>"
-const update = "<a href=\"/news/example/\"><div class=\"StandaloneCarouselItem-copy\">Official update</div><div class=\"StandaloneCarouselItem-date\">October 20, 2026</div><img src=\"//images.ctfassets.net/photo.jpg\"></a>"
+const now = Date.parse("2026-10-24T12:00:00Z")
+const createdAt = now - 86400000
+const url = "https://www.pinterest.com/pin/1234567890/"
+const article = "https://news.google.com/rss/articles/CBMipinterest?oc=5"
+const discovery = { id: article, title: "Indexed original caption", url: article, pubDate: now - 1000 }
+function feed(date = now - 1000, publisher = "https://www.pinterest.com") {
+  return `<rss><channel><item><title>Indexed original caption - Pinterest</title><link>${article}</link><source url="${publisher}">Pinterest</source><pubDate>${new Date(date).toUTCString()}</pubDate></item></channel></rss>`
+}
+function pinPage(patch: Record<string, unknown> = {}, pinId = "1234567890") {
+  const pin = { __typename: "Pin", entityId: pinId, createdAt: new Date(createdAt).toUTCString(), isVideo: false, title: "Autumn &amp; style", repinCount: 12, aggregatedPinData: { aggregatedStats: { saves: 1234 } }, images_474x: { url: "https://i.pinimg.com/474x/photo.jpg" }, pinner: { username: "creator" }, board: { privacy: "public" }, ...patch }
+  const query = encodeURIComponent(JSON.stringify({ variables: { pinId } }))
+  return `<meta property="og:url" content="https://www.pinterest.com/pin/${pinId}/"><meta property="og:title" content="Pinterest"><meta property="og:updated_time" content="${new Date(now).toISOString()}"><script>window.__PWS_RELAY_REGISTER_COMPLETED_REQUEST__(${JSON.stringify(query)},${JSON.stringify({ data: { v3GetPinQueryv2: { data: pin } } })});</script>`
+}
 
-describe("pinterest image and text content", () => {
-  beforeEach(() => fetchMock.mockReset())
+describe("pinterest seven-day image and text recommendations", () => {
+  beforeEach(() => {
+    vi.useFakeTimers()
+    vi.setSystemTime(now)
+    fetchMock.mockReset()
+  })
+  afterEach(() => vi.useRealTimers())
 
-  it("registers Pinterest in the image and text category", () => {
-    expect(genSources().pinterest).toMatchObject({ name: "Pinterest", title: "Visual inspiration", column: "visual", type: "hottest" })
+  it("keeps Pinterest in the visual category and canonicalizes only actual Pin URLs", () => {
+    expect(genSources().pinterest).toMatchObject({ name: "Pinterest", title: "7-day image & text picks", column: "visual", type: "hottest" })
+    expect(pinterestPinUrl("https://ie.pinterest.com/pin/1234567890/?tracking=foo")).toBe(url)
+    expect(pinterestPinUrl("https://www.pinterest.com/pin/autumn-style--1234567890/")).toBe(url)
+    for (const value of ["https://www.pinterest.com/ideas/", "https://www.pinterest.com/pin-creation-tool/", "https://pinterest.com.evil.example/pin/1234567890/", "http://www.pinterest.com/pin/1234567890/"]) expect(pinterestPinUrl(value)).toBeUndefined()
   })
 
-  it("retains real images, distinguishes featured stories and categories, and deduplicates", () => {
-    const items = parsePinterestIdeas(`${featured}${featured}
-      <a href="/editorialsponsorships/beauty/"><h2>Beauty story</h2><img src="https://i.pinimg.com/474x/beauty.jpg"></a>
-      <a href="/ideas/art/12345/">Art<img src="https://i.pinimg.com/originals/art.png"></a>`)
-    expect(items).toHaveLength(3)
-    expect(items[0]).toMatchObject({ title: "Autumn & style", extra: { image: "https://i.pinimg.com/474x/photo.jpg", info: "Public features" } })
-    expect(items.map(item => item.extra?.info)).toEqual(["Public features", "Sponsored feature", "Inspiration categories"])
+  it("uses recent publisher-verified discovery without treating the index date as a creation date", () => {
+    expect(parsePinterestDiscovery(feed())).toMatchObject([{ pubDate: now - 1000 }])
+    expect(() => parsePinterestDiscovery(feed(undefined, "https://evil.example"))).toThrow()
+    expect(parsePinterestDiscovery(feed(now - 7 * 86400000))).toEqual([])
+    expect(parsePinterestDiscovery(feed(now + 1000))).toEqual([])
+    expect(() => parsePinterestPin(pinPage({ createdAt: new Date(now - 8 * 86400000).toUTCString() }), url, discovery)).toThrow("creation window")
+    expect(() => parsePinterestPin(pinPage({ createdAt: undefined }), url, discovery)).toThrow("metadata unavailable")
   })
 
-  it("rejects off-platform links and insecure or unrelated thumbnails", () => {
-    const items = parsePinterestIdeas(`${featured}
-      <a href="https://evil.example/ideas/art/123/"><img src="https://i.pinimg.com/art.jpg">External</a>
-      <a href="/ideas/art/123/"><img src="https://i.pinimg.com.evil.example/art.jpg">Bad image</a>
-      <a href="/ideas/art/456/"><img src="http://i.pinimg.com/art.jpg">Insecure image</a>`)
-    expect(items).toHaveLength(1)
-    expect(() => parsePinterestIdeas("<h1>Log in</h1>")).toThrow()
+  it("shows the actual Pin creation date and distinguishes aggregate saves from individual repins", () => {
+    const item = parsePinterestPin(pinPage(), url, discovery)
+    expect(item).toMatchObject({ id: "1234567890", title: "@creator — Autumn & style", url, pubDate: createdAt, extra: { image: "https://i.pinimg.com/474x/photo.jpg", pinterest: { createdAt, repins: 12, aggregateSaves: 1234 }, info: "7-day Pin picks · 1,234 aggregate saves · Published: 2026-10-23" } })
+    expect(parsePinterestPin(pinPage({ aggregatedPinData: null }), url, discovery).extra?.info).toContain("12 repins")
+    expect(parsePinterestPin(pinPage({ aggregatedPinData: null, repinCount: undefined }), url, discovery).extra?.info).not.toContain("repins")
+    expect(() => parsePinterestPin(pinPage({ createdAt: new Date(now - 7 * 86400000).toUTCString() }), url, discovery)).toThrow("creation window")
+    expect(() => parsePinterestPin(pinPage({ createdAt: new Date(now + 1000).toUTCString() }), url, discovery)).toThrow("creation window")
   })
 
-  it("caps the public list at ten unique items", () => {
-    const html = Array.from({ length: 15 }, (_, index) => `<a href="/ideas/topic/${index}/">Topic ${index}<img src="https://i.pinimg.com/${index}.jpg"></a>`).join("")
-    expect(parsePinterestIdeas(html)).toHaveLength(10)
+  it("excludes videos, ads, secret boards, untrusted images, wrong identities and unrelated script data", () => {
+    for (const patch of [{ isVideo: true }, { isVideo: undefined }, { isPromoted: true }, { isThirdPartyAd: true }, { board: { privacy: "secret" } }]) expect(() => parsePinterestPin(pinPage(patch), url, discovery)).toThrow("public organic image")
+    expect(() => parsePinterestPin(pinPage({ images_474x: { url: "https://i.pinimg.com.evil.example/photo.jpg" } }), url, discovery)).toThrow("image unavailable")
+    expect(() => parsePinterestPin(pinPage({}, "9999999999"), url, discovery)).toThrow("Pin unavailable")
+    expect(() => parsePinterestPin(`<meta property="og:url" content="${url}"><script>window.badCode();</script>`, url, discovery)).toThrow("metadata unavailable")
   })
 
-  it("parses dated official updates and normalizes trusted CDN images", () => {
-    expect(parsePinterestUpdates(update)[0]).toMatchObject({ title: "Official update", url: "https://newsroom.pinterest.com/news/example/", extra: { info: "Official updates", image: "https://images.ctfassets.net/photo.jpg" } })
-    expect(parsePinterestUpdates(update)[0].pubDate).toBeDefined()
-    expect(parsePinterestUpdates(update.replace("//images.ctfassets.net/photo.jpg", "https://evil.example/image.jpg"))[0].extra?.image).toBeUndefined()
+  it("sorts compatible public counters, then newer creation dates, deduplicating and capping at ten", () => {
+    const first = parsePinterestPin(pinPage(), url, discovery)
+    const less = parsePinterestPin(pinPage({ aggregatedPinData: { aggregatedStats: { saves: 50 } } }, "1234567891"), "https://www.pinterest.com/pin/1234567891/", discovery)
+    const noCount = parsePinterestPin(pinPage({ aggregatedPinData: null, repinCount: undefined }, "1234567892"), "https://www.pinterest.com/pin/1234567892/", discovery)
+    expect(selectPinterestPins([noCount, less, first, first]).map(item => item.id)).toEqual(["1234567890", "1234567891", "1234567892"])
+    expect(selectPinterestPins(Array.from({ length: 15 }, (_, index) => ({ ...first, id: String(index) })))).toHaveLength(10)
   })
 
-  it("uses official image and text updates when public ideas are unavailable", async () => {
-    fetchMock.mockRejectedValueOnce(new Error("Unavailable")).mockResolvedValueOnce(update)
-    expect((await pinterest())[0].extra?.info).toBe("Official updates")
+  it("fetches actual Pins and stops public requests when Pinterest rate-limits them", async () => {
+    fetchMock.mockImplementation(async (input) => {
+      const value = input.toString()
+      if (value.includes("/rss/search?")) return feed() as any
+      if (value === article) return "<div data-n-a-id=\"CBMipinterest\" data-n-a-ts=\"1792830000\" data-n-a-sg=\"abc-123\"></div>" as any
+      if (value.includes("batchexecute")) return `)]}'\n${JSON.stringify([["wrb.fr", "Fbv4je", JSON.stringify(["garturlres", url, 1]), null, null, null, "0"]])}` as any
+      if (value === url) return pinPage() as any
+      throw new Error("Unexpected URL")
+    })
+    expect(await pinterest()).toMatchObject([{ url, pubDate: createdAt }])
+    expect(fetchMock.mock.calls.some(call => call[0].toString().includes("newsroom.pinterest.com"))).toBe(false)
+    const implementation = fetchMock.getMockImplementation()!
+    fetchMock.mockImplementation(async (input, options) => {
+      if (input.toString() === url) throw Object.assign(new Error("Limited"), { statusCode: 429 })
+      return implementation(input, options)
+    })
+    await expect(pinterest()).rejects.toThrow("No valid public platform content")
+    expect(fetchMock.mock.calls.at(-1)?.[1]).toMatchObject({ retry: 0, signal: expect.any(AbortSignal) })
   })
 
-  it("uses publisher-verified aggregation as the final fallback", async () => {
-    fetchMock.mockRejectedValueOnce(new Error("Unavailable")).mockRejectedValueOnce(new Error("Unavailable")).mockResolvedValueOnce("<rss><channel><item><title>Pinterest update</title><link>https://news.google.com/rss/articles/example</link><source url=\"https://newsroom.pinterest.com\">Pinterest</source><pubDate>Tue, 20 Oct 2026 12:00:00 GMT</pubDate></item></channel></rss>")
-    expect((await pinterest())[0].extra?.info).toBe("Official updates · 2026-10-20 · Google News")
+  it("invalidates legacy category/update caches and Pins when the creation window expires", () => {
+    const items = [parsePinterestPin(pinPage(), url, discovery)]
+    expect(isCurrentPinterestCache({ id: "pinterest", items })).toBe(true)
+    expect(isCurrentPinterestCache({ id: "pinterest", items }, createdAt + 7 * 86400000)).toBe(false)
+    expect(isCurrentPinterestCache({ id: "pinterest", items: [{ id: "category", title: "Ideas", url: "https://www.pinterest.com/ideas/art/12345/" }] })).toBe(false)
+    expect(isCurrentPinterestCache({ id: "cnn", items: [] })).toBe(true)
+  })
+
+  it("limits concurrent Pin requests and leaves the remaining queue untouched after a 429", async () => {
+    const xml = `<rss><channel>${Array.from({ length: 6 }, (_, index) => `<item><title>Pin ${index}</title><link>https://news.google.com/rss/articles/CBMiqueue${index}?oc=5</link><source url="https://www.pinterest.com">Pinterest</source><pubDate>${new Date(now - 1000).toUTCString()}</pubDate></item>`).join("")}</channel></rss>`
+    fetchMock.mockImplementation(async (input) => {
+      const value = input.toString()
+      if (value.includes("/rss/search?")) return xml as any
+      if (value.includes("/rss/articles/")) {
+        const id = new URL(value).pathname.split("/").at(-1)
+        return `<div data-n-a-id="${id}" data-n-a-ts="1792830000" data-n-a-sg="abc-123"></div>` as any
+      }
+      if (value.includes("batchexecute")) return `)]}'\n${JSON.stringify(Array.from({ length: 6 }, (_, index) => ["wrb.fr", "Fbv4je", JSON.stringify(["garturlres", `https://www.pinterest.com/pin/${1234567890 + index}/`, 1]), null, null, null, String(index)]))}` as any
+      throw Object.assign(new Error("Limited"), { statusCode: 429 })
+    })
+    await expect(pinterest()).rejects.toThrow("No valid public platform content")
+    expect(fetchMock.mock.calls.filter(call => call[0].toString().startsWith("https://www.pinterest.com/pin/"))).toHaveLength(3)
   })
 })

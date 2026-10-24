@@ -144,5 +144,12 @@
   "Public post pick": "公开图文推荐",
   "{count} reactions": "{count} 次表态",
   "Facebook video and photo picks": "Facebook 视频与图文推荐",
-  "Public Facebook videos and posts indexed within 7 days by Google News. Videos with visible reactions rank first, then videos with views only, then recent post picks. Counts are cumulative and may be rounded. Up to 10; not a sitewide weekly ranking. Index dates do not verify original publication dates.": "推荐 Google News 近7天收录的公开 Facebook 视频与帖子。优先按可见表态数排序的视频，再显示仅有播放量的视频，最后是近期图文推荐。数值为累计数据，可能经过取整。最多10条，不是全站周榜；索引日期不能证明原帖发布日期。"
+  "Public Facebook videos and posts indexed within 7 days by Google News. Videos with visible reactions rank first, then videos with views only, then recent post picks. Counts are cumulative and may be rounded. Up to 10; not a sitewide weekly ranking. Index dates do not verify original publication dates.": "推荐 Google News 近7天收录的公开 Facebook 视频与帖子。优先按可见表态数排序的视频，再显示仅有播放量的视频，最后是近期图文推荐。数值为累计数据，可能经过取整。最多10条，不是全站周榜；索引日期不能证明原帖发布日期。",
+  "7-day image & text picks": "近7天图文推荐",
+  "7-day Pin picks": "近7天 Pin 推荐",
+  "{count} repins": "{count} 次转存",
+  "Pinterest 7-day image and text picks": "Pinterest 近7天图文推荐",
+  "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Ranked by visible cumulative repins where available, then creation date. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted.": "推荐近7天创建的公开图片 Pin，通过 Google News 发现并在 Pinterest 原页核实日期。优先按公开累计转存数排序，再按创建日期排序，最多10条。这不是全站周榜或7天收藏增量榜；Pin 日期可能代表近期保存了较早的作品。排除视频、推广 Pin 和日期无法核实的内容。",
+  "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Aggregate saves rank first, then repins, then creation date. Aggregate saves are not this individual Pin's saves. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted.": "推荐近7天创建的公开图片 Pin，通过 Google News 发现并在 Pinterest 原页核实日期。优先按公开聚合累计收藏数排序，其次按转存数与创建日期排序；聚合收藏数不是此单条 Pin 的收藏数，最多10条。这不是全站周榜或7天收藏增量榜；Pin 日期可能代表近期保存了较早的作品。排除视频、推广 Pin 和日期无法核实的内容。",
+  "{count} aggregate saves": "{count} 次聚合收藏"
 }

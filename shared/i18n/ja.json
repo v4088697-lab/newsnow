@@ -144,5 +144,12 @@
   "Public post pick": "公開投稿のおすすめ",
   "{count} reactions": "リアクション{count}件",
   "Facebook video and photo picks": "Facebookの動画・写真おすすめ",
-  "Public Facebook videos and posts indexed within 7 days by Google News. Videos with visible reactions rank first, then videos with views only, then recent post picks. Counts are cumulative and may be rounded. Up to 10; not a sitewide weekly ranking. Index dates do not verify original publication dates.": "Google Newsが過去7日間に収録した公開Facebook動画と投稿を紹介します。公開リアクション数付き動画、再生数のみの動画、最近の投稿の順で表示します。数値は累計で丸められる場合があります。最大10件で全体の週間順位ではありません。収録日は元の公開日を保証しません。"
+  "Public Facebook videos and posts indexed within 7 days by Google News. Videos with visible reactions rank first, then videos with views only, then recent post picks. Counts are cumulative and may be rounded. Up to 10; not a sitewide weekly ranking. Index dates do not verify original publication dates.": "Google Newsが過去7日間に収録した公開Facebook動画と投稿を紹介します。公開リアクション数付き動画、再生数のみの動画、最近の投稿の順で表示します。数値は累計で丸められる場合があります。最大10件で全体の週間順位ではありません。収録日は元の公開日を保証しません。",
+  "7-day image & text picks": "過去7日間の画像・テキストおすすめ",
+  "7-day Pin picks": "過去7日間のPinおすすめ",
+  "{count} repins": "リピン{count}件",
+  "Pinterest 7-day image and text picks": "Pinterestの過去7日間の画像・テキストおすすめ",
+  "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Ranked by visible cumulative repins where available, then creation date. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted.": "Google Newsで発見しPinterestで日付を確認した、過去7日間に作成された公開画像Pinを紹介します。公開累計リピン数、作成日の順に最大10件を表示します。全体の週間順位や7日間の保存増加数ではありません。Pinの日付は古い作品の最近の保存を示す場合があります。動画、広告、日付不明のPinは除外します。",
+  "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Aggregate saves rank first, then repins, then creation date. Aggregate saves are not this individual Pin's saves. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted.": "Google Newsで発見しPinterestで日付を確認した、過去7日間に作成された公開画像Pinを紹介します。集計保存数、リピン数、作成日の順に最大10件を表示します。集計保存数はこの単独Pinの保存数ではありません。全体の週間順位や7日間の保存増加数ではありません。Pinの日付は古い作品の最近の保存を示す場合があります。動画、広告、日付不明のPinは除外します。",
+  "{count} aggregate saves": "集計保存{count}件"
 }

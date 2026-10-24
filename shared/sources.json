@@ -394,10 +394,10 @@
     "interval": 600000
   },
   "pinterest": {
-    "title": "Visual inspiration",
+    "title": "7-day image & text picks",
     "name": "Pinterest",
     "type": "hottest",
-    "desc": "Public Pinterest features and inspiration categories with original images and titles. These are not personalized recommendations or popularity rankings. Official updates are labeled if used as a fallback.",
+    "desc": "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Aggregate saves rank first, then repins, then creation date. Aggregate saves are not this individual Pin's saves. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted.",
     "column": "visual",
     "home": "https://www.pinterest.com/ideas/",
     "color": "rose",

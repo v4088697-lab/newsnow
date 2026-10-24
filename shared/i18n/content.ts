@@ -15,7 +15,7 @@ export function sourceDescription(id: string, original: string | undefined, loca
   if (id === "amazon") text = "US category best sellers, not sitewide ranks. Product prices and availability must be checked on the source website."
   if (id === "temu") text = "Public product categories or labeled company releases; not a sales ranking."
   if (id === "ebay") text = "Used auctions when available, otherwise labeled refurbished picks or official updates. Refurbished picks are not an auction ranking."
-  if (id === "pinterest") text = "Public featured content and inspiration categories, including labeled sponsored content. Not personalized recommendations or popularity rankings."
+  if (id === "pinterest") text = "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Aggregate saves rank first, then repins, then creation date. Aggregate saves are not this individual Pin's saves. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted."
   if (id === "netflix") text = "Latest complete Netflix global English TV week. The chart date is shown; regional availability may vary."
   return `${translate(locale, text)} ${translate(locale, "Original headlines are preserved.")}`
 }
@@ -42,7 +42,7 @@ export function localizeAnnotation(locale: Locale, text: string | false | undefi
     if (rank) return t(rank[1] === "Category" ? "Category #{rank}" : "Rank #{rank}", { rank: number(rank[2]) })
     const compact = /^(\d[\d,]*(?:\.\d+)?)([KMB]) (views|reactions|likes)$/.exec(segment)
     if (compact) return t(`{count} ${compact[3]}`, { count: `${number(compact[1])}${compact[2]}` })
-    const count = /^([\d,]+) (views|viewers|videos|likes|reactions)$/.exec(segment)
+    const count = /^([\d,]+) (views|viewers|videos|likes|reactions|repins|aggregate saves)$/.exec(segment)
     if (count) return t(`{count} ${count[2]}`, { count: number(count[1]) })
     if (segment.startsWith("Listed price ")) return t("Listed price {price}", { price: segment.slice(13) })
     return t(segment).replace(/(\d{4}-\d{2}-\d{2}) to (\d{4}-\d{2}-\d{2})/, `$1 ${t("to")} $2`)

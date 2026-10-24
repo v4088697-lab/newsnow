@@ -131,7 +131,7 @@ function NewsCard({ id, setHandleRef }: NewsCardProps) {
 function VisualList({ id, items }: { id: SourceID, items: NewsItem[] }) {
   const { locale, t } = useLocale()
   return (
-    <ol className="flex flex-col gap-3" aria-label={t(id === "instagram" ? "Instagram video and photo picks" : id === "facebook" ? "Facebook video and photo picks" : "Pinterest visual inspiration")}>
+    <ol className="flex flex-col gap-3" aria-label={t(id === "instagram" ? "Instagram video and photo picks" : id === "facebook" ? "Facebook video and photo picks" : "Pinterest 7-day image and text picks")}>
       {items.map(item => (
         <li key={item.id}>
           <a href={item.url} target="_blank" rel="noopener noreferrer" className="flex gap-3 items-center p-1 rounded-md hover:bg-neutral-400/10 transition-colors">

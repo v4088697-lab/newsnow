@@ -6,7 +6,7 @@ import sourceHandler from "../server/api/s/index"
 import { getters } from "#/getters"
 import { getCacheTable } from "#/database/cache"
 
-vi.mock("#/getters", () => ({ getters: { cnn: vi.fn(), youtube: vi.fn(), instagram: vi.fn(), facebook: vi.fn() } }))
+vi.mock("#/getters", () => ({ getters: { cnn: vi.fn(), youtube: vi.fn(), instagram: vi.fn(), facebook: vi.fn(), pinterest: vi.fn() } }))
 vi.mock("#/database/cache", () => ({ getCacheTable: vi.fn() }))
 
 describe("source cache refresh", () => {
@@ -112,6 +112,26 @@ describe("source cache refresh", () => {
     cacheTable.getEntire.mockResolvedValue([expired])
     await expect(sourceHandler(request("GET", "facebook"))).rejects.toThrow("Facebook unavailable")
     expect(await entireHandler(request("POST", "facebook"))).toEqual([])
+  })
+
+  it("migrates Pinterest categories to verified recent Pins and never falls back to expired creation dates", async () => {
+    const old = { id: "pinterest", updated: now - 60000, items: [{ id: "category", title: "Ideas", url: "https://www.pinterest.com/ideas/art/12345/" }] }
+    const createdAt = now - 86400000
+    const fresh = [{ id: "1234567890", title: "Public Pin", url: "https://www.pinterest.com/pin/1234567890/", pubDate: createdAt, extra: { pinterest: { createdAt, aggregateSaves: 1234 } } }]
+    cacheTable.get.mockResolvedValue(old)
+    cacheTable.getEntire.mockResolvedValue([old])
+    vi.mocked(getters.pinterest).mockResolvedValue(fresh)
+    expect((await sourceHandler(request("GET", "pinterest"))).items).toEqual(fresh)
+    expect(await entireHandler(request("POST", "pinterest"))).toEqual([])
+    const updated = now - 3600000
+    cacheTable.get.mockResolvedValue({ id: "pinterest", updated, items: fresh })
+    vi.mocked(getters.pinterest).mockRejectedValue(new Error("Pinterest unavailable"))
+    expect(await sourceHandler(request("GET", "pinterest"))).toMatchObject({ items: fresh, updatedTime: updated })
+    const expired = { id: "pinterest", updated, items: [{ ...fresh[0], pubDate: now - 7 * 86400000, extra: { pinterest: { createdAt: now - 7 * 86400000 } } }] }
+    cacheTable.get.mockResolvedValue(expired)
+    cacheTable.getEntire.mockResolvedValue([expired])
+    await expect(sourceHandler(request("GET", "pinterest"))).rejects.toThrow("Pinterest unavailable")
+    expect(await entireHandler(request("POST", "pinterest"))).toEqual([])
   })
 
   it.each([60000, 3600000])("shows English annotations from existing cache aged %i ms without translating headlines", async (age) => {

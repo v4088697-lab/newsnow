@@ -7,6 +7,7 @@ import { englishCacheItems } from "#/utils/english-cache"
 import { isCurrentYouTubeCache } from "#/utils/youtube-videos"
 import { isCurrentInstagramCache } from "#/utils/instagram-posts"
 import { isCurrentFacebookCache } from "#/utils/facebook-posts"
+import { isCurrentPinterestCache } from "#/utils/pinterest-content"
 
 export default defineEventHandler(async (event) => {
   try {
@@ -15,7 +16,7 @@ export default defineEventHandler(async (event) => {
     const ids = _?.filter(k => sources[k])
     if (ids?.length && cacheTable) {
       const caches = await cacheTable.getEntire(ids)
-      return caches.filter(cache => isCurrentTikTokCache(cache) && isCurrentYouTubeCache(cache) && isCurrentInstagramCache(cache) && isCurrentFacebookCache(cache)).map(cache => ({
+      return caches.filter(cache => isCurrentTikTokCache(cache) && isCurrentYouTubeCache(cache) && isCurrentInstagramCache(cache) && isCurrentFacebookCache(cache) && isCurrentPinterestCache(cache)).map(cache => ({
         status: "cache",
         id: cache.id,
         items: englishCacheItems(cache.items),
