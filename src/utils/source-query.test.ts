@@ -88,6 +88,18 @@ describe("automatic source queries", () => {
     client.clear()
   })
 
+  it("does not imply Quora engagement-rank changes when discovery order changes", async () => {
+    const { QueryClient } = await import("@tanstack/react-query")
+    const first = { id: "a", title: "What is the first topic?", url: "https://www.quora.com/What-is-the-first-topic" }
+    const second = { id: "b", title: "What is the second topic?", url: "https://www.quora.com/What-is-the-second-topic" }
+    cacheSources.set("quora", { id: "quora", status: "cache", updatedTime: Date.now(), items: [first, second] })
+    fetchMock.mockResolvedValueOnce({ id: "quora", status: "success", updatedTime: Date.now(), items: [second, first] })
+    const client = new QueryClient()
+    const result = await client.fetchQuery({ ...sourceQueryOptions("quora"), staleTime: 0 })
+    expect(result.items.every(item => item.extra?.diff === undefined)).toBe(true)
+    client.clear()
+  })
+
   it("refreshes on reconnect and returning to the page while pausing hidden polling", async () => {
     const { QueryClient, QueryObserver, focusManager, onlineManager } = await import("@tanstack/react-query")
     cacheSources.set("cnn", snapshot("Cached"))

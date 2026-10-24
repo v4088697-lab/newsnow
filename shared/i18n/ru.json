@@ -169,5 +169,8 @@
   "Skip to content": "Перейти к содержимому",
   "Back to home": "На главную",
   "This page is unavailable. Browse NewsNow's news and recommendation sources or return to the home page.": "Эта страница недоступна. Просмотрите источники или вернитесь на главную.",
-  "In Safari on Mac, open File and choose “Add to Dock” (macOS Sonoma or later). In Chrome or Edge, use the install option in the browser menu.": "В Safari на Mac откройте «Файл» и выберите «Добавить в Dock» (macOS Sonoma или новее). В Chrome или Edge используйте пункт установки в меню браузера."
+  "In Safari on Mac, open File and choose “Add to Dock” (macOS Sonoma or later). In Chrome or Edge, use the install option in the browser menu.": "В Safari на Mac откройте «Файл» и выберите «Добавить в Dock» (macOS Sonoma или новее). В Chrome или Edge используйте пункт установки в меню браузера.",
+  "7-day topic picks": "Темы за последние 7 дней",
+  "Topics: {count}/{total}": "Темы: {count}/{total}",
+  "Public Quora questions indexed by Google News within 7 days, with up to 10 recent topic recommendations. Index dates are not verified question creation dates. This feed has no engagement counts, so these are discovery picks, not an official Quora popularity ranking.": "Публичные вопросы Quora, проиндексированные Google News за последние 7 дней: до 10 актуальных рекомендаций. Даты индексации не подтверждают даты создания вопросов. В ленте нет показателей взаимодействия, поэтому это подборка для знакомства, а не официальный рейтинг популярности Quora."
 }

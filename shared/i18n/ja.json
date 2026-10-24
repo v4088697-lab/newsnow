@@ -169,5 +169,8 @@
   "Skip to content": "本文へ移動",
   "Back to home": "ホームに戻る",
   "This page is unavailable. Browse NewsNow's news and recommendation sources or return to the home page.": "このページは利用できません。情報源を閲覧するか、ホームに戻ってください。",
-  "In Safari on Mac, open File and choose “Add to Dock” (macOS Sonoma or later). In Chrome or Edge, use the install option in the browser menu.": "Mac の Safari で「ファイル」から「Dock に追加」を選択します（macOS Sonoma 以降）。Chrome または Edge ではブラウザーメニューのインストール項目を使用します。"
+  "In Safari on Mac, open File and choose “Add to Dock” (macOS Sonoma or later). In Chrome or Edge, use the install option in the browser menu.": "Mac の Safari で「ファイル」から「Dock に追加」を選択します（macOS Sonoma 以降）。Chrome または Edge ではブラウザーメニューのインストール項目を使用します。",
+  "7-day topic picks": "過去7日間の話題",
+  "Topics: {count}/{total}": "話題: {count}/{total}",
+  "Public Quora questions indexed by Google News within 7 days, with up to 10 recent topic recommendations. Index dates are not verified question creation dates. This feed has no engagement counts, so these are discovery picks, not an official Quora popularity ranking.": "Google News に過去7日間で掲載された Quora の公開質問から、最大10件の話題を紹介します。掲載日は質問の作成日を確認するものではありません。反応数を取得できないため、Quora 公式の人気ランキングではありません。"
 }

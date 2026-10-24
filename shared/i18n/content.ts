@@ -16,6 +16,7 @@ export function sourceDescription(id: string, original: string | undefined, loca
   if (id === "temu") text = "Public product categories or labeled company releases; not a sales ranking."
   if (id === "ebay") text = "Used auctions when available, otherwise labeled refurbished picks or official updates. Refurbished picks are not an auction ranking."
   if (id === "pinterest") text = "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Aggregate saves rank first, then repins, then creation date. Aggregate saves are not this individual Pin's saves. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted."
+  if (id === "quora") text = "Public Quora questions indexed by Google News within 7 days, with up to 10 recent topic recommendations. Index dates are not verified question creation dates. This feed has no engagement counts, so these are discovery picks, not an official Quora popularity ranking."
   if (id === "netflix") text = "Latest complete Netflix global English TV week. The chart date is shown; regional availability may vary."
   return `${translate(locale, text)} ${translate(locale, "Original headlines are preserved.")}`
 }

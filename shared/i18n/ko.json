@@ -169,5 +169,8 @@
   "Skip to content": "본문으로 건너뛰기",
   "Back to home": "홈으로 돌아가기",
   "This page is unavailable. Browse NewsNow's news and recommendation sources or return to the home page.": "이 페이지를 이용할 수 없습니다. 출처를 살펴보거나 홈으로 돌아가세요.",
-  "In Safari on Mac, open File and choose “Add to Dock” (macOS Sonoma or later). In Chrome or Edge, use the install option in the browser menu.": "Mac의 Safari에서 파일 메뉴를 열고 “Dock에 추가”를 선택하세요(macOS Sonoma 이상). Chrome 또는 Edge에서는 브라우저 메뉴의 설치 옵션을 사용하세요."
+  "In Safari on Mac, open File and choose “Add to Dock” (macOS Sonoma or later). In Chrome or Edge, use the install option in the browser menu.": "Mac의 Safari에서 파일 메뉴를 열고 “Dock에 추가”를 선택하세요(macOS Sonoma 이상). Chrome 또는 Edge에서는 브라우저 메뉴의 설치 옵션을 사용하세요.",
+  "7-day topic picks": "최근 7일 주제 추천",
+  "Topics: {count}/{total}": "주제: {count}/{total}",
+  "Public Quora questions indexed by Google News within 7 days, with up to 10 recent topic recommendations. Index dates are not verified question creation dates. This feed has no engagement counts, so these are discovery picks, not an official Quora popularity ranking.": "Google 뉴스가 최근 7일 동안 색인한 Quora 공개 질문에서 최대 10개의 최근 주제를 추천합니다. 색인 날짜는 확인된 질문 작성일이 아닙니다. 이 피드에는 참여 수치가 없으므로 공식 Quora 인기 순위가 아닌 발견용 추천입니다."
 }

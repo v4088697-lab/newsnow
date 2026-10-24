@@ -554,10 +554,10 @@
     "interval": 600000
   },
   "quora": {
-    "title": "Official blog",
+    "title": "7-day topic picks",
     "name": "Quora",
     "type": "hottest",
-    "desc": "Official and archived Quora blog articles with dates and aggregation sources. Not a popular Q&A ranking.",
+    "desc": "Public Quora questions indexed by Google News within 7 days, with up to 10 recent topic recommendations. Index dates are not verified question creation dates. This feed has no engagement counts, so these are discovery picks, not an official Quora popularity ranking.",
     "column": "world",
     "home": "https://www.quora.com",
     "color": "red",

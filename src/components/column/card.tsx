@@ -102,6 +102,7 @@ function NewsCard({ id, active, setHandleRef }: NewsCardProps) {
             <span className="text-xs op-70">
               <UpdatedTime isError={isError} updatedTime={data?.updatedTime} />
               {id === "pinterest" && <bdi>{` · ${t("Pins: {count}/{total}", { count: (data?.items.length ?? 0).toLocaleString(locale), total: (10).toLocaleString(locale) })}`}</bdi>}
+              {id === "quora" && <bdi>{` · ${t("Topics: {count}/{total}", { count: (data?.items.length ?? 0).toLocaleString(locale), total: (10).toLocaleString(locale) })}`}</bdi>}
             </span>
           </div>
         </div>

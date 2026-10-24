@@ -6,7 +6,7 @@ import sourceHandler from "../server/api/s/index"
 import { getters } from "#/getters"
 import { getCacheTable } from "#/database/cache"
 
-vi.mock("#/getters", () => ({ getters: { cnn: vi.fn(), youtube: vi.fn(), instagram: vi.fn(), facebook: vi.fn(), pinterest: vi.fn() } }))
+vi.mock("#/getters", () => ({ getters: { cnn: vi.fn(), youtube: vi.fn(), instagram: vi.fn(), facebook: vi.fn(), pinterest: vi.fn(), quora: vi.fn() } }))
 vi.mock("#/database/cache", () => ({ getCacheTable: vi.fn() }))
 
 describe("source cache refresh", () => {
@@ -156,6 +156,46 @@ describe("source cache refresh", () => {
     const expired = { id: "1234567891", title: "Expired Pin", url: "https://www.pinterest.com/pin/1234567891/", pubDate: expiredAt, extra: { pinterest: { createdAt: expiredAt } } }
     cacheTable.getEntire.mockResolvedValue([{ id: "pinterest", updated: now - 60000, items: [current, expired] }])
     expect(await entireHandler(request("POST", "pinterest"))).toMatchObject([{ id: "pinterest", items: [current], updatedTime: now - 60000 }])
+  })
+
+  it("replaces Quora blog caches and filters expired questions in single and bulk requests", async () => {
+    const updated = now - 120000
+    const legacy = { id: "quora", updated, items: [{ id: "blog", title: "Official blog", url: "https://quorablog.quora.com/" }] }
+    const indexedAt = now - 86400000
+    const url = "https://www.quora.com/What-is-the-future-of-science"
+    const topic = { id: url, url, title: "What is the future of science?", pubDate: indexedAt, extra: { quora: { indexedAt } } }
+    cacheTable.get.mockResolvedValue(legacy)
+    cacheTable.getEntire.mockResolvedValue([legacy])
+    vi.mocked(getters.quora).mockResolvedValue([topic])
+    expect((await sourceHandler(request("GET", "quora"))).items).toEqual([topic])
+    expect(await entireHandler(request("POST", "quora"))).toEqual([])
+    const expiredAt = now - 7 * 86400000
+    const expired = { ...topic, pubDate: expiredAt, extra: { quora: { indexedAt: expiredAt } } }
+    cacheTable.get.mockResolvedValue({ id: "quora", updated, items: [topic, expired] })
+    cacheTable.getEntire.mockResolvedValue([{ id: "quora", updated, items: [topic, expired] }])
+    vi.mocked(getters.quora).mockRejectedValue(new Error("Quora unavailable"))
+    expect(await sourceHandler(request("GET", "quora"))).toMatchObject({ items: [topic], updatedTime: updated })
+    expect(await entireHandler(request("POST", "quora"))).toMatchObject([{ items: [topic], updatedTime: updated }])
+    cacheTable.get.mockResolvedValue({ id: "quora", updated, items: [expired] })
+    await expect(sourceHandler(request("GET", "quora"))).rejects.toThrow("Quora unavailable")
+  })
+
+  it("replenishes a partial Quora cache at one minute and merges to ten distinct topics", async () => {
+    const indexedAt = now - 86400000
+    const topics = Array.from({ length: 10 }, (_, index) => {
+      const url = `https://www.quora.com/What-is-recent-topic-${index}`
+      return { id: url, url, title: `What is recent topic ${index}?`, pubDate: indexedAt, extra: { quora: { indexedAt } } }
+    })
+    cacheTable.get.mockResolvedValue({ id: "quora", updated: now - 120000, items: topics.slice(0, 9) })
+    vi.mocked(getters.quora).mockResolvedValue([topics[9]])
+    const result = await sourceHandler(request("GET", "quora"))
+    expect(result.items).toHaveLength(10)
+    expect(new Set(result.items.map(item => item.url)).size).toBe(10)
+    expect(cacheTable.set).toHaveBeenCalledWith("quora", result.items, now)
+    vi.mocked(getters.quora).mockClear()
+    cacheTable.get.mockResolvedValue({ id: "quora", updated: now - 120000, items: topics })
+    expect(await sourceHandler(request("GET", "quora"))).toMatchObject({ status: "cache", items: topics })
+    expect(getters.quora).not.toHaveBeenCalled()
   })
 
   it.each([60000, 3600000])("shows English annotations from existing cache aged %i ms without translating headlines", async (age) => {

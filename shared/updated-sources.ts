@@ -1,4 +1,5 @@
 export const updatedSourceIds = [
+  "quora",
   "pinterest",
   "facebook",
   "instagram",
@@ -23,7 +24,6 @@ export const updatedSourceIds = [
   "netflix",
   "disneyplus",
   "x",
-  "quora",
   "cnn",
   "reuters",
   "apnews",

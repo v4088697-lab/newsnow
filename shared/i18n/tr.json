@@ -169,5 +169,8 @@
   "Skip to content": "İçeriğe geç",
   "Back to home": "Ana sayfaya dön",
   "This page is unavailable. Browse NewsNow's news and recommendation sources or return to the home page.": "Bu sayfa kullanılamıyor. Kaynaklara göz atın veya ana sayfaya dönün.",
-  "In Safari on Mac, open File and choose “Add to Dock” (macOS Sonoma or later). In Chrome or Edge, use the install option in the browser menu.": "Mac üzerinde Safari’de Dosya menüsünü açıp “Dock’a Ekle”yi seçin (macOS Sonoma veya sonrası). Chrome veya Edge’de tarayıcı menüsündeki yükleme seçeneğini kullanın."
+  "In Safari on Mac, open File and choose “Add to Dock” (macOS Sonoma or later). In Chrome or Edge, use the install option in the browser menu.": "Mac üzerinde Safari’de Dosya menüsünü açıp “Dock’a Ekle”yi seçin (macOS Sonoma veya sonrası). Chrome veya Edge’de tarayıcı menüsündeki yükleme seçeneğini kullanın.",
+  "7-day topic picks": "Son 7 günün konuları",
+  "Topics: {count}/{total}": "Konular: {count}/{total}",
+  "Public Quora questions indexed by Google News within 7 days, with up to 10 recent topic recommendations. Index dates are not verified question creation dates. This feed has no engagement counts, so these are discovery picks, not an official Quora popularity ranking.": "Google News tarafından son 7 günde dizine eklenen herkese açık Quora sorularından en fazla 10 güncel konu önerisi. Dizin tarihleri soruların doğrulanmış oluşturulma tarihleri değildir. Bu akış etkileşim sayıları sunmaz; bunlar keşif önerileridir, resmi Quora popülerlik sıralaması değildir."
 }
