@@ -139,5 +139,10 @@
   "Post": "Post",
   "{count} likes": "{count} likes",
   "Instagram video and photo picks": "Instagram video and photo picks",
-  "Public Reels and posts indexed by Google News within the past 7 days, ranked by visible cumulative likes from official Instagram embeds. Up to 10 recommendations; this is a sampled discovery list, not a sitewide weekly chart or seven-day like growth. Index dates do not verify original post dates. Unavailable or hidden-count posts are omitted.": "Public Reels and posts indexed by Google News within the past 7 days, ranked by visible cumulative likes from official Instagram embeds. Up to 10 recommendations; this is a sampled discovery list, not a sitewide weekly chart or seven-day like growth. Index dates do not verify original post dates. Unavailable or hidden-count posts are omitted."
+  "Public Reels and posts indexed by Google News within the past 7 days, ranked by visible cumulative likes from official Instagram embeds. Up to 10 recommendations; this is a sampled discovery list, not a sitewide weekly chart or seven-day like growth. Index dates do not verify original post dates. Unavailable or hidden-count posts are omitted.": "Public Reels and posts indexed by Google News within the past 7 days, ranked by visible cumulative likes from official Instagram embeds. Up to 10 recommendations; this is a sampled discovery list, not a sitewide weekly chart or seven-day like growth. Index dates do not verify original post dates. Unavailable or hidden-count posts are omitted.",
+  "Video": "Video",
+  "Public post pick": "Public post pick",
+  "{count} reactions": "{count} reactions",
+  "Facebook video and photo picks": "Facebook video and photo picks",
+  "Public Facebook videos and posts indexed within 7 days by Google News. Videos with visible reactions rank first, then videos with views only, then recent post picks. Counts are cumulative and may be rounded. Up to 10; not a sitewide weekly ranking. Index dates do not verify original publication dates.": "Public Facebook videos and posts indexed within 7 days by Google News. Videos with visible reactions rank first, then videos with views only, then recent post picks. Counts are cumulative and may be rounded. Up to 10; not a sitewide weekly ranking. Index dates do not verify original publication dates."
 }

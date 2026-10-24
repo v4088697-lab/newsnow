@@ -121,7 +121,7 @@ function NewsCard({ id, setHandleRef }: NewsCardProps) {
         defer
       >
         <div className={$("transition-opacity-500", isFetching && "op-20")}>
-          {!!data?.items?.length && (["pinterest", "instagram"].includes(id) ? <VisualList id={id} items={data.items} /> : sources[id].type === "hottest" ? <NewsListHot items={data.items} description={description} /> : <NewsListTimeLine items={data.items} description={description} />)}
+          {!!data?.items?.length && (["pinterest", "instagram", "facebook"].includes(id) ? <VisualList id={id} items={data.items} /> : sources[id].type === "hottest" ? <NewsListHot items={data.items} description={description} /> : <NewsListTimeLine items={data.items} description={description} />)}
         </div>
       </OverlayScrollbar>
     </>
@@ -131,7 +131,7 @@ function NewsCard({ id, setHandleRef }: NewsCardProps) {
 function VisualList({ id, items }: { id: SourceID, items: NewsItem[] }) {
   const { locale, t } = useLocale()
   return (
-    <ol className="flex flex-col gap-3" aria-label={t(id === "instagram" ? "Instagram video and photo picks" : "Pinterest visual inspiration")}>
+    <ol className="flex flex-col gap-3" aria-label={t(id === "instagram" ? "Instagram video and photo picks" : id === "facebook" ? "Facebook video and photo picks" : "Pinterest visual inspiration")}>
       {items.map(item => (
         <li key={item.id}>
           <a href={item.url} target="_blank" rel="noopener noreferrer" className="flex gap-3 items-center p-1 rounded-md hover:bg-neutral-400/10 transition-colors">

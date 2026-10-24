@@ -139,5 +139,10 @@
   "Post": "投稿",
   "{count} likes": "いいね{count}件",
   "Instagram video and photo picks": "Instagramの動画・写真おすすめ",
-  "Public Reels and posts indexed by Google News within the past 7 days, ranked by visible cumulative likes from official Instagram embeds. Up to 10 recommendations; this is a sampled discovery list, not a sitewide weekly chart or seven-day like growth. Index dates do not verify original post dates. Unavailable or hidden-count posts are omitted.": "Google Newsが過去7日間に収録した公開リールと投稿を、Instagram公式埋め込みの公開累計いいね数で並べ、最大10件紹介します。抽出されたおすすめであり全体の週間順位や7日間の増加数ではありません。収録日は元の公開日を保証しません。非公開やいいね数を確認できない投稿は除外します。"
+  "Public Reels and posts indexed by Google News within the past 7 days, ranked by visible cumulative likes from official Instagram embeds. Up to 10 recommendations; this is a sampled discovery list, not a sitewide weekly chart or seven-day like growth. Index dates do not verify original post dates. Unavailable or hidden-count posts are omitted.": "Google Newsが過去7日間に収録した公開リールと投稿を、Instagram公式埋め込みの公開累計いいね数で並べ、最大10件紹介します。抽出されたおすすめであり全体の週間順位や7日間の増加数ではありません。収録日は元の公開日を保証しません。非公開やいいね数を確認できない投稿は除外します。",
+  "Video": "動画",
+  "Public post pick": "公開投稿のおすすめ",
+  "{count} reactions": "リアクション{count}件",
+  "Facebook video and photo picks": "Facebookの動画・写真おすすめ",
+  "Public Facebook videos and posts indexed within 7 days by Google News. Videos with visible reactions rank first, then videos with views only, then recent post picks. Counts are cumulative and may be rounded. Up to 10; not a sitewide weekly ranking. Index dates do not verify original publication dates.": "Google Newsが過去7日間に収録した公開Facebook動画と投稿を紹介します。公開リアクション数付き動画、再生数のみの動画、最近の投稿の順で表示します。数値は累計で丸められる場合があります。最大10件で全体の週間順位ではありません。収録日は元の公開日を保証しません。"
 }

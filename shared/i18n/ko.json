@@ -139,5 +139,10 @@
   "Post": "게시물",
   "{count} likes": "좋아요 {count}개",
   "Instagram video and photo picks": "Instagram 영상·사진 추천",
-  "Public Reels and posts indexed by Google News within the past 7 days, ranked by visible cumulative likes from official Instagram embeds. Up to 10 recommendations; this is a sampled discovery list, not a sitewide weekly chart or seven-day like growth. Index dates do not verify original post dates. Unavailable or hidden-count posts are omitted.": "Google News가 최근 7일 동안 색인한 공개 릴스와 게시물을 Instagram 공식 임베드의 공개 누적 좋아요순으로 최대 10개 추천합니다. 표본 추천이며 전체 주간 순위나 7일 좋아요 증가 순위가 아닙니다. 색인 날짜는 원래 게시일을 확인하지 못합니다. 접근 불가 또는 좋아요 수가 숨겨진 게시물은 제외됩니다."
+  "Public Reels and posts indexed by Google News within the past 7 days, ranked by visible cumulative likes from official Instagram embeds. Up to 10 recommendations; this is a sampled discovery list, not a sitewide weekly chart or seven-day like growth. Index dates do not verify original post dates. Unavailable or hidden-count posts are omitted.": "Google News가 최근 7일 동안 색인한 공개 릴스와 게시물을 Instagram 공식 임베드의 공개 누적 좋아요순으로 최대 10개 추천합니다. 표본 추천이며 전체 주간 순위나 7일 좋아요 증가 순위가 아닙니다. 색인 날짜는 원래 게시일을 확인하지 못합니다. 접근 불가 또는 좋아요 수가 숨겨진 게시물은 제외됩니다.",
+  "Video": "동영상",
+  "Public post pick": "공개 게시물 추천",
+  "{count} reactions": "반응 {count}개",
+  "Facebook video and photo picks": "Facebook 영상·사진 추천",
+  "Public Facebook videos and posts indexed within 7 days by Google News. Videos with visible reactions rank first, then videos with views only, then recent post picks. Counts are cumulative and may be rounded. Up to 10; not a sitewide weekly ranking. Index dates do not verify original publication dates.": "Google News가 최근 7일 동안 색인한 공개 Facebook 영상과 게시물을 추천합니다. 공개 반응 수가 있는 영상, 조회수만 있는 영상, 최근 게시물 순서로 표시합니다. 수치는 누적이며 반올림될 수 있습니다. 최대 10개로 전체 주간 순위가 아닙니다. 색인 날짜는 원래 게시일을 확인하지 못합니다."
 }

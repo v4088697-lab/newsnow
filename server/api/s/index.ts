@@ -8,6 +8,7 @@ import { isCurrentTikTokCache } from "#/utils/tiktok-trends"
 import { englishCacheItems } from "#/utils/english-cache"
 import { isCurrentYouTubeCache } from "#/utils/youtube-videos"
 import { isCurrentInstagramCache } from "#/utils/instagram-posts"
+import { isCurrentFacebookCache } from "#/utils/facebook-posts"
 
 const info = {
   LICENCE: "MIT",
@@ -33,7 +34,7 @@ export default defineEventHandler(async (event): Promise<SourceResponse> => {
     let cache: CacheInfo | undefined
     if (cacheTable) {
       cache = await cacheTable.get(id)
-      if (cache && (!isCurrentTikTokCache(cache) || !isCurrentYouTubeCache(cache, now) || !isCurrentInstagramCache(cache, now))) cache = undefined
+      if (cache && (!isCurrentTikTokCache(cache) || !isCurrentYouTubeCache(cache, now) || !isCurrentInstagramCache(cache, now) || !isCurrentFacebookCache(cache, now))) cache = undefined
       // Automatic requests obey the source interval, without an extra 30-minute cache floor.
       if (cache && now - cache.updated < sources[id].interval) {
         return {

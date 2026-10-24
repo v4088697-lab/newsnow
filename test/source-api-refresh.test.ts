@@ -6,7 +6,7 @@ import sourceHandler from "../server/api/s/index"
 import { getters } from "#/getters"
 import { getCacheTable } from "#/database/cache"
 
-vi.mock("#/getters", () => ({ getters: { cnn: vi.fn(), youtube: vi.fn(), instagram: vi.fn() } }))
+vi.mock("#/getters", () => ({ getters: { cnn: vi.fn(), youtube: vi.fn(), instagram: vi.fn(), facebook: vi.fn() } }))
 vi.mock("#/database/cache", () => ({ getCacheTable: vi.fn() }))
 
 describe("source cache refresh", () => {
@@ -93,6 +93,25 @@ describe("source cache refresh", () => {
     vi.mocked(getters.instagram).mockRejectedValue(new Error("Instagram unavailable"))
     await expect(sourceHandler(request("GET", "instagram"))).rejects.toThrow("Instagram unavailable")
     expect(await entireHandler(request("POST", "instagram"))).toEqual([])
+  })
+
+  it("replaces Facebook company news in single and bulk caches, keeping valid fallback timestamps", async () => {
+    const old = { id: "facebook", updated: now - 60000, items: [{ id: "blog", title: "Meta update", url: "https://about.fb.com/news/" }] }
+    const fresh = [{ id: "1234567890", title: "Public video", url: "https://www.facebook.com/reel/1234567890/", extra: { facebook: { indexedAt: now - 86400000, reactions: 4300 } } }]
+    cacheTable.get.mockResolvedValue(old)
+    cacheTable.getEntire.mockResolvedValue([old])
+    vi.mocked(getters.facebook).mockResolvedValue(fresh)
+    expect((await sourceHandler(request("GET", "facebook"))).items).toEqual(fresh)
+    expect(await entireHandler(request("POST", "facebook"))).toEqual([])
+    const updated = now - 3600000
+    cacheTable.get.mockResolvedValue({ id: "facebook", updated, items: fresh })
+    vi.mocked(getters.facebook).mockRejectedValue(new Error("Facebook unavailable"))
+    expect(await sourceHandler(request("GET", "facebook"))).toMatchObject({ items: fresh, updatedTime: updated })
+    const expired = { id: "facebook", updated, items: [{ ...fresh[0], extra: { facebook: { indexedAt: now - 7 * 86400000, reactions: 4300 } } }] }
+    cacheTable.get.mockResolvedValue(expired)
+    cacheTable.getEntire.mockResolvedValue([expired])
+    await expect(sourceHandler(request("GET", "facebook"))).rejects.toThrow("Facebook unavailable")
+    expect(await entireHandler(request("POST", "facebook"))).toEqual([])
   })
 
   it.each([60000, 3600000])("shows English annotations from existing cache aged %i ms without translating headlines", async (age) => {

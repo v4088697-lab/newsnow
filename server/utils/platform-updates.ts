@@ -2,11 +2,7 @@ import { load } from "cheerio"
 import type { NewsItem } from "@shared/types"
 import { Version } from "../../shared/consts"
 import { myFetch } from "./fetch"
-import { fetchOfficialAggregated, fetchOfficialFeed, fetchPublicLinks, plainText, requireItems } from "./platform-content"
-
-export async function facebookUpdates() {
-  return fetchOfficialFeed("https://about.fb.com/news/category/technologies/facebook-app/feed/", ["about.fb.com"], "Official updates")
-}
+import { fetchOfficialAggregated, fetchPublicLinks, plainText, requireItems } from "./platform-content"
 
 export async function rumbleUpdates() {
   return fetchPublicLinks("https://www.rum.group/blog/", {

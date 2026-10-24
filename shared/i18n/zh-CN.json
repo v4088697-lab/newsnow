@@ -139,5 +139,10 @@
   "Post": "帖子",
   "{count} likes": "{count} 次点赞",
   "Instagram video and photo picks": "Instagram 视频与图文推荐",
-  "Public Reels and posts indexed by Google News within the past 7 days, ranked by visible cumulative likes from official Instagram embeds. Up to 10 recommendations; this is a sampled discovery list, not a sitewide weekly chart or seven-day like growth. Index dates do not verify original post dates. Unavailable or hidden-count posts are omitted.": "推荐 Google News 近7天收录的公开短视频与帖子，按 Instagram 官方嵌入页可见的累计点赞数排序，最多10条。这是抽样推荐，不是全站周榜或7天点赞增量榜；索引日期不能证明原帖发布日期。无法访问或隐藏点赞数的帖子会被排除。"
+  "Public Reels and posts indexed by Google News within the past 7 days, ranked by visible cumulative likes from official Instagram embeds. Up to 10 recommendations; this is a sampled discovery list, not a sitewide weekly chart or seven-day like growth. Index dates do not verify original post dates. Unavailable or hidden-count posts are omitted.": "推荐 Google News 近7天收录的公开短视频与帖子，按 Instagram 官方嵌入页可见的累计点赞数排序，最多10条。这是抽样推荐，不是全站周榜或7天点赞增量榜；索引日期不能证明原帖发布日期。无法访问或隐藏点赞数的帖子会被排除。",
+  "Video": "视频",
+  "Public post pick": "公开图文推荐",
+  "{count} reactions": "{count} 次表态",
+  "Facebook video and photo picks": "Facebook 视频与图文推荐",
+  "Public Facebook videos and posts indexed within 7 days by Google News. Videos with visible reactions rank first, then videos with views only, then recent post picks. Counts are cumulative and may be rounded. Up to 10; not a sitewide weekly ranking. Index dates do not verify original publication dates.": "推荐 Google News 近7天收录的公开 Facebook 视频与帖子。优先按可见表态数排序的视频，再显示仅有播放量的视频，最后是近期图文推荐。数值为累计数据，可能经过取整。最多10条，不是全站周榜；索引日期不能证明原帖发布日期。"
 }

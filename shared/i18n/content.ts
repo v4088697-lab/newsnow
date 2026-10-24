@@ -10,6 +10,7 @@ export function sourceDescription(id: string, original: string | undefined, loca
   if (id === "spotify") text = "Latest complete 7-day global weekly chart: rank gains among the public top 50, excluding new entries and reentries. Not rolling 7 days or streaming growth."
   if (id === "youtube") text = "Recent video picks from YouTube's US English searches for music, gaming, entertainment, sports, science and technology, filtered to this week and sorted by public views. Up to 10 videos; not a sitewide chart or seven-day view growth. Rounded ages are checked conservatively."
   if (id === "instagram") text = "Public Reels and posts indexed by Google News within the past 7 days, ranked by visible cumulative likes from official Instagram embeds. Up to 10 recommendations; this is a sampled discovery list, not a sitewide weekly chart or seven-day like growth. Index dates do not verify original post dates. Unavailable or hidden-count posts are omitted."
+  if (id === "facebook") text = "Public Facebook videos and posts indexed within 7 days by Google News. Videos with visible reactions rank first, then videos with views only, then recent post picks. Counts are cumulative and may be rounded. Up to 10; not a sitewide weekly ranking. Index dates do not verify original publication dates."
   if (id === "tiktok") text = "US TikTok trends over 7 days, including labeled category trends. Ten entries are not an overall top-ten ranking."
   if (id === "amazon") text = "US category best sellers, not sitewide ranks. Product prices and availability must be checked on the source website."
   if (id === "temu") text = "Public product categories or labeled company releases; not a sales ranking."
@@ -39,7 +40,9 @@ export function localizeAnnotation(locale: Locale, text: string | false | undefi
     if (gain) return `↑${number(gain[1])}`
     const rank = /^(Category|Rank) #(\d+)$/.exec(segment)
     if (rank) return t(rank[1] === "Category" ? "Category #{rank}" : "Rank #{rank}", { rank: number(rank[2]) })
-    const count = /^([\d,]+) (views|viewers|videos|likes)$/.exec(segment)
+    const compact = /^(\d[\d,]*(?:\.\d+)?)([KMB]) (views|reactions|likes)$/.exec(segment)
+    if (compact) return t(`{count} ${compact[3]}`, { count: `${number(compact[1])}${compact[2]}` })
+    const count = /^([\d,]+) (views|viewers|videos|likes|reactions)$/.exec(segment)
     if (count) return t(`{count} ${count[2]}`, { count: number(count[1]) })
     if (segment.startsWith("Listed price ")) return t("Listed price {price}", { price: segment.slice(13) })
     return t(segment).replace(/(\d{4}-\d{2}-\d{2}) to (\d{4}-\d{2}-\d{2})/, `$1 ${t("to")} $2`)

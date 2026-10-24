@@ -444,10 +444,10 @@
     "interval": 600000
   },
   "facebook": {
-    "title": "Official updates",
+    "title": "7-day video & photo picks",
     "name": "Facebook",
     "type": "hottest",
-    "desc": "Official Facebook news and product updates from Meta, not popular user posts or a personal feed.",
+    "desc": "Public Facebook videos and posts indexed within 7 days by Google News. Videos with visible reactions rank first, then videos with views only, then recent post picks. Counts are cumulative and may be rounded. Up to 10; not a sitewide weekly ranking. Index dates do not verify original publication dates.",
     "column": "world",
     "home": "https://www.facebook.com",
     "color": "blue",

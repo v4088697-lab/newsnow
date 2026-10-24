@@ -91,6 +91,7 @@ export interface NewsItem {
   mobileUrl?: string
   pubDate?: number | string
   extra?: {
+    facebook?: { indexedAt: number, reactions?: number, views?: number }
     instagram?: { indexedAt: number, likes: number }
     youtube?: { expiresAt: number, views: number }
     image?: string

@@ -139,5 +139,10 @@
   "Post": "Публикация",
   "{count} likes": "{count} отметок «Нравится»",
   "Instagram video and photo picks": "Подборка видео и фото Instagram",
-  "Public Reels and posts indexed by Google News within the past 7 days, ranked by visible cumulative likes from official Instagram embeds. Up to 10 recommendations; this is a sampled discovery list, not a sitewide weekly chart or seven-day like growth. Index dates do not verify original post dates. Unavailable or hidden-count posts are omitted.": "До 10 публичных Reels и публикаций, проиндексированных Google News за последние 7 дней, по видимому общему числу лайков в официальных вставках Instagram. Это выборка, а не общий недельный рейтинг или прирост за семь дней. Даты индексации не подтверждают исходные даты публикации. Недоступные публикации и скрытые счётчики исключаются."
+  "Public Reels and posts indexed by Google News within the past 7 days, ranked by visible cumulative likes from official Instagram embeds. Up to 10 recommendations; this is a sampled discovery list, not a sitewide weekly chart or seven-day like growth. Index dates do not verify original post dates. Unavailable or hidden-count posts are omitted.": "До 10 публичных Reels и публикаций, проиндексированных Google News за последние 7 дней, по видимому общему числу лайков в официальных вставках Instagram. Это выборка, а не общий недельный рейтинг или прирост за семь дней. Даты индексации не подтверждают исходные даты публикации. Недоступные публикации и скрытые счётчики исключаются.",
+  "Video": "Видео",
+  "Public post pick": "Рекомендация публичной публикации",
+  "{count} reactions": "{count} реакций",
+  "Facebook video and photo picks": "Подборка видео и фото Facebook",
+  "Public Facebook videos and posts indexed within 7 days by Google News. Videos with visible reactions rank first, then videos with views only, then recent post picks. Counts are cumulative and may be rounded. Up to 10; not a sitewide weekly ranking. Index dates do not verify original publication dates.": "Публичные видео и публикации Facebook, проиндексированные Google News за 7 дней. Сначала видео по видимым реакциям, затем видео только с просмотрами, затем свежие публикации. Счётчики накопительные и могут округляться. До 10; это не общий недельный рейтинг. Даты индексации не подтверждают исходные даты публикации."
 }

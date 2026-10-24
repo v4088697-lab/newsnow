@@ -139,5 +139,10 @@
   "Post": "منشور",
   "{count} likes": "{count} إعجاب",
   "Instagram video and photo picks": "اختيارات فيديو وصور Instagram",
-  "Public Reels and posts indexed by Google News within the past 7 days, ranked by visible cumulative likes from official Instagram embeds. Up to 10 recommendations; this is a sampled discovery list, not a sitewide weekly chart or seven-day like growth. Index dates do not verify original post dates. Unavailable or hidden-count posts are omitted.": "حتى 10 مقاطع ريلز ومنشورات عامة فهرستها Google News خلال آخر 7 أيام، مرتبة حسب إجمالي الإعجابات الظاهرة في تضمينات Instagram الرسمية. هذه عينة توصيات وليست ترتيبًا أسبوعيًا شاملاً أو نمو الإعجابات خلال سبعة أيام. تواريخ الفهرسة لا تثبت تواريخ النشر الأصلية. تُستبعد المنشورات غير المتاحة أو ذات الأعداد المخفية."
+  "Public Reels and posts indexed by Google News within the past 7 days, ranked by visible cumulative likes from official Instagram embeds. Up to 10 recommendations; this is a sampled discovery list, not a sitewide weekly chart or seven-day like growth. Index dates do not verify original post dates. Unavailable or hidden-count posts are omitted.": "حتى 10 مقاطع ريلز ومنشورات عامة فهرستها Google News خلال آخر 7 أيام، مرتبة حسب إجمالي الإعجابات الظاهرة في تضمينات Instagram الرسمية. هذه عينة توصيات وليست ترتيبًا أسبوعيًا شاملاً أو نمو الإعجابات خلال سبعة أيام. تواريخ الفهرسة لا تثبت تواريخ النشر الأصلية. تُستبعد المنشورات غير المتاحة أو ذات الأعداد المخفية.",
+  "Video": "فيديو",
+  "Public post pick": "منشور عام مختار",
+  "{count} reactions": "{count} تفاعل",
+  "Facebook video and photo picks": "اختيارات فيديو وصور Facebook",
+  "Public Facebook videos and posts indexed within 7 days by Google News. Videos with visible reactions rank first, then videos with views only, then recent post picks. Counts are cumulative and may be rounded. Up to 10; not a sitewide weekly ranking. Index dates do not verify original publication dates.": "فيديوهات ومنشورات Facebook عامة فهرستها Google News خلال 7 أيام. تأتي الفيديوهات ذات التفاعلات الظاهرة أولاً، ثم ذات المشاهدات فقط، ثم المنشورات الحديثة المختارة. الأعداد تراكمية وقد تكون مقربة. حتى 10 توصيات وليست ترتيبًا أسبوعيًا شاملاً. تواريخ الفهرسة لا تثبت تواريخ النشر الأصلية."
 }
