@@ -11,7 +11,7 @@ export function NavBar() {
     <nav
       aria-label={t("News navigation")}
       className={$([
-        "news-nav flex p-3 rounded-2xl bg-primary/1 text-sm max-w-full overflow-x-auto whitespace-nowrap",
+        "news-nav flex items-center p-3 rounded-2xl bg-primary/1 text-sm max-w-full overflow-x-auto whitespace-nowrap",
         "shadow shadow-primary/20 hover:shadow-primary/50 transition-shadow-500",
       ])}
       dir={locale === "ar" ? "rtl" : "ltr"}
