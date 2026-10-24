@@ -152,5 +152,22 @@
   "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Ranked by visible cumulative repins where available, then creation date. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted.": "Публичные Pin с изображениями, созданные за последние 7 дней, найденные через Google News и проверенные в Pinterest. Сортировка по видимым накопительным репинам, затем по дате создания. До 10; это не общий недельный рейтинг или прирост сохранений за семь дней. Дата может отражать недавнее сохранение старой работы. Видео, реклама и непроверенные даты исключаются.",
   "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Aggregate saves rank first, then repins, then creation date. Aggregate saves are not this individual Pin's saves. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted.": "Публичные Pin с изображениями, созданные за последние 7 дней, найденные через Google News и проверенные в Pinterest. Сначала агрегированные сохранения, затем репины и дата создания. Агрегированные сохранения не относятся только к этому отдельному Pin. До 10; это не общий недельный рейтинг или прирост сохранений за семь дней. Дата может отражать недавнее сохранение старой работы. Видео, реклама и непроверенные даты исключаются.",
   "{count} aggregate saves": "{count} агрегированных сохранений",
-  "Pins: {count}/{total}": "Pin: {count}/{total}"
+  "Pins: {count}/{total}": "Pin: {count}/{total}",
+  "News and recommendations, in one place": "Новости и рекомендации в одном месте",
+  "Trending news and recommendations": "Популярные новости и рекомендации",
+  "Latest news and live updates": "Свежие новости и обновления в реальном времени",
+  "New sources and weekly recommendations": "Новые источники и рекомендации недели",
+  "Your followed sources": "Источники, на которые вы подписаны",
+  "Page not found": "Страница не найдена",
+  "Read news, explore videos, music and game guides, and follow original sources in one simple reader.": "Читайте новости, открывайте видео, музыку и игровые руководства, подписывайтесь на первоисточники в простом приложении.",
+  "Explore sources": "Обзор источников",
+  "Open original sources. Recommendation scope and fallback content are explained on each card. Some content may require a subscription.": "Откройте первоисточники. Область рекомендаций и замещающий контент указаны в каждой карточке. Некоторые материалы требуют подписки.",
+  "News navigation": "Навигация по новостям",
+  "Browse sources": "Поиск источников",
+  "Refresh all sources": "Обновить все источники",
+  "Open original source": "Открыть первоисточник",
+  "Skip to content": "Перейти к содержимому",
+  "Back to home": "На главную",
+  "This page is unavailable. Browse NewsNow's news and recommendation sources or return to the home page.": "Эта страница недоступна. Просмотрите источники или вернитесь на главную.",
+  "In Safari on Mac, open File and choose “Add to Dock” (macOS Sonoma or later). In Chrome or Edge, use the install option in the browser menu.": "В Safari на Mac откройте «Файл» и выберите «Добавить в Dock» (macOS Sonoma или новее). В Chrome или Edge используйте пункт установки в меню браузера."
 }

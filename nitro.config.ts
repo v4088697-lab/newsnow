@@ -1,8 +1,11 @@
 import process from "node:process"
 import { join } from "node:path"
+import { readFile } from "node:fs/promises"
 import viteNitro from "vite-plugin-with-nitro"
 import { RollopGlob } from "./tools/rollup-glob"
 import { projectDir } from "./shared/dir"
+import { renderSeoPage } from "./tools/seo-pages"
+import { pageForPath } from "./shared/seo"
 
 const nitroOption: Parameters<typeof viteNitro>[0] = {
   experimental: {
@@ -12,6 +15,29 @@ const nitroOption: Parameters<typeof viteNitro>[0] = {
     plugins: [RollopGlob()],
   },
   sourceMap: false,
+  compressPublicAssets: true,
+  hooks: {
+    "rollup:before": (nitro) => {
+      // Override the dependency's external renderer after its config merge.
+      // Keeping this in our server directory lets Nitro bundle its imports.
+      if (!nitro.options.dev) nitro.options.renderer = join(projectDir, "server/renderer.ts").replaceAll("\\", "/")
+    },
+  },
+  virtual: {
+    "#newsnow-pages": async () => {
+      const output = join(projectDir, "dist")
+      const paths = ["/", "/c/hottest", "/c/realtime", "/c/updated", "/c/focus", "/404"]
+      const pages = Object.fromEntries(await Promise.all(paths.map(async (path) => {
+        const file = path === "/" ? "index.html" : path === "/404" ? "404.html" : `${path.slice(1)}/index.html`
+        const html = await readFile(join(output, file), "utf8").catch(async () => renderSeoPage(await readFile(join(projectDir, "index.html"), "utf8"), pageForPath(path)))
+        return [path, html]
+      })))
+      return `export default ${JSON.stringify(pages)}`
+    },
+  },
+  routeRules: {
+    "/assets/**": { headers: { "cache-control": "public, max-age=31536000, immutable" } },
+  },
   database: {
     default: {
       connector: "better-sqlite3",

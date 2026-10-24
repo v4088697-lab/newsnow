@@ -16,7 +16,8 @@ const router = createRouter({
 
 const rootElement = document.getElementById("app")!
 
-if (!rootElement.innerHTML) {
+// The initial HTML contains a readable source directory before React starts.
+{
   const root = ReactDOM.createRoot(rootElement)
   root.render(
     <LocaleProvider>

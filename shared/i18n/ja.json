@@ -152,5 +152,22 @@
   "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Ranked by visible cumulative repins where available, then creation date. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted.": "Google Newsで発見しPinterestで日付を確認した、過去7日間に作成された公開画像Pinを紹介します。公開累計リピン数、作成日の順に最大10件を表示します。全体の週間順位や7日間の保存増加数ではありません。Pinの日付は古い作品の最近の保存を示す場合があります。動画、広告、日付不明のPinは除外します。",
   "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Aggregate saves rank first, then repins, then creation date. Aggregate saves are not this individual Pin's saves. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted.": "Google Newsで発見しPinterestで日付を確認した、過去7日間に作成された公開画像Pinを紹介します。集計保存数、リピン数、作成日の順に最大10件を表示します。集計保存数はこの単独Pinの保存数ではありません。全体の週間順位や7日間の保存増加数ではありません。Pinの日付は古い作品の最近の保存を示す場合があります。動画、広告、日付不明のPinは除外します。",
   "{count} aggregate saves": "集計保存{count}件",
-  "Pins: {count}/{total}": "Pin：{count}/{total}"
+  "Pins: {count}/{total}": "Pin：{count}/{total}",
+  "News and recommendations, in one place": "ニュースとおすすめを一か所に",
+  "Trending news and recommendations": "話題のニュースとおすすめ",
+  "Latest news and live updates": "最新ニュースとリアルタイム情報",
+  "New sources and weekly recommendations": "新しい情報源と週間おすすめ",
+  "Your followed sources": "フォロー中の情報源",
+  "Page not found": "ページが見つかりません",
+  "Read news, explore videos, music and game guides, and follow original sources in one simple reader.": "シンプルなリーダーでニュース、動画、音楽、ゲーム攻略を読み、気になる配信元をフォローできます。",
+  "Explore sources": "情報源を探す",
+  "Open original sources. Recommendation scope and fallback content are explained on each card. Some content may require a subscription.": "元の配信元を開きます。おすすめの対象範囲と代替コンテンツは各カードに記載。一部は購読が必要です。",
+  "News navigation": "ニュースのナビゲーション",
+  "Browse sources": "情報源を検索",
+  "Refresh all sources": "すべての情報源を更新",
+  "Open original source": "元の配信元を開く",
+  "Skip to content": "本文へ移動",
+  "Back to home": "ホームに戻る",
+  "This page is unavailable. Browse NewsNow's news and recommendation sources or return to the home page.": "このページは利用できません。情報源を閲覧するか、ホームに戻ってください。",
+  "In Safari on Mac, open File and choose “Add to Dock” (macOS Sonoma or later). In Chrome or Edge, use the install option in the browser menu.": "Mac の Safari で「ファイル」から「Dock に追加」を選択します（macOS Sonoma 以降）。Chrome または Edge ではブラウザーメニューのインストール項目を使用します。"
 }

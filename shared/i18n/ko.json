@@ -152,5 +152,22 @@
   "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Ranked by visible cumulative repins where available, then creation date. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted.": "Google News에서 발견하고 Pinterest에서 날짜를 확인한 최근 7일 생성 공개 이미지 Pin을 추천합니다. 공개 누적 재저장 수, 생성일 순서로 최대 10개를 표시합니다. 전체 주간 순위나 7일 저장 증가 순위가 아닙니다. Pin 날짜는 오래된 작품의 최근 저장일일 수 있습니다. 영상, 광고, 날짜 미확인 Pin은 제외됩니다.",
   "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Aggregate saves rank first, then repins, then creation date. Aggregate saves are not this individual Pin's saves. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted.": "Google News에서 발견하고 Pinterest에서 날짜를 확인한 최근 7일 생성 공개 이미지 Pin을 추천합니다. 집계 저장 수, 재저장 수, 생성일 순서로 최대 10개를 표시합니다. 집계 저장 수는 이 단일 Pin의 저장 수가 아닙니다. 전체 주간 순위나 7일 저장 증가 순위가 아닙니다. Pin 날짜는 오래된 작품의 최근 저장일일 수 있습니다. 영상, 광고, 날짜 미확인 Pin은 제외됩니다.",
   "{count} aggregate saves": "집계 저장 {count}회",
-  "Pins: {count}/{total}": "Pin: {count}/{total}"
+  "Pins: {count}/{total}": "Pin: {count}/{total}",
+  "News and recommendations, in one place": "뉴스와 추천을 한곳에서",
+  "Trending news and recommendations": "인기 뉴스와 추천",
+  "Latest news and live updates": "최신 뉴스와 실시간 소식",
+  "New sources and weekly recommendations": "새로운 출처와 주간 추천",
+  "Your followed sources": "팔로우하는 출처",
+  "Page not found": "페이지를 찾을 수 없습니다",
+  "Read news, explore videos, music and game guides, and follow original sources in one simple reader.": "간편한 리더에서 뉴스, 동영상, 음악, 게임 공략을 살펴보고 관심 있는 원본 출처를 팔로우하세요.",
+  "Explore sources": "출처 둘러보기",
+  "Open original sources. Recommendation scope and fallback content are explained on each card. Some content may require a subscription.": "원본 출처를 엽니다. 각 카드에 추천 범위와 대체 콘텐츠가 설명되어 있으며 일부 콘텐츠는 구독이 필요합니다.",
+  "News navigation": "뉴스 탐색",
+  "Browse sources": "출처 검색",
+  "Refresh all sources": "모든 출처 새로고침",
+  "Open original source": "원본 출처 열기",
+  "Skip to content": "본문으로 건너뛰기",
+  "Back to home": "홈으로 돌아가기",
+  "This page is unavailable. Browse NewsNow's news and recommendation sources or return to the home page.": "이 페이지를 이용할 수 없습니다. 출처를 살펴보거나 홈으로 돌아가세요.",
+  "In Safari on Mac, open File and choose “Add to Dock” (macOS Sonoma or later). In Chrome or Edge, use the install option in the browser menu.": "Mac의 Safari에서 파일 메뉴를 열고 “Dock에 추가”를 선택하세요(macOS Sonoma 이상). Chrome 또는 Edge에서는 브라우저 메뉴의 설치 옵션을 사용하세요."
 }

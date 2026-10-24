@@ -63,16 +63,6 @@ export function SearchBar() {
 
   useMount(() => {
     inputRef?.current?.focus()
-    const keydown = (e: KeyboardEvent) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault()
-        toggle()
-      }
-    }
-    document.addEventListener("keydown", keydown)
-    return () => {
-      document.removeEventListener("keydown", keydown)
-    }
   })
 
   return (

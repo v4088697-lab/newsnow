@@ -10,6 +10,9 @@ const pwaOption: Partial<VitePWAOptions> = {
     name: "NewsNow",
     short_name: "NewsNow",
     lang: "en",
+    start_url: "/",
+    scope: "/",
+    display: "standalone",
     description: "Elegant reading of real-time and hottest news",
     theme_color: "#F14D42",
     icons: [
@@ -38,7 +41,7 @@ const pwaOption: Partial<VitePWAOptions> = {
     ],
   },
   workbox: {
-    navigateFallbackDenylist: [/^\/api/],
+    navigateFallbackDenylist: [/^\/api/, /^\/robots\.txt$/, /^\/sitemap\.xml$/],
     // sw.js 是旧版本的自销毁 SW，必须始终从网络获取，不能被预缓存
     globIgnores: ["**/sw.js"],
   },

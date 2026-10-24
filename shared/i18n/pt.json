@@ -152,5 +152,22 @@
   "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Ranked by visible cumulative repins where available, then creation date. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted.": "Pins públicos com imagem criados nos últimos 7 dias, descobertos pelo Google News e verificados no Pinterest. Ordenados por repins acumulados visíveis e depois pela data de criação. Até 10; não é um ranking semanal global nem crescimento em sete dias. A data pode refletir um salvamento recente de uma obra antiga. Vídeos, anúncios e datas não verificadas são excluídos.",
   "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Aggregate saves rank first, then repins, then creation date. Aggregate saves are not this individual Pin's saves. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted.": "Pins públicos com imagem criados nos últimos 7 dias, descobertos pelo Google News e verificados no Pinterest. Primeiro salvamentos agregados, depois repins e data de criação. Os salvamentos agregados não correspondem apenas a este Pin. Até 10; não é um ranking semanal global nem crescimento em sete dias. A data pode refletir um salvamento recente de uma obra antiga. Vídeos, anúncios e datas não verificadas são excluídos.",
   "{count} aggregate saves": "{count} salvamentos agregados",
-  "Pins: {count}/{total}": "Pins: {count}/{total}"
+  "Pins: {count}/{total}": "Pins: {count}/{total}",
+  "News and recommendations, in one place": "Notícias e recomendações num só lugar",
+  "Trending news and recommendations": "Notícias em destaque e recomendações",
+  "Latest news and live updates": "Últimas notícias e atualizações ao vivo",
+  "New sources and weekly recommendations": "Novas fontes e recomendações semanais",
+  "Your followed sources": "As fontes que segue",
+  "Page not found": "Página não encontrada",
+  "Read news, explore videos, music and game guides, and follow original sources in one simple reader.": "Leia notícias, descubra vídeos, música e guias de jogos, e siga fontes originais num leitor simples.",
+  "Explore sources": "Explorar fontes",
+  "Open original sources. Recommendation scope and fallback content are explained on each card. Some content may require a subscription.": "Abra as fontes originais. Cada cartão explica o âmbito das recomendações e os conteúdos alternativos. Alguns conteúdos exigem subscrição.",
+  "News navigation": "Navegação de notícias",
+  "Browse sources": "Procurar fontes",
+  "Refresh all sources": "Atualizar todas as fontes",
+  "Open original source": "Abrir fonte original",
+  "Skip to content": "Saltar para o conteúdo",
+  "Back to home": "Voltar ao início",
+  "This page is unavailable. Browse NewsNow's news and recommendation sources or return to the home page.": "Esta página não está disponível. Explore as fontes ou volte ao início.",
+  "In Safari on Mac, open File and choose “Add to Dock” (macOS Sonoma or later). In Chrome or Edge, use the install option in the browser menu.": "No Safari para Mac, abra Ficheiro e escolha «Adicionar à Dock» (macOS Sonoma ou posterior). No Chrome ou Edge, utilize a opção de instalação no menu do navegador."
 }

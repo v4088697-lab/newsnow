@@ -6,9 +6,7 @@ import { reorderWithEdge } from "@atlaskit/pragmatic-drag-and-drop-hitbox/util/r
 import { createPortal } from "react-dom"
 import { useThrottleFn } from "ahooks"
 import { useAutoAnimate } from "@formkit/auto-animate/react"
-import { motion } from "framer-motion"
 import { useWindowSize } from "react-use"
-import { isMobile } from "react-device-detect"
 import { DndContext } from "../common/dnd"
 import { useSortable } from "../common/dnd/useSortable"
 import { OverlayScrollbar } from "../common/overlay-scrollbar"
@@ -25,8 +23,9 @@ export function Dnd() {
   const currentColumnID = useAtomValue(currentColumnIDAtom)
   const sortable = currentColumnID === "focus"
   const [parent] = useAutoAnimate({ duration: AnimationDuration })
-  useEntireQuery(items)
+  useEntireQuery(items.slice(0, 4))
   const { width } = useWindowSize()
+  const isMobile = width < 768
   const minWidth = useMemo(() => {
     // double padding = 32
     return Math.min(width - 32, WIDTH)
@@ -37,7 +36,7 @@ export function Dnd() {
   return (
     <DndWrapper items={items} setItems={setItems} isSingleColumn={isMobile} sortable={sortable}>
       <OverlayScrollbar defer className="overflow-x-auto">
-        <motion.ol
+        <ol
           className={isMobile
             ? "flex px-2 gap-6 pb-4 scroll-smooth"
             : "grid w-full gap-6"}
@@ -49,45 +48,19 @@ export function Dnd() {
             : {
                 gridTemplateColumns: `repeat(auto-fill, minmax(${minWidth}px, 1fr))`,
               }}
-          initial="hidden"
-          animate="visible"
-          variants={{
-            hidden: {
-              opacity: 0,
-            },
-            visible: {
-              opacity: 1,
-              transition: {
-                delayChildren: 0.1,
-                staggerChildren: 0.1,
-              },
-            },
-          }}
+
         >
           {items.map((id, index) => (
-            <motion.li
+            <li
               key={id}
               className={$(isMobile && "flex-shrink-0", isMobile && index === items.length - 1 && "mr-2")}
-              style={isMobile ? { width: `${width - 16 > WIDTH ? WIDTH : width - 16}px` } : undefined}
-              transition={{
-                type: "tween",
-                duration: AnimationDuration / 1000,
-              }}
-              variants={{
-                hidden: {
-                  y: 20,
-                  opacity: 0,
-                },
-                visible: {
-                  y: 0,
-                  opacity: 1,
-                },
-              }}
+              style={isMobile ? { width: `min(${WIDTH}px, calc(100vw - 3rem))` } : undefined}
+
             >
-              <SortableCardWrapper id={id} sortable={sortable} />
-            </motion.li>
+              <SortableCardWrapper id={id} sortable={sortable} immediate={index < 2} />
+            </li>
           ))}
-        </motion.ol>
+        </ol>
       </OverlayScrollbar>
       {isMobile && (
         <div className="flex justify-center">
@@ -174,7 +147,7 @@ function CardOverlay({ id }: { id: SourceID }) {
   )
 }
 
-function SortableCardWrapper({ id, sortable }: ItemsProps & { sortable: boolean }) {
+function SortableCardWrapper({ id, sortable, immediate }: ItemsProps & { sortable: boolean }) {
   const {
     isDragging,
     setNodeRef,
@@ -193,6 +166,7 @@ function SortableCardWrapper({ id, sortable }: ItemsProps & { sortable: boolean 
       <CardWrapper
         ref={setNodeRef}
         id={id}
+        immediate={immediate}
         isDragging={isDragging}
         setHandleRef={sortable ? setHandleRef : undefined}
       />

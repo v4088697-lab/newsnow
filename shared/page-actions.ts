@@ -34,5 +34,8 @@ export function getInstallInstructions(userAgent: string, maxTouchPoints: number
   if (/Android/i.test(userAgent)) {
     return "Open the browser menu and choose “Install app” or “Add to Home Screen”. If unavailable, open this page in the latest version of Chrome."
   }
+  if (/Macintosh|Mac OS X/i.test(userAgent)) {
+    return "In Safari on Mac, open File and choose “Add to Dock” (macOS Sonoma or later). In Chrome or Edge, use the install option in the browser menu."
+  }
   return "Open this page in Chrome or Edge. Click the install icon in the address bar, or choose “Install NewsNow” / “Install this site as an app” from the browser menu. If unavailable, check that you are using HTTPS and try again later."
 }

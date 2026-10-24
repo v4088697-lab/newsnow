@@ -8,12 +8,16 @@ import dotenv from "dotenv"
 import nitro from "./nitro.config"
 import { projectDir } from "./shared/dir"
 import pwa from "./pwa.config"
+import { seoPages } from "./tools/seo-pages"
 
 dotenv.config({
   path: join(projectDir, ".env.server"),
 })
 
 export default defineConfig({
+  build: {
+    target: ["es2020", "safari16.4", "ios16.4"],
+  },
   resolve: {
     alias: {
       "~": join(projectDir, "src"),
@@ -40,6 +44,7 @@ export default defineConfig({
     unocss(),
     react(),
     pwa(),
+    seoPages(),
     nitro(),
   ],
 })

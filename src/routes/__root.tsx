@@ -1,6 +1,7 @@
 import "~/styles/globals.css"
 import "virtual:uno.css"
-import { Outlet, createRootRouteWithContext } from "@tanstack/react-router"
+import { Link, Outlet, createRootRouteWithContext } from "@tanstack/react-router"
+import { Suspense, lazy } from "react"
 import { TanStackRouterDevtools } from "@tanstack/router-devtools"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import type { QueryClient } from "@tanstack/react-query"
@@ -9,7 +10,29 @@ import { Header } from "~/components/header"
 import { GlobalOverlayScrollbar } from "~/components/common/overlay-scrollbar"
 import { Footer } from "~/components/footer"
 import { Toast } from "~/components/common/toast"
-import { SearchBar } from "~/components/common/search-bar"
+import { useLocale } from "~/i18n"
+import { usePageSeo } from "~/hooks/usePageSeo"
+
+const SearchBar = lazy(() => import("~/components/common/search-bar").then(module => ({ default: module.SearchBar })))
+
+function DeferredSearch() {
+  const { opened, toggle } = useSearchBar()
+  const [loaded, setLoaded] = useState(false)
+  useEffect(() => {
+    if (opened) setLoaded(true)
+  }, [opened])
+  useEffect(() => {
+    const keydown = (event: KeyboardEvent) => {
+      if (event.key === "k" && (event.metaKey || event.ctrlKey)) {
+        event.preventDefault()
+        toggle()
+      }
+    }
+    document.addEventListener("keydown", keydown)
+    return () => document.removeEventListener("keydown", keydown)
+  }, [toggle])
+  return loaded || opened ? <Suspense fallback={null}><SearchBar /></Suspense> : null
+}
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient
@@ -19,29 +42,36 @@ export const Route = createRootRouteWithContext<{
 })
 
 function NotFoundComponent() {
-  const nav = Route.useNavigate()
-  nav({
-    to: "/",
-  })
+  const { t } = useLocale()
+  usePageSeo("notFound")
+  return (
+    <section className="page-intro">
+      <h1>{t("Page not found")}</h1>
+      <p>{t("This page is unavailable. Browse NewsNow's news and recommendation sources or return to the home page.")}</p>
+      <Link to="/">{t("Back to home")}</Link>
+    </section>
+  )
 }
 
 function RootComponent() {
+  const { t } = useLocale()
   useOnReload()
   useSync()
   usePWA()
   return (
     <>
+      <a className="skip-link" href="#main-content">{t("Skip to content")}</a>
       <GlobalOverlayScrollbar
         className={$([
           !isMobile && "px-4",
-          "h-full overflow-x-auto",
+          "app-scroll h-full overflow-x-hidden",
           "md:(px-10)",
           "lg:(px-24)",
         ])}
       >
         <header
           className={$([
-            "grid items-center py-4 px-2 sm:px-5",
+            "site-header grid items-center py-4 px-2 sm:px-5",
             "lg:(py-6)",
             "sticky top-0 z-10 backdrop-blur-md",
           ])}
@@ -52,12 +82,15 @@ function RootComponent() {
         >
           <Header />
         </header>
-        <main className={$([
-          "mt-2",
-          "min-h-[calc(100vh-180px)]",
-          "md:(min-h-[calc(100vh-175px)])",
-          "lg:(min-h-[calc(100vh-194px)])",
-        ])}
+        <main
+          id="main-content"
+          tabIndex={-1}
+          className={$([
+            "mt-2",
+            "min-h-[calc(100vh-180px)]",
+            "md:(min-h-[calc(100vh-175px)])",
+            "lg:(min-h-[calc(100vh-194px)])",
+          ])}
         >
           <Outlet />
         </main>
@@ -66,7 +99,7 @@ function RootComponent() {
         </footer>
       </GlobalOverlayScrollbar>
       <Toast />
-      <SearchBar />
+      <DeferredSearch />
       {import.meta.env.DEV && (
         <>
           <ReactQueryDevtools buttonPosition="bottom-left" />

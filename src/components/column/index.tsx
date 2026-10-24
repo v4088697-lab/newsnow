@@ -1,25 +1,33 @@
 import type { FixedColumnID } from "@shared/types"
-import { useTitle } from "react-use"
+import { localizedPageCopy } from "@shared/seo"
 import { NavBar } from "../navbar"
 import { Dnd } from "./dnd"
+import { SourceDirectory } from "./source-directory"
 import { currentColumnIDAtom } from "~/atoms"
 import { useLocale } from "~/i18n"
+import { usePageSeo } from "~/hooks/usePageSeo"
 
 export function Column({ id }: { id: FixedColumnID }) {
-  const { t } = useLocale()
+  const { locale } = useLocale()
   const [currentColumnID, setCurrentColumnID] = useAtom(currentColumnIDAtom)
   useEffect(() => {
     setCurrentColumnID(id)
   }, [id, setCurrentColumnID])
 
-  useTitle(`NewsNow | ${t(metadata[id].name)}`)
+  const page = usePageSeo(id)
+  const copy = localizedPageCopy(page, locale)
 
   return (
     <>
       <div className="flex justify-center lg:hidden mb-6">
         <NavBar />
       </div>
+      <section className="page-intro" aria-labelledby="page-heading">
+        <h1 id="page-heading">{copy.heading}</h1>
+        <p>{copy.description}</p>
+      </section>
       {id === currentColumnID && <Dnd />}
+      <SourceDirectory page={page} />
     </>
   )
 }

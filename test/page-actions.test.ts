@@ -48,5 +48,6 @@ describe("install instructions", () => {
 
   it("uses desktop installation instructions for Macs without a touchscreen", () => {
     expect(getInstallInstructions("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15)", 0)).toContain("Chrome or Edge")
+    expect(getInstallInstructions("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15)", 0)).toContain("Add to Dock")
   })
 })

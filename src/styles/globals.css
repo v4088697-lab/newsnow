@@ -5,6 +5,7 @@ html,
 body,
 #app {
   height: 100vh;
+  height: 100dvh;
   margin: 0;
   padding: 0;
 }
@@ -12,6 +13,7 @@ body,
 @font-face {
   font-family: 'Baloo 2';
   src: url("/Baloo2-Bold.subset.ttf");
+  font-display: swap;
 }
 
 
@@ -21,9 +23,6 @@ html.dark {
 
 body {
   --at-apply: color-base bg-base sprinkle-primary text-base;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
 }
 
 button:disabled {
@@ -43,9 +42,8 @@ button:disabled {
 }
 
 
-*, a, button {
-  cursor: default;
-  user-select: none;
+a, button {
+  cursor: pointer;
 }
 
 #dropdown-menu li {
@@ -55,4 +53,71 @@ button:disabled {
 
 .grabbing * {
   cursor: grabbing;
+}
+
+.app-scroll.app-scroll {
+  --page-gutter: 1rem;
+  padding-left: max(var(--page-gutter), env(safe-area-inset-left));
+  padding-right: max(var(--page-gutter), env(safe-area-inset-right));
+  padding-bottom: env(safe-area-inset-bottom);
+  -webkit-overflow-scrolling: touch;
+}
+
+.site-header.site-header {
+  padding-top: max(1rem, env(safe-area-inset-top));
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.page-intro { margin: 0 0 1.5rem; padding: 0 0.5rem; max-width: 68rem; }
+.page-intro h1 { font-size: clamp(1.4rem, 3.2vw, 2rem); line-height: 1.2; font-weight: 700; text-wrap: balance; }
+.page-intro p { margin-top: 0.6rem; max-width: 56rem; line-height: 1.6; color: #737373; }
+.dark .page-intro p { color: #b5b5b5; }
+.source-directory { margin: 2rem 0.5rem 1rem; line-height: 1.6; }
+.source-directory h2 { display: inline; font-size: 1rem; font-weight: 600; }
+.source-directory p { margin: 0.75rem 0; }
+.source-directory ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 0.5rem 1.5rem; }
+.source-directory a { text-decoration: underline; text-underline-offset: 3px; }
+.source-directory summary { cursor: pointer; }
+.static-page { max-width: 90rem; margin: auto; padding: 1.5rem; overflow-y: auto; height: 100%; }
+.static-page header { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; margin-bottom: 2rem; }
+.static-brand { font-size: 1.5rem; font-weight: 700; }
+.static-page nav { display: flex; flex-wrap: wrap; gap: 1rem; }
+.static-page footer { margin-top: 3rem; font-size: 0.85rem; }
+.skip-link { position: fixed; top: -10rem; left: 1rem; z-index: 1000; padding: 0.75rem 1rem; background: #fff; color: #181818; border-radius: 0.5rem; }
+.skip-link:focus { top: 1rem; }
+:where(a, button, summary, input):focus-visible { outline: 2px solid #e76760; outline-offset: 4px; }
+button { touch-action: manipulation; }
+.site-header button { min-height: 44px; min-width: 44px; }
+.site-header button, .news-nav button { opacity: 0.9; }
+article button { min-width: 24px; min-height: 32px; }
+article h2 { margin: 0; }
+.rank-diff { opacity: 0.5; transform: translateY(-7px); animation: rank-in 250ms ease-out; }
+@keyframes rank-in { from { opacity: 0; transform: translateY(-15px); } }
+@media (max-width: 767px) {
+  .news-nav.news-nav { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); width: 100%; overflow: visible; white-space: normal; padding: 6px; }
+  .news-nav > button { grid-column: 1 / -1; min-height: 32px; }
+  .news-nav > a { display: flex; align-items: center; justify-content: center; min-height: 44px; padding-inline: 6px; text-align: center; overflow-wrap: anywhere; }
+  .site-header { column-gap: 0.25rem; }
+  .page-intro p { font-size: 0.875rem; }
+  .site-header > div:first-child { min-width: 0; }
+  article { max-height: min(500px, calc(100svh - 160px)); min-height: 340px; }
+  [cmdk-dialog] { width: calc(100vw - 2rem); max-height: calc(100dvh - 2rem); overflow: auto; }
+  [cmdk-input] { font-size: 16px; }
+}
+@media (min-width: 768px) {
+  .app-scroll.app-scroll { --page-gutter: 2.5rem; }
+}
+@media (min-width: 1024px) {
+  .app-scroll.app-scroll { --page-gutter: 6rem; }
+  .site-header.site-header { padding-top: max(1.5rem, env(safe-area-inset-top)); }
+}
+@media (max-width: 480px) {
+  .site-header .font-brand { font-size: 1.125rem; }
+  .site-header a[aria-label="NewsNow"] > div:first-child { width: 30px; height: 30px; }
+}
+@media (max-width: 359px) {
+  .site-header .font-brand { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }

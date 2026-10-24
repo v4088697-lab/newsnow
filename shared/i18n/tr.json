@@ -152,5 +152,22 @@
   "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Ranked by visible cumulative repins where available, then creation date. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted.": "Son 7 günde oluşturulan, Google News üzerinden bulunan ve Pinterest üzerinde doğrulanan herkese açık görsel Pin’ler. Önce görünür toplam yeniden kaydetme, sonra oluşturma tarihine göre sıralanır. En fazla 10; genel haftalık liste veya yedi günlük kaydetme artışı değildir. Tarih eski bir çalışmanın yeni kaydını gösterebilir. Video, reklam ve tarihi doğrulanamayan Pin’ler hariçtir.",
   "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Aggregate saves rank first, then repins, then creation date. Aggregate saves are not this individual Pin's saves. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted.": "Son 7 günde oluşturulan, Google News üzerinden bulunan ve Pinterest üzerinde doğrulanan herkese açık görsel Pin’ler. Önce toplu kaydetmeler, sonra yeniden kaydetmeler ve oluşturma tarihi. Toplu kaydetmeler yalnızca bu tek Pin’in kaydetmelerini göstermez. En fazla 10; genel haftalık liste veya yedi günlük kaydetme artışı değildir. Tarih eski bir çalışmanın yeni kaydını gösterebilir. Video, reklam ve tarihi doğrulanamayan Pin’ler hariçtir.",
   "{count} aggregate saves": "{count} toplu kaydetme",
-  "Pins: {count}/{total}": "Pin: {count}/{total}"
+  "Pins: {count}/{total}": "Pin: {count}/{total}",
+  "News and recommendations, in one place": "Haberler ve öneriler tek bir yerde",
+  "Trending news and recommendations": "Popüler haberler ve öneriler",
+  "Latest news and live updates": "Son haberler ve canlı güncellemeler",
+  "New sources and weekly recommendations": "Yeni kaynaklar ve haftalık öneriler",
+  "Your followed sources": "Takip ettiğiniz kaynaklar",
+  "Page not found": "Sayfa bulunamadı",
+  "Read news, explore videos, music and game guides, and follow original sources in one simple reader.": "Basit bir okuyucuda haberleri okuyun, video, müzik ve oyun rehberlerini keşfedin, özgün kaynakları takip edin.",
+  "Explore sources": "Kaynakları keşfet",
+  "Open original sources. Recommendation scope and fallback content are explained on each card. Some content may require a subscription.": "Özgün kaynakları açın. Her kartta önerilerin kapsamı ve alternatif içerikler açıklanır. Bazı içerikler abonelik gerektirir.",
+  "News navigation": "Haber gezinmesi",
+  "Browse sources": "Kaynak ara",
+  "Refresh all sources": "Tüm kaynakları yenile",
+  "Open original source": "Özgün kaynağı aç",
+  "Skip to content": "İçeriğe geç",
+  "Back to home": "Ana sayfaya dön",
+  "This page is unavailable. Browse NewsNow's news and recommendation sources or return to the home page.": "Bu sayfa kullanılamıyor. Kaynaklara göz atın veya ana sayfaya dönün.",
+  "In Safari on Mac, open File and choose “Add to Dock” (macOS Sonoma or later). In Chrome or Edge, use the install option in the browser menu.": "Mac üzerinde Safari’de Dosya menüsünü açıp “Dock’a Ekle”yi seçin (macOS Sonoma veya sonrası). Chrome veya Edge’de tarayıcı menüsündeki yükleme seçeneğini kullanın."
 }

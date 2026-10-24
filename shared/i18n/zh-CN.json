@@ -152,5 +152,22 @@
   "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Ranked by visible cumulative repins where available, then creation date. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted.": "推荐近7天创建的公开图片 Pin，通过 Google News 发现并在 Pinterest 原页核实日期。优先按公开累计转存数排序，再按创建日期排序，最多10条。这不是全站周榜或7天收藏增量榜；Pin 日期可能代表近期保存了较早的作品。排除视频、推广 Pin 和日期无法核实的内容。",
   "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Aggregate saves rank first, then repins, then creation date. Aggregate saves are not this individual Pin's saves. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted.": "推荐近7天创建的公开图片 Pin，通过 Google News 发现并在 Pinterest 原页核实日期。优先按公开聚合累计收藏数排序，其次按转存数与创建日期排序；聚合收藏数不是此单条 Pin 的收藏数，最多10条。这不是全站周榜或7天收藏增量榜；Pin 日期可能代表近期保存了较早的作品。排除视频、推广 Pin 和日期无法核实的内容。",
   "{count} aggregate saves": "{count} 次聚合收藏",
-  "Pins: {count}/{total}": "图文：{count}/{total}"
+  "Pins: {count}/{total}": "图文：{count}/{total}",
+  "News and recommendations, in one place": "新闻与兴趣推荐，汇聚一处",
+  "Trending news and recommendations": "热门新闻与兴趣推荐",
+  "Latest news and live updates": "最新新闻与实时动态",
+  "New sources and weekly recommendations": "新增来源与每周推荐",
+  "Your followed sources": "你关注的来源",
+  "Page not found": "找不到页面",
+  "Read news, explore videos, music and game guides, and follow original sources in one simple reader.": "在简洁的阅读器中浏览新闻、视频、音乐和游戏攻略，关注感兴趣的原始来源。",
+  "Explore sources": "浏览来源目录",
+  "Open original sources. Recommendation scope and fallback content are explained on each card. Some content may require a subscription.": "点击查看原始来源。每张卡片均说明推荐范围和备用内容，部分内容可能需要订阅。",
+  "News navigation": "新闻栏目导航",
+  "Browse sources": "查找来源",
+  "Refresh all sources": "刷新全部来源",
+  "Open original source": "打开原始来源",
+  "Skip to content": "跳到主要内容",
+  "Back to home": "返回首页",
+  "This page is unavailable. Browse NewsNow's news and recommendation sources or return to the home page.": "此页面不可用，请浏览新闻与推荐来源，或返回首页。",
+  "In Safari on Mac, open File and choose “Add to Dock” (macOS Sonoma or later). In Chrome or Edge, use the install option in the browser menu.": "在 Mac 的 Safari 中打开“文件”菜单，选择“添加到程序坞”（需要 macOS Sonoma 或更新版本）。Chrome 或 Edge 可使用浏览器菜单中的安装选项。"
 }

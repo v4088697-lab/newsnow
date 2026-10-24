@@ -1,7 +1,6 @@
 import { localizeAnnotation, sourceDescription } from "@shared/i18n/content"
 import type { NewsItem, SourceID } from "@shared/types"
 import { useQuery } from "@tanstack/react-query"
-import { AnimatePresence, motion, useInView } from "framer-motion"
 import { useWindowSize } from "react-use"
 import { forwardRef, useImperativeHandle } from "react"
 import { OverlayScrollbar } from "../common/overlay-scrollbar"
@@ -15,24 +14,39 @@ export interface ItemsProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   isDragging?: boolean
   setHandleRef?: (ref: HTMLElement | null) => void
+  immediate?: boolean
 }
 
 interface NewsCardProps {
   id: SourceID
+  active: boolean
   setHandleRef?: (ref: HTMLElement | null) => void
 }
 
-export const CardWrapper = forwardRef<HTMLElement, ItemsProps>(({ id, isDragging, setHandleRef, style, ...props }, dndRef) => {
-  const ref = useRef<HTMLDivElement>(null)
+export const CardWrapper = forwardRef<HTMLElement, ItemsProps>(({ id, isDragging, setHandleRef, immediate = false, style, ...props }, dndRef) => {
+  const ref = useRef<HTMLElement>(null)
 
-  const inView = useInView(ref, {
-    once: true,
-  })
+  const [inView, setInView] = useState(immediate)
+  useEffect(() => {
+    if (inView) return
+    if (!("IntersectionObserver" in window)) {
+      setInView(true)
+      return
+    }
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some(entry => entry.isIntersecting)) {
+        setInView(true)
+        observer.disconnect()
+      }
+    }, { rootMargin: "200px" })
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [inView])
 
-  useImperativeHandle(dndRef, () => ref.current! as HTMLDivElement)
+  useImperativeHandle(dndRef, () => ref.current!)
 
   return (
-    <div
+    <article
       ref={ref}
       className={$(
         "flex flex-col h-500px rounded-2xl p-4 cursor-default",
@@ -47,16 +61,16 @@ export const CardWrapper = forwardRef<HTMLElement, ItemsProps>(({ id, isDragging
       }}
       {...props}
     >
-      {inView && <NewsCard id={id} setHandleRef={setHandleRef} />}
-    </div>
+      <NewsCard id={id} active={inView} setHandleRef={setHandleRef} />
+    </article>
   )
 })
 
-function NewsCard({ id, setHandleRef }: NewsCardProps) {
+function NewsCard({ id, active, setHandleRef }: NewsCardProps) {
   const { locale, t } = useLocale()
   const description = sourceDescription(id, sources[id].desc, locale)
   const { refresh } = useRefetch()
-  const { data, isFetching, isError } = useQuery(sourceQueryOptions(id))
+  const { data, isFetching, isError } = useQuery({ ...sourceQueryOptions(id), enabled: active })
 
   const { isFocused, toggleFocus } = useFocusWith(id)
 
@@ -69,25 +83,27 @@ function NewsCard({ id, setHandleRef }: NewsCardProps) {
             target="_blank"
             href={sources[id].home}
             title={description}
+            aria-label={`${sources[id].name} — ${t("Open original source")}`}
+            rel="noopener noreferrer"
             style={{
               backgroundImage: `url(/icons/${id.split("-")[0]}.png)`,
             }}
           />
-          <span className="flex flex-col min-w-0">
-            <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
-              <span
+          <div className="flex flex-col min-w-0">
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+              <h2
                 className="text-xl font-bold break-words leading-tight"
                 title={description}
               >
                 <bdi>{sources[id].name}</bdi>
-              </span>
+              </h2>
               {sources[id]?.title && <span className={$("text-sm", `color-${sources[id].color} bg-base op-80 bg-op-50! px-1 rounded`)}>{t(sources[id].title!)}</span>}
-            </span>
+            </div>
             <span className="text-xs op-70">
               <UpdatedTime isError={isError} updatedTime={data?.updatedTime} />
               {id === "pinterest" && <bdi>{` · ${t("Pins: {count}/{total}", { count: (data?.items.length ?? 0).toLocaleString(locale), total: (10).toLocaleString(locale) })}`}</bdi>}
             </span>
-          </span>
+          </div>
         </div>
         <div className={$("flex gap-2 text-lg shrink-0 ms-2", `color-${sources[id].color}`)}>
           <button
@@ -124,7 +140,7 @@ function NewsCard({ id, setHandleRef }: NewsCardProps) {
         defer
       >
         <div className={$("transition-opacity-500", isFetching && "op-20")}>
-          {!!data?.items?.length && (["pinterest", "instagram", "facebook"].includes(id) ? <VisualList id={id} items={data.items} /> : sources[id].type === "hottest" ? <NewsListHot items={data.items} description={description} /> : <NewsListTimeLine items={data.items} description={description} />)}
+          {active && !!data?.items?.length && (["pinterest", "instagram", "facebook"].includes(id) ? <VisualList id={id} items={data.items} /> : sources[id].type === "hottest" ? <NewsListHot items={data.items} description={description} /> : <NewsListTimeLine items={data.items} description={description} />)}
         </div>
       </OverlayScrollbar>
     </>
@@ -171,18 +187,15 @@ function DiffNumber({ diff }: { diff: number }) {
   }, [setShown, diff])
 
   return (
-    <AnimatePresence>
+    <>
       { shown && (
-        <motion.span
-          initial={{ opacity: 0, y: -15 }}
-          animate={{ opacity: 0.5, y: -7 }}
-          exit={{ opacity: 0, y: -15 }}
-          className={$("absolute left-0 text-xs", diff < 0 ? "text-green" : "text-red")}
+        <span
+          className={$("rank-diff absolute left-0 text-xs", diff < 0 ? "text-green" : "text-red")}
         >
           {diff > 0 ? `+${diff}` : diff}
-        </motion.span>
+        </span>
       )}
-    </AnimatePresence>
+    </>
   )
 }
 function ExtraInfo({ item }: { item: NewsItem }) {
@@ -199,6 +212,9 @@ function ExtraInfo({ item }: { item: NewsItem }) {
           transform: `scale(${scale ?? 1})`,
         }}
         className="h-4 inline mt--1"
+        alt=""
+        loading="lazy"
+        decoding="async"
         referrerPolicy="no-referrer"
         onError={e => e.currentTarget.style.display = "none"}
       />
@@ -216,29 +232,31 @@ function NewsListHot({ items, description }: { items: NewsItem[], description?: 
   return (
     <ol className="flex flex-col gap-2">
       {items?.map((item, i) => (
-        <a
-          href={width < 768 ? item.mobileUrl || item.url : item.url}
-          target="_blank"
-          key={item.id}
-          title={locale === "en" ? item.extra?.hover : item.extra?.hover ? `${description ?? ""}\n${localizeAnnotation(locale, item.extra.info) ?? ""}` : undefined}
-          className={$(
-            "flex gap-2 items-center items-stretch relative cursor-pointer [&_*]:cursor-pointer transition-all",
-            "hover:bg-neutral-400/10 rounded-md pr-1 visited:(text-neutral-400)",
-          )}
-        >
-          <span className={$("bg-neutral-400/10 min-w-6 flex justify-center items-center rounded-md text-sm")}>
-            {i + 1}
-          </span>
-          {!!item.extra?.diff && <DiffNumber diff={item.extra.diff} />}
-          <span className="self-start line-height-none flex-1 min-w-0">
-            <bdi dir="auto" className={$("me-2 text-base", locale === "ar" && "block text-start")}>
-              {item.title}
-            </bdi>
-            <span className={$("text-xs text-neutral-400/80 align-middle", locale === "ar" ? "block mt-1 text-start" : "truncate")}>
-              <ExtraInfo item={item} />
+        <li key={item.id}>
+          <a
+            href={width < 768 ? item.mobileUrl || item.url : item.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            title={locale === "en" ? item.extra?.hover : item.extra?.hover ? `${description ?? ""}\n${localizeAnnotation(locale, item.extra.info) ?? ""}` : undefined}
+            className={$(
+              "flex gap-2 items-center items-stretch relative cursor-pointer [&_*]:cursor-pointer transition-all",
+              "hover:bg-neutral-400/10 rounded-md pr-1 visited:(text-neutral-400)",
+            )}
+          >
+            <span className={$("bg-neutral-400/10 min-w-6 flex justify-center items-center rounded-md text-sm")}>
+              {i + 1}
             </span>
-          </span>
-        </a>
+            {!!item.extra?.diff && <DiffNumber diff={item.extra.diff} />}
+            <span className="self-start line-height-none flex-1 min-w-0">
+              <bdi dir="auto" className={$("me-2 text-base", locale === "ar" && "block text-start")}>
+                {item.title}
+              </bdi>
+              <span className={$("text-xs text-neutral-400/80 align-middle", locale === "ar" ? "block mt-1 text-start" : "truncate")}>
+                <ExtraInfo item={item} />
+              </span>
+            </span>
+          </a>
+        </li>
       ))}
     </ol>
   )

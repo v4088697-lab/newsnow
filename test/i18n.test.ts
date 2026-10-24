@@ -33,7 +33,7 @@ describe("interface languages", () => {
 
   it("covers navigation, categories, current source subtitles and every install instruction", () => {
     const titles = [...Object.values(metadata).map(column => column.name), ...Object.values(sources).map(source => source.title).filter((title): title is string => !!title && title !== "Win11")]
-    const help = [getInstallInstructions("iPhone", 5), getInstallInstructions("Android", 5), getInstallInstructions("Windows", 0)]
+    const help = [getInstallInstructions("iPhone", 5), getInstallInstructions("Android", 5), getInstallInstructions("Windows", 0), getInstallInstructions("Macintosh", 0)]
     for (const language of languages) {
       for (const message of [...titles, ...help]) expect(dictionaries[language.code][message]).toBeDefined()
     }

@@ -152,5 +152,22 @@
   "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Ranked by visible cumulative repins where available, then creation date. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted.": "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Ranked by visible cumulative repins where available, then creation date. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted.",
   "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Aggregate saves rank first, then repins, then creation date. Aggregate saves are not this individual Pin's saves. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted.": "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Aggregate saves rank first, then repins, then creation date. Aggregate saves are not this individual Pin's saves. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted.",
   "{count} aggregate saves": "{count} aggregate saves",
-  "Pins: {count}/{total}": "Pins: {count}/{total}"
+  "Pins: {count}/{total}": "Pins: {count}/{total}",
+  "News and recommendations, in one place": "News and recommendations, in one place",
+  "Trending news and recommendations": "Trending news and recommendations",
+  "Latest news and live updates": "Latest news and live updates",
+  "New sources and weekly recommendations": "New sources and weekly recommendations",
+  "Your followed sources": "Your followed sources",
+  "Page not found": "Page not found",
+  "Read news, explore videos, music and game guides, and follow original sources in one simple reader.": "Read news, explore videos, music and game guides, and follow original sources in one simple reader.",
+  "Explore sources": "Explore sources",
+  "Open original sources. Recommendation scope and fallback content are explained on each card. Some content may require a subscription.": "Open original sources. Recommendation scope and fallback content are explained on each card. Some content may require a subscription.",
+  "News navigation": "News navigation",
+  "Browse sources": "Browse sources",
+  "Refresh all sources": "Refresh all sources",
+  "Open original source": "Open original source",
+  "Skip to content": "Skip to content",
+  "Back to home": "Back to home",
+  "This page is unavailable. Browse NewsNow's news and recommendation sources or return to the home page.": "This page is unavailable. Browse NewsNow's news and recommendation sources or return to the home page.",
+  "In Safari on Mac, open File and choose “Add to Dock” (macOS Sonoma or later). In Chrome or Edge, use the install option in the browser menu.": "In Safari on Mac, open File and choose “Add to Dock” (macOS Sonoma or later). In Chrome or Edge, use the install option in the browser menu."
 }

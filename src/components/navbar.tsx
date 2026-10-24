@@ -8,9 +8,10 @@ export function NavBar() {
   const currentId = useAtomValue(currentColumnIDAtom)
   const { toggle } = useSearchBar()
   return (
-    <span
+    <nav
+      aria-label={t("News navigation")}
       className={$([
-        "flex p-3 rounded-2xl bg-primary/1 text-sm max-w-full overflow-x-auto whitespace-nowrap",
+        "news-nav flex p-3 rounded-2xl bg-primary/1 text-sm max-w-full overflow-x-auto whitespace-nowrap",
         "shadow shadow-primary/20 hover:shadow-primary/50 transition-shadow-500",
       ])}
       dir={locale === "ar" ? "rtl" : "ltr"}
@@ -23,7 +24,7 @@ export function NavBar() {
           "cursor-pointer transition-all",
         )}
       >
-        {t("More")}
+        {t("Browse sources")}
       </button>
       {fixedColumnIds.map(columnId => (
         <Link
@@ -38,6 +39,6 @@ export function NavBar() {
           {t(metadata[columnId].name)}
         </Link>
       ))}
-    </span>
+    </nav>
   )
 }
