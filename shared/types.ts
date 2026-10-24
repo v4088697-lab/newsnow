@@ -91,6 +91,7 @@ export interface NewsItem {
   mobileUrl?: string
   pubDate?: number | string
   extra?: {
+    youtube?: { expiresAt: number, views: number }
     image?: string
     hover?: string
     date?: number | string

@@ -128,5 +128,9 @@
   "Latest complete Netflix global English TV week. The chart date is shown; regional availability may vary.": "Netflix の最新の完全な週間世界英語作品ランキング。週の日付を明記。地域で配信状況は異なります。",
   "Open this page in Safari, tap Share, choose “Add to Home Screen”, then tap “Add”.": "Safari で開き、共有から「ホーム画面に追加」を選び、「追加」をタップします。",
   "Open the browser menu and choose “Install app” or “Add to Home Screen”. If unavailable, open this page in the latest version of Chrome.": "ブラウザーのメニューから「アプリをインストール」または「ホーム画面に追加」を選びます。ない場合は最新版 Chrome をお使いください。",
-  "Open this page in Chrome or Edge. Click the install icon in the address bar, or choose “Install NewsNow” / “Install this site as an app” from the browser menu. If unavailable, check that you are using HTTPS and try again later.": "Chrome または Edge で開き、アドレスバーのインストールアイコンかメニューの「NewsNow をインストール」を選びます。表示されない場合は HTTPS を確認し、後でお試しください。"
+  "Open this page in Chrome or Edge. Click the install icon in the address bar, or choose “Install NewsNow” / “Install this site as an app” from the browser menu. If unavailable, check that you are using HTTPS and try again later.": "Chrome または Edge で開き、アドレスバーのインストールアイコンかメニューの「NewsNow をインストール」を選びます。表示されない場合は HTTPS を確認し、後でお試しください。",
+  "7-day popular videos": "過去7日間の人気動画",
+  "7-day video picks": "過去7日間のおすすめ動画",
+  "Uploaded {time}": "公開：{time}",
+  "Recent video picks from YouTube's US English searches for music, gaming, entertainment, sports, science and technology, filtered to this week and sorted by public views. Up to 10 videos; not a sitewide chart or seven-day view growth. Rounded ages are checked conservatively.": "YouTubeの米国向け英語検索で音楽、ゲーム、エンタメ、スポーツ、科学・技術の今週の動画を抽出し、公開再生回数順で最大10本を紹介します。全体ランキングや7日間の再生増加ランキングではありません。丸められた経過時間は保守的に判定します。"
 }

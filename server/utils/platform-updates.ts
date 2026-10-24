@@ -12,10 +12,6 @@ export async function facebookUpdates() {
   return fetchOfficialFeed("https://about.fb.com/news/category/technologies/facebook-app/feed/", ["about.fb.com"], "Official updates")
 }
 
-export async function youtubeUpdates() {
-  return fetchOfficialAggregated("site:blog.youtube/news-and-events", ["blog.youtube"], "Official updates")
-}
-
 export async function rumbleUpdates() {
   return fetchPublicLinks("https://www.rum.group/blog/", {
     selector: "h2 a[href*=\"/blog/\"]",

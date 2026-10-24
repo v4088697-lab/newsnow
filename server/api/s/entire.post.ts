@@ -4,6 +4,7 @@ import { sources } from "@shared/sources"
 import { getCacheTable } from "#/database/cache"
 import { isCurrentTikTokCache } from "#/utils/tiktok-trends"
 import { englishCacheItems } from "#/utils/english-cache"
+import { isCurrentYouTubeCache } from "#/utils/youtube-videos"
 
 export default defineEventHandler(async (event) => {
   try {
@@ -12,7 +13,7 @@ export default defineEventHandler(async (event) => {
     const ids = _?.filter(k => sources[k])
     if (ids?.length && cacheTable) {
       const caches = await cacheTable.getEntire(ids)
-      return caches.filter(isCurrentTikTokCache).map(cache => ({
+      return caches.filter(cache => isCurrentTikTokCache(cache) && isCurrentYouTubeCache(cache)).map(cache => ({
         status: "cache",
         id: cache.id,
         items: englishCacheItems(cache.items),

@@ -128,5 +128,9 @@
   "Latest complete Netflix global English TV week. The chart date is shown; regional availability may vary.": "Netflix küresel İngilizce dizilerinin tamamlanmış son haftası. Liste tarihi gösterilir; bölgesel erişim değişebilir.",
   "Open this page in Safari, tap Share, choose “Add to Home Screen”, then tap “Add”.": "Safari'de açın, Paylaş'a, «Ana Ekrana Ekle»ye ve «Ekle»ye dokunun.",
   "Open the browser menu and choose “Install app” or “Add to Home Screen”. If unavailable, open this page in the latest version of Chrome.": "Tarayıcı menüsünde «Uygulamayı yükle» veya «Ana ekrana ekle»yi seçin. Yoksa güncel Chrome kullanın.",
-  "Open this page in Chrome or Edge. Click the install icon in the address bar, or choose “Install NewsNow” / “Install this site as an app” from the browser menu. If unavailable, check that you are using HTTPS and try again later.": "Chrome veya Edge'de açın. Adres çubuğundaki yükleme simgesini veya menüde «NewsNow yükle»yi seçin. Yoksa HTTPS'yi kontrol edip daha sonra deneyin."
+  "Open this page in Chrome or Edge. Click the install icon in the address bar, or choose “Install NewsNow” / “Install this site as an app” from the browser menu. If unavailable, check that you are using HTTPS and try again later.": "Chrome veya Edge'de açın. Adres çubuğundaki yükleme simgesini veya menüde «NewsNow yükle»yi seçin. Yoksa HTTPS'yi kontrol edip daha sonra deneyin.",
+  "7-day popular videos": "Son 7 günün popüler videoları",
+  "7-day video picks": "Son 7 günden video önerileri",
+  "Uploaded {time}": "Yayınlandı: {time}",
+  "Recent video picks from YouTube's US English searches for music, gaming, entertainment, sports, science and technology, filtered to this week and sorted by public views. Up to 10 videos; not a sitewide chart or seven-day view growth. Rounded ages are checked conservatively.": "YouTube ABD İngilizce aramalarında müzik, oyun, eğlence, spor, bilim ve teknoloji konularından bu haftaya ait en fazla 10 video, herkese açık izlenme sayısına göre sıralanır. Platform genelinde bir liste veya yedi günlük izlenme artışı değildir. Yuvarlanmış süreler ihtiyatlı değerlendirilir."
 }

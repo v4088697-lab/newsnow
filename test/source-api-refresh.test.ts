@@ -6,14 +6,14 @@ import sourceHandler from "../server/api/s/index"
 import { getters } from "#/getters"
 import { getCacheTable } from "#/database/cache"
 
-vi.mock("#/getters", () => ({ getters: { cnn: vi.fn() } }))
+vi.mock("#/getters", () => ({ getters: { cnn: vi.fn(), youtube: vi.fn() } }))
 vi.mock("#/database/cache", () => ({ getCacheTable: vi.fn() }))
 
 describe("source cache refresh", () => {
   const now = 1792598400000
   const items = [{ id: "old", title: "Old headline", url: "https://www.cnn.com/old" }]
   const cacheTable = { get: vi.fn(), set: vi.fn(), getEntire: vi.fn() }
-  const request = (method = "GET") => createEvent({ url: "/api/s?id=cnn", method, headers: {}, body: { sources: ["cnn"] } } as any, {} as any)
+  const request = (method = "GET", id = "cnn") => createEvent({ url: `/api/s?id=${id}`, method, headers: {}, body: { sources: [id] } } as any, {} as any)
 
   beforeEach(() => {
     vi.useFakeTimers()
@@ -57,6 +57,26 @@ describe("source cache refresh", () => {
     const updated = now - 60000
     cacheTable.getEntire.mockResolvedValue([{ id: "cnn", updated, items }])
     expect(await entireHandler(request("POST"))).toEqual([{ id: "cnn", status: "cache", updatedTime: updated, items }])
+  })
+
+  it("replaces fresh legacy YouTube announcements and omits them from bulk hydration", async () => {
+    const old = { id: "youtube", updated: now - 60000, items: [{ id: "blog", title: "Official update", url: "https://blog.youtube/news/" }] }
+    const fresh = [{ id: "abcdefghijk", title: "Real video", url: "https://www.youtube.com/watch?v=abcdefghijk", extra: { youtube: { expiresAt: now + 3600000, views: 1234 } } }]
+    cacheTable.get.mockResolvedValue(old)
+    cacheTable.getEntire.mockResolvedValue([old])
+    vi.mocked(getters.youtube).mockResolvedValue(fresh)
+    expect((await sourceHandler(request("GET", "youtube"))).items).toEqual(fresh)
+    expect(await entireHandler(request("POST", "youtube"))).toEqual([])
+  })
+
+  it("retains valid YouTube fallback timestamps but never returns expired seven-day videos", async () => {
+    const updated = now - 3600000
+    const videoItems = [{ id: "abcdefghijk", title: "Real video", url: "https://www.youtube.com/watch?v=abcdefghijk", extra: { youtube: { expiresAt: now + 3600000, views: 1234 } } }]
+    cacheTable.get.mockResolvedValue({ id: "youtube", updated, items: videoItems })
+    vi.mocked(getters.youtube).mockRejectedValue(new Error("YouTube unavailable"))
+    expect(await sourceHandler(request("GET", "youtube"))).toMatchObject({ updatedTime: updated, items: videoItems })
+    cacheTable.get.mockResolvedValue({ id: "youtube", updated, items: [{ ...videoItems[0], extra: { youtube: { expiresAt: now, views: 1234 } } }] })
+    await expect(sourceHandler(request("GET", "youtube"))).rejects.toThrow("YouTube unavailable")
   })
 
   it.each([60000, 3600000])("shows English annotations from existing cache aged %i ms without translating headlines", async (age) => {

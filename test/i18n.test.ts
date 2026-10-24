@@ -58,6 +58,7 @@ describe("interface languages", () => {
     expect(localizeAnnotation("zh-CN", "Getting started · Google News date: 2026-10-15 · Google News")).toBe("新手入门 · Google News 日期: 2026-10-15 · Google News")
     expect(localizeAnnotation("ja", "↑18 places · 65→47 · Global public top 50 · 2026-10-09 to 2026-10-15")).toBe("↑18 · 65→47 · 世界の公開トップ50 · 2026-10-09 〜 2026-10-15")
     expect(localizeAnnotation("de", "12,345 views")).toBe("12.345 Aufrufe")
+    expect(localizeAnnotation("zh-CN", "7-day video picks · 1,234 views · Uploaded 2d ago")).toBe("近7天视频推荐 · 1,234 次观看 · 发布于2天前")
     expect(localizeAnnotation("fr", "Publisher text & title")).toBe("Publisher text & title")
     expect(translate("zh-CN", "An original news headline")).toBe("An original news headline")
   })

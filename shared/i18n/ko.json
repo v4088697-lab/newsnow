@@ -128,5 +128,9 @@
   "Latest complete Netflix global English TV week. The chart date is shown; regional availability may vary.": "Netflix 글로벌 영어 시리즈의 최신 완료 주간 순위입니다. 주간 날짜가 표시되며 지역별 제공 여부가 다릅니다.",
   "Open this page in Safari, tap Share, choose “Add to Home Screen”, then tap “Add”.": "Safari에서 열고 공유 → 홈 화면에 추가 → 추가를 누르세요.",
   "Open the browser menu and choose “Install app” or “Add to Home Screen”. If unavailable, open this page in the latest version of Chrome.": "브라우저 메뉴에서 앱 설치 또는 홈 화면에 추가를 선택하세요. 없으면 최신 Chrome을 사용하세요.",
-  "Open this page in Chrome or Edge. Click the install icon in the address bar, or choose “Install NewsNow” / “Install this site as an app” from the browser menu. If unavailable, check that you are using HTTPS and try again later.": "Chrome 또는 Edge에서 열고 주소창의 설치 아이콘이나 메뉴의 NewsNow 설치를 선택하세요. 없으면 HTTPS를 확인하고 나중에 다시 시도하세요."
+  "Open this page in Chrome or Edge. Click the install icon in the address bar, or choose “Install NewsNow” / “Install this site as an app” from the browser menu. If unavailable, check that you are using HTTPS and try again later.": "Chrome 또는 Edge에서 열고 주소창의 설치 아이콘이나 메뉴의 NewsNow 설치를 선택하세요. 없으면 HTTPS를 확인하고 나중에 다시 시도하세요.",
+  "7-day popular videos": "최근 7일 인기 동영상",
+  "7-day video picks": "최근 7일 추천 동영상",
+  "Uploaded {time}": "게시: {time}",
+  "Recent video picks from YouTube's US English searches for music, gaming, entertainment, sports, science and technology, filtered to this week and sorted by public views. Up to 10 videos; not a sitewide chart or seven-day view growth. Rounded ages are checked conservatively.": "YouTube 미국 영어 검색에서 음악, 게임, 엔터테인먼트, 스포츠, 과학 및 기술 분야의 이번 주 동영상을 추려 공개 조회수순으로 최대 10개를 추천합니다. 전체 순위나 7일 조회수 증가 순위가 아닙니다. 반올림된 게시 경과 시간은 보수적으로 확인합니다."
 }

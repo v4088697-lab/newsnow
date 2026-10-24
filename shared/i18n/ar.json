@@ -128,5 +128,9 @@
   "Latest complete Netflix global English TV week. The chart date is shown; regional availability may vary.": "أحدث أسبوع كامل للمسلسلات الإنجليزية عالميًا على Netflix. تاريخ القائمة موضح؛ قد يختلف التوفر حسب المنطقة.",
   "Open this page in Safari, tap Share, choose “Add to Home Screen”, then tap “Add”.": "افتح في Safari، واضغط مشاركة ثم «إضافة إلى الشاشة الرئيسية» ثم «إضافة».",
   "Open the browser menu and choose “Install app” or “Add to Home Screen”. If unavailable, open this page in the latest version of Chrome.": "اختر من قائمة المتصفح «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية». إذا لم يتوفر، استخدم أحدث Chrome.",
-  "Open this page in Chrome or Edge. Click the install icon in the address bar, or choose “Install NewsNow” / “Install this site as an app” from the browser menu. If unavailable, check that you are using HTTPS and try again later.": "افتح في Chrome أو Edge. اضغط رمز التثبيت أو اختر «تثبيت NewsNow» من القائمة. إن لم يتوفر، تحقق من HTTPS وحاول لاحقًا."
+  "Open this page in Chrome or Edge. Click the install icon in the address bar, or choose “Install NewsNow” / “Install this site as an app” from the browser menu. If unavailable, check that you are using HTTPS and try again later.": "افتح في Chrome أو Edge. اضغط رمز التثبيت أو اختر «تثبيت NewsNow» من القائمة. إن لم يتوفر، تحقق من HTTPS وحاول لاحقًا.",
+  "7-day popular videos": "فيديوهات رائجة خلال 7 أيام",
+  "7-day video picks": "اختيارات فيديو خلال 7 أيام",
+  "Uploaded {time}": "نُشر {time}",
+  "Recent video picks from YouTube's US English searches for music, gaming, entertainment, sports, science and technology, filtered to this week and sorted by public views. Up to 10 videos; not a sitewide chart or seven-day view growth. Rounded ages are checked conservatively.": "حتى 10 فيديوهات لهذا الأسبوع من عمليات بحث YouTube بالإنجليزية في الولايات المتحدة حول الموسيقى والألعاب والترفيه والرياضة والعلوم والتقنية، مرتبة حسب المشاهدات العامة. ليست قائمة شاملة أو ترتيبًا لنمو المشاهدات خلال سبعة أيام. تُفحص مدد النشر المقربة بتحفظ."
 }

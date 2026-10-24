@@ -8,6 +8,7 @@ export function sourceDescription(id: string, original: string | undefined, loca
   if (["ign", "progameguides"].includes(id)) text = "Editorial game coverage from the past 30 days. Article dates are not game launch dates or popularity rankings; Google News dates may differ from guide revisions."
   if (id === "gamefaqs") text = "Recent GameFAQs story walkthroughs from Google News, excluding side quests and collectibles. Index dates do not verify guide revisions."
   if (id === "spotify") text = "Latest complete 7-day global weekly chart: rank gains among the public top 50, excluding new entries and reentries. Not rolling 7 days or streaming growth."
+  if (id === "youtube") text = "Recent video picks from YouTube's US English searches for music, gaming, entertainment, sports, science and technology, filtered to this week and sorted by public views. Up to 10 videos; not a sitewide chart or seven-day view growth. Rounded ages are checked conservatively."
   if (id === "tiktok") text = "US TikTok trends over 7 days, including labeled category trends. Ten entries are not an overall top-ten ranking."
   if (id === "amazon") text = "US category best sellers, not sitewide ranks. Product prices and availability must be checked on the source website."
   if (id === "temu") text = "Public product categories or labeled company releases; not a sales ranking."
@@ -23,6 +24,12 @@ export function localizeAnnotation(locale: Locale, text: string | false | undefi
   const t = (key: string, params?: Record<string, string | number>) => translate(locale, key, params)
   const number = (value: string) => Number(value.replace(/,/g, "")).toLocaleString(locale)
   return text.split(" · ").map((segment) => {
+    const uploaded = /^Uploaded (\d+)([smhd]) ago$/.exec(segment)
+    if (uploaded) {
+      const unit = { s: "second", m: "minute", h: "hour", d: "day" } as const
+      const time = new Intl.RelativeTimeFormat(locale).format(-Number(uploaded[1]), unit[uploaded[2] as keyof typeof unit])
+      return t("Uploaded {time}", { time })
+    }
     if (/^(?:Published|Google News date): /.test(segment)) {
       const [key, ...value] = segment.split(": ")
       return `${t(key)}: ${value.join(": ")}`
