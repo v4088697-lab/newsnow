@@ -6,75 +6,39 @@ import { reorderWithEdge } from "@atlaskit/pragmatic-drag-and-drop-hitbox/util/r
 import { createPortal } from "react-dom"
 import { useThrottleFn } from "ahooks"
 import { useAutoAnimate } from "@formkit/auto-animate/react"
-import { useWindowSize } from "react-use"
 import { DndContext } from "../common/dnd"
 import { useSortable } from "../common/dnd/useSortable"
-import { OverlayScrollbar } from "../common/overlay-scrollbar"
 import type { ItemsProps } from "./card"
 import { CardWrapper } from "./card"
 import { useLocale } from "~/i18n"
 import { currentColumnIDAtom, currentSourcesAtom } from "~/atoms"
 
 const AnimationDuration = 200
-const WIDTH = 350
 export function Dnd() {
-  const { t } = useLocale()
   const [items, setItems] = useAtom(currentSourcesAtom)
   const currentColumnID = useAtomValue(currentColumnIDAtom)
   const sortable = currentColumnID === "focus"
   const [parent] = useAutoAnimate({ duration: AnimationDuration })
   useEntireQuery(items.slice(0, 4))
-  const { width } = useWindowSize()
-  const isMobile = width < 768
-  const minWidth = useMemo(() => {
-    // double padding = 32
-    return Math.min(width - 32, WIDTH)
-  }, [width])
 
   if (!items.length) return null
 
   return (
-    <DndWrapper items={items} setItems={setItems} isSingleColumn={isMobile} sortable={sortable}>
-      <OverlayScrollbar defer className="overflow-x-auto">
-        <ol
-          className={isMobile
-            ? "flex px-2 gap-6 pb-4 scroll-smooth"
-            : "grid w-full gap-6"}
-          ref={parent}
-          style={isMobile
-            ? {
-                // 横向滚动布局
-              }
-            : {
-                gridTemplateColumns: `repeat(auto-fill, minmax(${minWidth}px, 1fr))`,
-              }}
-
-        >
-          {items.map((id, index) => (
-            <li
-              key={id}
-              className={$(isMobile && "flex-shrink-0", isMobile && index === items.length - 1 && "mr-2")}
-              style={isMobile ? { width: `min(${WIDTH}px, calc(100vw - 3rem))` } : undefined}
-
-            >
-              <SortableCardWrapper id={id} sortable={sortable} immediate={index < 2} />
-            </li>
-          ))}
-        </ol>
-      </OverlayScrollbar>
-      {isMobile && (
-        <div className="flex justify-center">
-          <span className="text-sm text-gray-500 text-center">{t("Swipe left or right to see more")}</span>
-        </div>
-      )}
+    <DndWrapper items={items} setItems={setItems} sortable={sortable}>
+      <ol className="source-grid" ref={parent}>
+        {items.map((id, index) => (
+          <li key={id}>
+            <SortableCardWrapper id={id} sortable={sortable} immediate={index < 2} />
+          </li>
+        ))}
+      </ol>
     </DndWrapper>
   )
 }
 
-function DndWrapper({ items, setItems, isSingleColumn, sortable, children }: PropsWithChildren<{
+function DndWrapper({ items, setItems, sortable, children }: PropsWithChildren<{
   items: SourceID[]
   setItems: (items: SourceID[]) => void
-  isSingleColumn: boolean
   sortable: boolean
 }>) {
   const onDropTargetChange = useCallback(({ location, source }: BaseEventPayload<ElementDragType>) => {
@@ -89,10 +53,10 @@ function DndWrapper({ items, setItems, isSingleColumn, sortable, children }: Pro
       startIndex: fromIndex,
       indexOfTarget: toIndex,
       closestEdgeOfTarget,
-      axis: isSingleColumn ? "horizontal" : "vertical",
+      axis: "vertical",
     })
     setItems(update)
-  }, [items, setItems, isSingleColumn])
+  }, [items, setItems])
   // 避免动画干扰
   const { run } = useThrottleFn(onDropTargetChange, {
     leading: true,

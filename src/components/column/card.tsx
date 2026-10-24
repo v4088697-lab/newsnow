@@ -49,7 +49,7 @@ export const CardWrapper = forwardRef<HTMLElement, ItemsProps>(({ id, isDragging
     <article
       ref={ref}
       className={$(
-        "flex flex-col h-500px rounded-2xl p-4 cursor-default",
+        "news-card flex flex-col h-500px rounded-2xl p-4 cursor-default",
         // "backdrop-blur-5",
         "transition-opacity-300",
         isDragging && "op-50",
