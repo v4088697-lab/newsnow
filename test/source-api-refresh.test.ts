@@ -6,7 +6,7 @@ import sourceHandler from "../server/api/s/index"
 import { getters } from "#/getters"
 import { getCacheTable } from "#/database/cache"
 
-vi.mock("#/getters", () => ({ getters: { cnn: vi.fn(), youtube: vi.fn(), instagram: vi.fn(), facebook: vi.fn(), pinterest: vi.fn(), quora: vi.fn() } }))
+vi.mock("#/getters", () => ({ getters: { cnn: vi.fn(), youtube: vi.fn(), instagram: vi.fn(), facebook: vi.fn(), pinterest: vi.fn(), quora: vi.fn(), x: vi.fn() } }))
 vi.mock("#/database/cache", () => ({ getCacheTable: vi.fn() }))
 
 describe("source cache refresh", () => {
@@ -196,6 +196,42 @@ describe("source cache refresh", () => {
     cacheTable.get.mockResolvedValue({ id: "quora", updated: now - 120000, items: topics })
     expect(await sourceHandler(request("GET", "quora"))).toMatchObject({ status: "cache", items: topics })
     expect(getters.quora).not.toHaveBeenCalled()
+  })
+
+  it("migrates X developer updates, removes expired posts and preserves fallback timestamps", async () => {
+    const updated = now - 120000
+    const createdAt = now - 86400000
+    const id = ((BigInt(createdAt) - 1288834974657n) << 22n).toString()
+    const topic = { id, url: `https://x.com/creator/status/${id}`, title: "A recent public discussion", pubDate: createdAt, extra: { x: { createdAt, indexedAt: createdAt, likes: 300 } } }
+    const legacy = { id: "x", updated, items: [{ id: "docs", title: "Developer changelog", url: "https://docs.x.com/changelog" }] }
+    cacheTable.get.mockResolvedValue(legacy)
+    cacheTable.getEntire.mockResolvedValue([legacy])
+    vi.mocked(getters.x).mockResolvedValue([topic])
+    expect((await sourceHandler(request("GET", "x"))).items).toEqual([topic])
+    expect(await entireHandler(request("POST", "x"))).toEqual([])
+    const expiredAt = now - 7 * 86400000
+    const expired = { ...topic, pubDate: expiredAt, extra: { x: { createdAt: expiredAt, indexedAt: expiredAt, likes: 300 } } }
+    cacheTable.get.mockResolvedValue({ id: "x", updated, items: [topic, expired] })
+    cacheTable.getEntire.mockResolvedValue([{ id: "x", updated, items: [topic, expired] }])
+    vi.mocked(getters.x).mockRejectedValue(new Error("X unavailable"))
+    expect(await sourceHandler(request("GET", "x"))).toMatchObject({ items: [topic], updatedTime: updated })
+    expect(await entireHandler(request("POST", "x"))).toMatchObject([{ items: [topic], updatedTime: updated }])
+    cacheTable.get.mockResolvedValue({ id: "x", updated, items: [expired] })
+    await expect(sourceHandler(request("GET", "x"))).rejects.toThrow("X unavailable")
+  })
+
+  it("fills X recommendations to ten without retaining stale higher likes for a refreshed post", async () => {
+    const createdAt = now - 86400000
+    const topics = Array.from({ length: 10 }, (_, index) => {
+      const id = (((BigInt(createdAt) - 1288834974657n) << 22n) + BigInt(index)).toString()
+      return { id, url: `https://x.com/creator/status/${id}`, title: `Recent public discussion ${index}`, pubDate: createdAt, extra: { x: { createdAt, indexedAt: createdAt, likes: index + 100 } } }
+    })
+    cacheTable.get.mockResolvedValue({ id: "x", updated: now - 120000, items: topics.slice(0, 9) })
+    vi.mocked(getters.x).mockResolvedValue([{ ...topics[0], extra: { x: { ...topics[0].extra.x, likes: 20 } } }, topics[9]])
+    const result = await sourceHandler(request("GET", "x"))
+    expect(result.items).toHaveLength(10)
+    expect(result.items.at(-1)?.extra?.x?.likes).toBe(20)
+    expect(cacheTable.set).toHaveBeenCalledWith("x", result.items, now)
   })
 
   it.each([60000, 3600000])("shows English annotations from existing cache aged %i ms without translating headlines", async (age) => {

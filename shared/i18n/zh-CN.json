@@ -172,5 +172,6 @@
   "In Safari on Mac, open File and choose “Add to Dock” (macOS Sonoma or later). In Chrome or Edge, use the install option in the browser menu.": "在 Mac 的 Safari 中打开“文件”菜单，选择“添加到程序坞”（需要 macOS Sonoma 或更新版本）。Chrome 或 Edge 可使用浏览器菜单中的安装选项。",
   "7-day topic picks": "近7天话题推荐",
   "Topics: {count}/{total}": "话题：{count}/{total}",
-  "Public Quora questions indexed by Google News within 7 days, with up to 10 recent topic recommendations. Index dates are not verified question creation dates. This feed has no engagement counts, so these are discovery picks, not an official Quora popularity ranking.": "Google News 近7天收录的 Quora 公开问题，最多推荐10条近期话题。收录日期并非经核实的问题创建日期。此数据源不提供互动量，因此属于发现推荐，不是 Quora 官方热度排名。"
+  "Public Quora questions indexed by Google News within 7 days, with up to 10 recent topic recommendations. Index dates are not verified question creation dates. This feed has no engagement counts, so these are discovery picks, not an official Quora popularity ranking.": "Google News 近7天收录的 Quora 公开问题，最多推荐10条近期话题。收录日期并非经核实的问题创建日期。此数据源不提供互动量，因此属于发现推荐，不是 Quora 官方热度排名。",
+  "Public X discussions discovered via Google News, with original posts verified in X's public embeds as published within 7 days. Up to 10, sorted by cumulative public likes. A sampled topic recommendation list, not X's official trending chart or seven-day like growth. Unavailable posts are omitted.": "通过 Google News 发现公开 X 话题，在 X 官方公开嵌入数据中核实原帖发布于近7天内，按公开累计点赞数推荐最多10条。这是抽样话题推荐，不是 X 官方趋势榜或7天点赞增量榜；无法访问的帖子会被排除。"
 }

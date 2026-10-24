@@ -91,6 +91,7 @@ export interface NewsItem {
   mobileUrl?: string
   pubDate?: number | string
   extra?: {
+    x?: { createdAt: number, indexedAt: number, likes: number }
     quora?: { indexedAt: number }
     pinterest?: { createdAt: number, repins?: number, aggregateSaves?: number }
     facebook?: { indexedAt: number, reactions?: number, views?: number }

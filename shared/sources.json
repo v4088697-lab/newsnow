@@ -544,10 +544,10 @@
     "interval": 600000
   },
   "x": {
-    "title": "Developer updates",
+    "title": "7-day topic picks",
     "name": "X",
     "type": "hottest",
-    "desc": "Official X developer changelog, not trending posts or searches.",
+    "desc": "Public X discussions discovered via Google News, with original posts verified in X's public embeds as published within 7 days. Up to 10, sorted by cumulative public likes. A sampled topic recommendation list, not X's official trending chart or seven-day like growth. Unavailable posts are omitted.",
     "column": "world",
     "home": "https://x.com",
     "color": "gray",

@@ -20,7 +20,7 @@ export function sourceQueryOptions(id: SourceID) {
       // Memory data seeds the query once; every actual refresh must reach the API.
       const response = await myFetch<SourceResponse>(url, { headers })
       const previous = cacheSources.get(id)
-      if (sources[id].type === "hottest" && !["spotify", "youtube", "instagram", "facebook", "pinterest", "quora"].includes(id) && previous) {
+      if (sources[id].type === "hottest" && !["spotify", "youtube", "instagram", "facebook", "pinterest", "quora", "x"].includes(id) && previous) {
         response.items.forEach((item, index) => {
           const oldIndex = previous.items.findIndex(old => old.id === item.id)
           item.extra = { ...item.extra, diff: oldIndex === -1 ? undefined : oldIndex - index }
@@ -32,7 +32,7 @@ export function sourceQueryOptions(id: SourceID) {
     initialData: () => cacheSources.get(id),
     initialDataUpdatedAt: () => Number(cacheSources.get(id)?.updatedTime) || 0,
     staleTime: interval,
-    refetchInterval: ["pinterest", "quora"].includes(id) ? query => (query.state.data?.items.length ?? 0) < 10 ? 60000 : interval : interval,
+    refetchInterval: ["pinterest", "quora", "x"].includes(id) ? query => (query.state.data?.items.length ?? 0) < 10 ? 60000 : interval : interval,
     refetchIntervalInBackground: false,
     refetchOnMount: true,
     refetchOnReconnect: "always",
