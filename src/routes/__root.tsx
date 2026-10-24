@@ -8,7 +8,6 @@ import type { QueryClient } from "@tanstack/react-query"
 import { isMobile } from "react-device-detect"
 import { Header } from "~/components/header"
 import { GlobalOverlayScrollbar } from "~/components/common/overlay-scrollbar"
-import { Footer } from "~/components/footer"
 import { Toast } from "~/components/common/toast"
 import { useLocale } from "~/i18n"
 import { usePageSeo } from "~/hooks/usePageSeo"
@@ -94,9 +93,6 @@ function RootComponent() {
         >
           <Outlet />
         </main>
-        <footer className="py-6 flex flex-col items-center justify-center text-sm text-neutral-500 font-mono">
-          <Footer />
-        </footer>
       </GlobalOverlayScrollbar>
       <Toast />
       <DeferredSearch />
