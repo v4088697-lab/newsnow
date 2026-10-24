@@ -9,7 +9,7 @@ import { englishCacheItems } from "#/utils/english-cache"
 import { isCurrentYouTubeCache } from "#/utils/youtube-videos"
 import { isCurrentInstagramCache } from "#/utils/instagram-posts"
 import { isCurrentFacebookCache } from "#/utils/facebook-posts"
-import { isCurrentPinterestCache } from "#/utils/pinterest-content"
+import { currentPinterestItems, isCurrentPinterestCache, mergePinterestPins } from "#/utils/pinterest-content"
 
 const info = {
   LICENCE: "MIT",
@@ -35,9 +35,11 @@ export default defineEventHandler(async (event): Promise<SourceResponse> => {
     let cache: CacheInfo | undefined
     if (cacheTable) {
       cache = await cacheTable.get(id)
+      if (cache && id === "pinterest") cache = { ...cache, items: currentPinterestItems(cache.items, now) }
       if (cache && (!isCurrentTikTokCache(cache) || !isCurrentYouTubeCache(cache, now) || !isCurrentInstagramCache(cache, now) || !isCurrentFacebookCache(cache, now) || !isCurrentPinterestCache(cache, now))) cache = undefined
       // Automatic requests obey the source interval, without an extra 30-minute cache floor.
-      if (cache && now - cache.updated < sources[id].interval) {
+      const interval = id === "pinterest" && (cache?.items.length ?? 0) < 10 ? 60000 : sources[id].interval
+      if (cache && now - cache.updated < interval) {
         return {
           status: "cache",
           id,
@@ -49,7 +51,8 @@ export default defineEventHandler(async (event): Promise<SourceResponse> => {
     }
 
     try {
-      const newData = (await getters[id]()).slice(0, 30)
+      const fetched = (await getters[id]()).slice(0, 30)
+      const newData = id === "pinterest" ? mergePinterestPins(fetched, cache?.items ?? []) : fetched
       const updatedTime = Date.now()
       if (cacheTable && newData.length) {
         if (event.context.waitUntil) event.context.waitUntil(cacheTable.set(id, newData, updatedTime))

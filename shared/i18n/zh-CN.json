@@ -151,5 +151,6 @@
   "Pinterest 7-day image and text picks": "Pinterest 近7天图文推荐",
   "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Ranked by visible cumulative repins where available, then creation date. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted.": "推荐近7天创建的公开图片 Pin，通过 Google News 发现并在 Pinterest 原页核实日期。优先按公开累计转存数排序，再按创建日期排序，最多10条。这不是全站周榜或7天收藏增量榜；Pin 日期可能代表近期保存了较早的作品。排除视频、推广 Pin 和日期无法核实的内容。",
   "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Aggregate saves rank first, then repins, then creation date. Aggregate saves are not this individual Pin's saves. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted.": "推荐近7天创建的公开图片 Pin，通过 Google News 发现并在 Pinterest 原页核实日期。优先按公开聚合累计收藏数排序，其次按转存数与创建日期排序；聚合收藏数不是此单条 Pin 的收藏数，最多10条。这不是全站周榜或7天收藏增量榜；Pin 日期可能代表近期保存了较早的作品。排除视频、推广 Pin 和日期无法核实的内容。",
-  "{count} aggregate saves": "{count} 次聚合收藏"
+  "{count} aggregate saves": "{count} 次聚合收藏",
+  "Pins: {count}/{total}": "图文：{count}/{total}"
 }

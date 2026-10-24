@@ -134,6 +134,30 @@ describe("source cache refresh", () => {
     expect(await entireHandler(request("POST", "pinterest"))).toEqual([])
   })
 
+  it("fills a partial Pinterest cache to ten with a new batch instead of overwriting recent verified Pins", async () => {
+    const createdAt = now - 86400000
+    const pins = Array.from({ length: 10 }, (_, index) => ({ id: String(1234567890 + index), title: `Public Pin ${index}`, url: `https://www.pinterest.com/pin/${1234567890 + index}/`, pubDate: createdAt, extra: { pinterest: { createdAt, aggregateSaves: index } } }))
+    cacheTable.get.mockResolvedValue({ id: "pinterest", updated: now - 120000, items: pins.slice(0, 9) })
+    vi.mocked(getters.pinterest).mockResolvedValue([pins[9]])
+    const result = await sourceHandler(request("GET", "pinterest"))
+    expect(result.items).toHaveLength(10)
+    expect(new Set(result.items.map(item => item.id)).size).toBe(10)
+    expect(cacheTable.set).toHaveBeenCalledWith("pinterest", result.items, now)
+    vi.mocked(getters.pinterest).mockClear()
+    cacheTable.get.mockResolvedValue({ id: "pinterest", updated: now - 120000, items: pins })
+    expect(await sourceHandler(request("GET", "pinterest"))).toMatchObject({ status: "cache", items: pins })
+    expect(getters.pinterest).not.toHaveBeenCalled()
+  })
+
+  it("removes expired Pinterest entries individually from the bulk snapshot", async () => {
+    const createdAt = now - 86400000
+    const current = { id: "1234567890", title: "Current Pin", url: "https://www.pinterest.com/pin/1234567890/", pubDate: createdAt, extra: { pinterest: { createdAt } } }
+    const expiredAt = now - 7 * 86400000
+    const expired = { id: "1234567891", title: "Expired Pin", url: "https://www.pinterest.com/pin/1234567891/", pubDate: expiredAt, extra: { pinterest: { createdAt: expiredAt } } }
+    cacheTable.getEntire.mockResolvedValue([{ id: "pinterest", updated: now - 60000, items: [current, expired] }])
+    expect(await entireHandler(request("POST", "pinterest"))).toMatchObject([{ id: "pinterest", items: [current], updatedTime: now - 60000 }])
+  })
+
   it.each([60000, 3600000])("shows English annotations from existing cache aged %i ms without translating headlines", async (age) => {
     const updated = now - age
     const original = Object.freeze({ id: "old", title: "新闻原标题", url: "https://www.cnn.com/old", extra: Object.freeze({ info: "官方动态 · 2026-10-20 · Google News" }) })

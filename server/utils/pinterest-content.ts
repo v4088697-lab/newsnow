@@ -97,3 +97,13 @@ export function isCurrentPinterestCache(cache: { id: string, items: NewsItem[] }
       && item.id === item.url.split("/").at(-2) && item.pubDate === pin.createdAt
   }))
 }
+
+export function currentPinterestItems(items: NewsItem[], now = Date.now()) {
+  return items.filter(item => isCurrentPinterestCache({ id: "pinterest", items: [item] }, now))
+}
+
+export function mergePinterestPins(fresh: NewsItem[], cached: NewsItem[], now = Date.now()) {
+  const seen = new Set<string | number>()
+  const items = currentPinterestItems([...fresh, ...cached], now).filter(item => !seen.has(item.id) && seen.add(item.id))
+  return selectPinterestPins(items)
+}

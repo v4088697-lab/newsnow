@@ -57,6 +57,26 @@ describe("automatic source queries", () => {
     client.clear()
   })
 
+  it("fills Pinterest every minute until ten Pins are available, then returns to its normal interval", async () => {
+    const { QueryClient, QueryObserver, focusManager } = await import("@tanstack/react-query")
+    const pins = (count: number): SourceResponse => ({ id: "pinterest", status: "success", updatedTime: Date.now(), items: Array.from({ length: count }, (_, index) => ({ id: String(index), title: `Pin ${index}`, url: `https://www.pinterest.com/pin/${1234567890 + index}/` })) })
+    fetchMock.mockResolvedValue(pins(10)).mockResolvedValueOnce(pins(3))
+    focusManager.setFocused(true)
+    const client = new QueryClient()
+    const observer = new QueryObserver(client, sourceQueryOptions("pinterest"))
+    const unsubscribe = observer.subscribe(() => {})
+    await vi.advanceTimersByTimeAsync(0)
+    expect(observer.getCurrentResult().data?.items).toHaveLength(3)
+    await vi.advanceTimersByTimeAsync(60000)
+    expect(observer.getCurrentResult().data?.items).toHaveLength(10)
+    expect(fetchMock).toHaveBeenCalledTimes(2)
+    await vi.advanceTimersByTimeAsync(60000)
+    expect(fetchMock).toHaveBeenCalledTimes(2)
+    unsubscribe()
+    client.clear()
+    focusManager.setFocused(undefined)
+  })
+
   it("does not mix Spotify weekly rank gains with changes since the last page request", async () => {
     const { QueryClient } = await import("@tanstack/react-query")
     cacheSources.set("spotify", { id: "spotify", status: "cache", updatedTime: Date.now(), items: [{ id: "a", title: "A", url: "https://open.spotify.com/track/a" }, { id: "b", title: "B", url: "https://open.spotify.com/track/b" }] })

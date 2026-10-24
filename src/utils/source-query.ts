@@ -32,7 +32,7 @@ export function sourceQueryOptions(id: SourceID) {
     initialData: () => cacheSources.get(id),
     initialDataUpdatedAt: () => Number(cacheSources.get(id)?.updatedTime) || 0,
     staleTime: interval,
-    refetchInterval: interval,
+    refetchInterval: id === "pinterest" ? query => (query.state.data?.items.length ?? 0) < 10 ? 60000 : interval : interval,
     refetchIntervalInBackground: false,
     refetchOnMount: true,
     refetchOnReconnect: "always",

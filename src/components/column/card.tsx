@@ -83,7 +83,10 @@ function NewsCard({ id, setHandleRef }: NewsCardProps) {
               </span>
               {sources[id]?.title && <span className={$("text-sm", `color-${sources[id].color} bg-base op-80 bg-op-50! px-1 rounded`)}>{t(sources[id].title!)}</span>}
             </span>
-            <span className="text-xs op-70"><UpdatedTime isError={isError} updatedTime={data?.updatedTime} /></span>
+            <span className="text-xs op-70">
+              <UpdatedTime isError={isError} updatedTime={data?.updatedTime} />
+              {id === "pinterest" && <bdi>{` · ${t("Pins: {count}/{total}", { count: (data?.items.length ?? 0).toLocaleString(locale), total: (10).toLocaleString(locale) })}`}</bdi>}
+            </span>
           </span>
         </div>
         <div className={$("flex gap-2 text-lg shrink-0 ms-2", `color-${sources[id].color}`)}>

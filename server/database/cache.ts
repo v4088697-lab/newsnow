@@ -68,6 +68,16 @@ export class Cache {
   async delete(key: string) {
     return await this.db.prepare(`DELETE FROM cache WHERE id = ?`).run(key)
   }
+
+  async getState(key: string): Promise<unknown> {
+    const row = await this.db.prepare(`SELECT data FROM cache WHERE id = ?`).get(`state:${key}`) as { data: string } | undefined
+    return row ? JSON.parse(row.data) : undefined
+  }
+
+  async setState(key: string, value: unknown) {
+    await this.db.prepare(`INSERT OR REPLACE INTO cache (id, data, updated) VALUES (?, ?, ?)`)
+      .run(`state:${key}`, JSON.stringify(value), Date.now())
+  }
 }
 
 export async function getCacheTable() {

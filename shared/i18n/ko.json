@@ -151,5 +151,6 @@
   "Pinterest 7-day image and text picks": "Pinterest 최근 7일 이미지·글 추천",
   "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Ranked by visible cumulative repins where available, then creation date. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted.": "Google News에서 발견하고 Pinterest에서 날짜를 확인한 최근 7일 생성 공개 이미지 Pin을 추천합니다. 공개 누적 재저장 수, 생성일 순서로 최대 10개를 표시합니다. 전체 주간 순위나 7일 저장 증가 순위가 아닙니다. Pin 날짜는 오래된 작품의 최근 저장일일 수 있습니다. 영상, 광고, 날짜 미확인 Pin은 제외됩니다.",
   "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Aggregate saves rank first, then repins, then creation date. Aggregate saves are not this individual Pin's saves. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted.": "Google News에서 발견하고 Pinterest에서 날짜를 확인한 최근 7일 생성 공개 이미지 Pin을 추천합니다. 집계 저장 수, 재저장 수, 생성일 순서로 최대 10개를 표시합니다. 집계 저장 수는 이 단일 Pin의 저장 수가 아닙니다. 전체 주간 순위나 7일 저장 증가 순위가 아닙니다. Pin 날짜는 오래된 작품의 최근 저장일일 수 있습니다. 영상, 광고, 날짜 미확인 Pin은 제외됩니다.",
-  "{count} aggregate saves": "집계 저장 {count}회"
+  "{count} aggregate saves": "집계 저장 {count}회",
+  "Pins: {count}/{total}": "Pin: {count}/{total}"
 }

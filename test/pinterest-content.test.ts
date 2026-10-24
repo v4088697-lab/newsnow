@@ -1,10 +1,13 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
-import { isCurrentPinterestCache, parsePinterestDiscovery, parsePinterestPin, pinterestPinUrl, selectPinterestPins } from "../server/utils/pinterest-content"
+import { currentPinterestItems, isCurrentPinterestCache, mergePinterestPins, parsePinterestDiscovery, parsePinterestPin, pinterestPinUrl, selectPinterestPins } from "../server/utils/pinterest-content"
 import pinterest from "../server/sources/pinterest"
 import { myFetch } from "../server/utils/fetch"
 import { genSources } from "../shared/pre-sources"
+import { getCacheTable } from "../server/database/cache"
 
 vi.mock("../server/utils/fetch", () => ({ myFetch: vi.fn() }))
+vi.mock("../server/database/cache", () => ({ getCacheTable: vi.fn() }))
+const stateTable = { getState: vi.fn(), setState: vi.fn() }
 const fetchMock = vi.mocked(myFetch)
 const now = Date.parse("2026-10-24T12:00:00Z")
 const createdAt = now - 86400000
@@ -25,6 +28,9 @@ describe("pinterest seven-day image and text recommendations", () => {
     vi.useFakeTimers()
     vi.setSystemTime(now)
     fetchMock.mockReset()
+    stateTable.getState.mockReset().mockResolvedValue({ cursor: 0, retryAt: 0 })
+    stateTable.setState.mockReset().mockResolvedValue(undefined)
+    vi.mocked(getCacheTable).mockResolvedValue(stateTable as any)
   })
   afterEach(() => vi.useRealTimers())
 
@@ -77,7 +83,9 @@ describe("pinterest seven-day image and text recommendations", () => {
       if (value === url) return pinPage() as any
       throw new Error("Unexpected URL")
     })
-    expect(await pinterest()).toMatchObject([{ url, pubDate: createdAt }])
+    const batches = await Promise.all([pinterest(), pinterest()])
+    expect(batches).toMatchObject([[{ url, pubDate: createdAt }], [{ url, pubDate: createdAt }]])
+    expect(stateTable.getState).toHaveBeenCalledTimes(1)
     expect(fetchMock.mock.calls.some(call => call[0].toString().includes("newsroom.pinterest.com"))).toBe(false)
     const implementation = fetchMock.getMockImplementation()!
     fetchMock.mockImplementation(async (input, options) => {
@@ -96,7 +104,25 @@ describe("pinterest seven-day image and text recommendations", () => {
     expect(isCurrentPinterestCache({ id: "cnn", items: [] })).toBe(true)
   })
 
+  it("retains verified recent Pins across partial batches and replaces stale metrics with fresh ones", () => {
+    const old = parsePinterestPin(pinPage(), url, discovery)
+    const second = parsePinterestPin(pinPage({}, "1234567891"), "https://www.pinterest.com/pin/1234567891/", discovery)
+    const updated = parsePinterestPin(pinPage({ aggregatedPinData: { aggregatedStats: { saves: 20 } } }), url, discovery)
+    const expired = { ...second, id: "1234567892", url: "https://www.pinterest.com/pin/1234567892/", pubDate: now - 8 * 86400000, extra: { ...second.extra, pinterest: { createdAt: now - 8 * 86400000 } } }
+    const items = mergePinterestPins([updated], [old, second, expired])
+    expect(items).toHaveLength(2)
+    expect(items.find(item => item.id === old.id)?.extra?.pinterest?.aggregateSaves).toBe(20)
+    expect(currentPinterestItems([old, expired])).toEqual([old])
+  })
+
+  it("honors a persisted rate-limit cooldown without sending discovery requests", async () => {
+    stateTable.getState.mockResolvedValue({ cursor: 32, retryAt: now + 120000 })
+    await expect(pinterest()).rejects.toThrow("cooling down")
+    expect(fetchMock).not.toHaveBeenCalled()
+  })
+
   it("limits concurrent Pin requests and leaves the remaining queue untouched after a 429", async () => {
+    stateTable.getState.mockResolvedValue({ cursor: 2, retryAt: 0 })
     const xml = `<rss><channel>${Array.from({ length: 6 }, (_, index) => `<item><title>Pin ${index}</title><link>https://news.google.com/rss/articles/CBMiqueue${index}?oc=5</link><source url="https://www.pinterest.com">Pinterest</source><pubDate>${new Date(now - 1000).toUTCString()}</pubDate></item>`).join("")}</channel></rss>`
     fetchMock.mockImplementation(async (input) => {
       const value = input.toString()
@@ -106,9 +132,11 @@ describe("pinterest seven-day image and text recommendations", () => {
         return `<div data-n-a-id="${id}" data-n-a-ts="1792830000" data-n-a-sg="abc-123"></div>` as any
       }
       if (value.includes("batchexecute")) return `)]}'\n${JSON.stringify(Array.from({ length: 6 }, (_, index) => ["wrb.fr", "Fbv4je", JSON.stringify(["garturlres", `https://www.pinterest.com/pin/${1234567890 + index}/`, 1]), null, null, null, String(index)]))}` as any
-      throw Object.assign(new Error("Limited"), { statusCode: 429 })
+      throw Object.assign(new Error("Limited"), { statusCode: 429, response: { status: 429, headers: new Headers({ "Retry-After": "120" }) } })
     })
     await expect(pinterest()).rejects.toThrow("No valid public platform content")
     expect(fetchMock.mock.calls.filter(call => call[0].toString().startsWith("https://www.pinterest.com/pin/"))).toHaveLength(3)
+    expect(fetchMock.mock.calls.find(call => call[0].toString().includes("/rss/articles/"))?.[0]).toContain("CBMiqueue2")
+    expect(stateTable.setState).toHaveBeenLastCalledWith("pinterest-discovery", { cursor: 8, retryAt: now + 120000 })
   })
 })
