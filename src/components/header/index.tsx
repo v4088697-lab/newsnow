@@ -6,6 +6,7 @@ import { PageActions } from "./page-actions"
 import { LanguageSwitcher } from "./language-switcher"
 import { useLocale } from "~/i18n"
 import { currentSourcesAtom, goToTopAtom } from "~/atoms"
+import "./masthead.css"
 
 function GoTop() {
   const { t } = useLocale()
@@ -14,10 +15,10 @@ function GoTop() {
     <button
       type="button"
       title={t("Go To Top")}
-      className={$("items-center justify-center", ok ? "btn flex" : "hidden")}
+      className={$("masthead-control items-center justify-center", ok ? "btn flex" : "hidden")}
       onClick={goToTop}
     >
-      <span className="i-ph:arrow-fat-up-duotone" aria-hidden="true" />
+      <span className="i-ph:arrow-up" aria-hidden="true" />
     </button>
   )
 }
@@ -40,38 +41,37 @@ function Refresh() {
       type="button"
       title={t("Refresh all sources")}
       aria-label={t("Refresh all sources")}
-      className="btn flex items-center justify-center"
+      className="masthead-control btn flex items-center justify-center"
       onClick={refreshAll}
     >
-      <span className={$("i-ph:arrow-counter-clockwise-duotone", isFetching && "animate-spin i-ph:circle-dashed-duotone")} aria-hidden="true" />
+      <span className={$("i-ph:arrow-clockwise", isFetching && "animate-spin")} aria-hidden="true" />
     </button>
   )
 }
 
 export function Header() {
+  const { ok: showGoToTop } = useAtomValue(goToTopAtom)
   return (
     <>
-      <div className="flex justify-self-start">
-        <Link to="/" aria-label="NewsNow" className="flex gap-2 items-center">
-          <div className="h-10 w-10 bg-cover" title="logo" style={{ backgroundImage: "url(/icon.svg)" }} />
-          <div className="text-2xl font-brand line-height-none!">
-            <p>News</p>
-            <p className="mt--1">
-              <span className="color-primary-6">N</span>
-              <span>ow</span>
-            </p>
-          </div>
+      <div className={$("masthead-brand-group", showGoToTop && "masthead-compact")}>
+        <Link to="/" aria-label="NewsNow" className="masthead-brand">
+          <img src="/brand-mark.svg" alt="" width={40} height={40} className="masthead-mark" />
+          <span className="masthead-wordmark">
+            NEWS
+            <span>NOW</span>
+            <span className="masthead-period">.</span>
+          </span>
         </Link>
-        <a target="_blank" href={`${Homepage}/releases/tag/v${Version}`} className="btn text-sm ml-1 font-mono hidden sm:inline">
+        <a target="_blank" rel="noopener noreferrer" href={`${Homepage}/releases/tag/v${Version}`} className="masthead-version">
           {`v${Version}`}
         </a>
       </div>
-      <div className="justify-self-center">
+      <div className="masthead-nav justify-self-center">
         <div className="hidden lg:(inline-block)">
           <NavBar />
         </div>
       </div>
-      <div className="justify-self-end flex gap-1 sm:gap-2 items-center text-xl text-primary-600 dark:text-primary">
+      <div className="masthead-actions justify-self-end flex items-center">
         <GoTop />
         <Refresh />
         <LanguageSwitcher />

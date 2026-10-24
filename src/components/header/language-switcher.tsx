@@ -23,9 +23,9 @@ export function LanguageSwitcher() {
     trigger.current?.focus()
   }
   return (
-    <span ref={root} className="relative inline-flex" dir="ltr">
-      <button ref={trigger} type="button" title={t("Language")} aria-label={`${t("Language")}: ${current.label}`} aria-haspopup="menu" aria-expanded={open} aria-controls="language-menu" onClick={() => setOpen(!open)} className="btn inline-flex items-center gap-1 min-h-7 px-1 text-sm rounded hover:bg-primary/10">
-        <span className="i-ph:translate-duotone text-lg" aria-hidden="true" />
+    <span ref={root} className="masthead-language-root relative inline-flex" dir="ltr">
+      <button ref={trigger} type="button" title={t("Language")} aria-label={`${t("Language")}: ${current.label}`} aria-haspopup="menu" aria-expanded={open} aria-controls="language-menu" onClick={() => setOpen(!open)} className="masthead-control masthead-language btn inline-flex items-center gap-1 px-2 text-sm">
+        <span className="i-ph:translate text-lg" aria-hidden="true" />
         <span>{current.short}</span>
       </button>
       {open && (

@@ -54,21 +54,21 @@ export function PageActions() {
         type="button"
         title={t("Share this page")}
         aria-label={t("Share this page")}
-        className="btn flex items-center justify-center min-h-7 min-w-6"
+        className="masthead-control btn flex items-center justify-center"
         disabled={sharing}
         onClick={share}
       >
-        <span className="i-ph:share-network-duotone" aria-hidden="true" />
+        <span className="i-ph:share-network" aria-hidden="true" />
       </button>
       <button
         type="button"
         title={t(installed ? "App installed" : "Install as app")}
         aria-label={t(installed ? "App installed" : "Install as app")}
-        className="btn flex items-center justify-center min-h-7 min-w-6"
+        className="masthead-control btn flex items-center justify-center"
         disabled={installed || installing}
         onClick={installApp}
       >
-        <span className={installed ? "i-ph:check-circle-duotone" : "i-ph:download-simple-duotone"} aria-hidden="true" />
+        <span className={installed ? "i-ph:check-circle" : "i-ph:download-simple"} aria-hidden="true" />
       </button>
       <dialog
         ref={dialog}

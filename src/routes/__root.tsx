@@ -71,7 +71,7 @@ function RootComponent() {
       >
         <header
           className={$([
-            "site-header grid items-center py-4 px-2 sm:px-5",
+            "site-header masthead grid items-center py-4 px-2 sm:px-5",
             "lg:(py-6)",
             "sticky top-0 z-10 backdrop-blur-md",
           ])}

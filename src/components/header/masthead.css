@@ -1,0 +1,61 @@
+.site-header.masthead {
+  --masthead-ink: #ece9e1;
+  --masthead-muted: #9e9f9e;
+  color: var(--masthead-ink);
+  background: rgba(26, 28, 31, 0.96);
+  border-bottom: 1px solid rgba(236, 233, 225, 0.16);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  font-family: "Geist", "Helvetica Neue", Arial, sans-serif;
+  column-gap: 20px;
+}
+
+.masthead-brand-group { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.masthead-brand { display: inline-flex; align-items: center; gap: 11px; color: var(--masthead-ink); flex-shrink: 0; }
+.masthead-mark { width: 36px; height: 36px; flex-shrink: 0; transition: transform 180ms ease; }
+.masthead-brand:hover .masthead-mark { transform: translateY(-2px); }
+.masthead-wordmark { font-size: 23px; font-weight: 750; line-height: 1; letter-spacing: -1.1px; white-space: nowrap; }
+.masthead-wordmark > span:first-child { font-weight: 400; }
+.masthead-period { color: #eb795b; }
+.masthead-version { display: none; color: var(--masthead-muted); font-family: ui-monospace, monospace; font-size: 10px; letter-spacing: -0.3px; }
+.masthead-actions { gap: 6px; font-size: 20px; }
+.masthead-nav { min-width: 0; max-width: 100%; }
+.masthead-nav > div { max-width: 100%; }
+.site-header.masthead .masthead-control {
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid rgba(236, 233, 225, 0.15);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--masthead-ink);
+  opacity: 1;
+  transition: color 160ms ease, background 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+.site-header.masthead .masthead-control:hover { color: #fff; background: rgba(255, 255, 255, 0.085); border-color: rgba(236, 233, 225, 0.36); transform: translateY(-1px); }
+.site-header.masthead .masthead-control:active { transform: translateY(0); }
+.site-header.masthead .masthead-control:disabled { opacity: 0.45; }
+.site-header.masthead .masthead-language { min-width: 64px; font-size: 12px; font-weight: 600; letter-spacing: 0.02em; }
+.site-header.masthead .news-nav { padding: 0; background: transparent; box-shadow: none; border-radius: 0; gap: 1px; }
+.site-header.masthead .news-nav > a,
+.site-header.masthead .news-nav > button { color: #bdbebc; min-height: 44px; display: inline-flex; align-items: center; padding-inline: 8px; font-size: 13px; border-radius: 0; opacity: 1; }
+.site-header.masthead .news-nav > a:hover,
+.site-header.masthead .news-nav > button:hover { color: #fff; background: transparent; }
+.site-header.masthead .news-nav > a[aria-current="page"] { color: #fff; box-shadow: inset 0 -2px #eb795b; }
+
+@media (min-width: 1440px) { .masthead-version { display: inline; } }
+@media (max-width: 1199px) { .site-header.masthead { column-gap: 10px; } }
+@media (max-width: 767px) {
+  .site-header.masthead { padding-left: 8px; padding-right: 8px; column-gap: 4px; }
+  .masthead-brand { gap: 8px; }
+  .masthead-mark { width: 32px; height: 32px; }
+  .masthead-wordmark { font-size: 20px; letter-spacing: -0.9px; }
+  .masthead-actions { gap: 4px; }
+  .masthead-compact .masthead-wordmark { display: none; }
+  .site-header.masthead .masthead-language { min-width: 52px; }
+  .site-header.masthead .masthead-language-root { position: static; }
+}
+@media (max-width: 480px) {
+  .site-header.masthead { padding-left: 0; padding-right: 0; }
+  .masthead-wordmark { font-size: 18px; }
+}
+@media (max-width: 379px) { .masthead-wordmark { display: none; } }
