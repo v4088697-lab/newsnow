@@ -6,7 +6,7 @@ import sourceHandler from "../server/api/s/index"
 import { getters } from "#/getters"
 import { getCacheTable } from "#/database/cache"
 
-vi.mock("#/getters", () => ({ getters: { cnn: vi.fn(), youtube: vi.fn(), instagram: vi.fn(), facebook: vi.fn(), pinterest: vi.fn(), quora: vi.fn(), x: vi.fn() } }))
+vi.mock("#/getters", () => ({ getters: { cnn: vi.fn(), youtube: vi.fn(), instagram: vi.fn(), facebook: vi.fn(), pinterest: vi.fn(), quora: vi.fn(), x: vi.fn(), rumble: vi.fn(), paramountplus: vi.fn() } }))
 vi.mock("#/database/cache", () => ({ getCacheTable: vi.fn() }))
 
 describe("source cache refresh", () => {
@@ -34,6 +34,16 @@ describe("source cache refresh", () => {
     const response = await sourceHandler(request())
     expect(response).toMatchObject({ status: "cache", updatedTime: updated, items })
     expect(getters.cnn).not.toHaveBeenCalled()
+  })
+
+  it.each(["rumble", "paramountplus"] as const)("replaces legacy %s news in single requests and bulk hydration", async (id) => {
+    const old = { id, updated: now - 60000, items }
+    const fresh = [{ id: "new-recommendation", title: "Current recommendation", url: "https://example.com/new" }]
+    cacheTable.get.mockResolvedValue(old)
+    cacheTable.getEntire.mockResolvedValue([old])
+    vi.mocked(getters[id]).mockResolvedValue(fresh)
+    expect((await sourceHandler(request("GET", id))).items).toEqual(fresh)
+    expect(await entireHandler(request("POST", id))).toEqual([])
   })
 
   it("refreshes at the configured interval without requiring login or latest", async () => {

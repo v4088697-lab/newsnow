@@ -464,10 +464,10 @@
     "interval": 600000
   },
   "rumble": {
-    "title": "Official updates",
+    "title": "7-day video picks",
     "name": "Rumble",
     "type": "hottest",
-    "desc": "Labeled official Rumble company updates when public recommendations are unavailable.",
+    "desc": "Rumble videos published within 7 days, sorted by public cumulative views when available; otherwise recent Google News indexed video picks. Index dates do not verify upload dates. Up to 10, not a sitewide weekly ranking or seven-day view growth. Official updates are labeled when recommendations are unavailable.",
     "column": "world",
     "home": "https://rumble.com",
     "color": "lime",
@@ -524,10 +524,10 @@
     "interval": 600000
   },
   "paramountplus": {
-    "title": "Releases & updates",
+    "title": "7-day attention risers",
     "name": "Paramount+",
     "type": "hottest",
-    "desc": "Official Paramount+ releases, trailers and availability announcements. Falls back to dated official news aggregation if unavailable.",
+    "desc": "Programs from the official Paramount+ press catalog, ranked by English Wikipedia human page-view growth over the latest complete 7 UTC days versus the previous 7. Up to 10 matched TV series; dates may lag 1–2 days. A sampled public-attention measure, not platform viewing figures. Upcoming shows, incomplete data and zero baselines are excluded. Official updates are labeled when comparisons are unavailable.",
     "column": "world",
     "home": "https://www.paramountplus.com",
     "color": "blue",

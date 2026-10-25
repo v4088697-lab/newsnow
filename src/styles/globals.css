@@ -74,6 +74,7 @@ a, button {
 .dark .page-intro p { color: #b5b5b5; }
 .source-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; width: 100%; margin: 0; padding: 0; list-style: none; }
 .source-grid > li { min-width: 0; }
+.source-grid-deferred > li { content-visibility: auto; contain-intrinsic-block-size: auto 500px; }
 .source-grid .news-card { width: 100%; min-width: 0; }
 .news-card > div:first-child { flex-shrink: 0; }
 .news-card > div:last-child { min-height: 0; }
@@ -105,6 +106,7 @@ article h2 { margin: 0; }
 .rank-diff { opacity: 0.5; transform: translateY(-7px); animation: rank-in 250ms ease-out; }
 @keyframes rank-in { from { opacity: 0; transform: translateY(-15px); } }
 @media (max-width: 767px) {
+  .source-grid-deferred > li { contain-intrinsic-block-size: auto max(340px, min(500px, calc(100svh - 160px))); }
   .news-nav.news-nav { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); width: 100%; overflow: visible; white-space: normal; padding: 6px; }
   .news-nav > button { grid-column: 1 / -1; min-height: 32px; }
   .news-nav > a { display: flex; align-items: center; justify-content: center; min-height: 44px; padding-inline: 6px; text-align: center; overflow-wrap: anywhere; }

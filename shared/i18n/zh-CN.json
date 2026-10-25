@@ -173,5 +173,11 @@
   "7-day topic picks": "近7天话题推荐",
   "Topics: {count}/{total}": "话题：{count}/{total}",
   "Public Quora questions indexed by Google News within 7 days, with up to 10 recent topic recommendations. Index dates are not verified question creation dates. This feed has no engagement counts, so these are discovery picks, not an official Quora popularity ranking.": "Google News 近7天收录的 Quora 公开问题，最多推荐10条近期话题。收录日期并非经核实的问题创建日期。此数据源不提供互动量，因此属于发现推荐，不是 Quora 官方热度排名。",
-  "Public X discussions discovered via Google News, with original posts verified in X's public embeds as published within 7 days. Up to 10, sorted by cumulative public likes. A sampled topic recommendation list, not X's official trending chart or seven-day like growth. Unavailable posts are omitted.": "通过 Google News 发现公开 X 话题，在 X 官方公开嵌入数据中核实原帖发布于近7天内，按公开累计点赞数推荐最多10条。这是抽样话题推荐，不是 X 官方趋势榜或7天点赞增量榜；无法访问的帖子会被排除。"
+  "Public X discussions discovered via Google News, with original posts verified in X's public embeds as published within 7 days. Up to 10, sorted by cumulative public likes. A sampled topic recommendation list, not X's official trending chart or seven-day like growth. Unavailable posts are omitted.": "通过 Google News 发现公开 X 话题，在 X 官方公开嵌入数据中核实原帖发布于近7天内，按公开累计点赞数推荐最多10条。这是抽样话题推荐，不是 X 官方趋势榜或7天点赞增量榜；无法访问的帖子会被排除。",
+  "Rumble videos published within 7 days, sorted by public cumulative views when available; otherwise recent Google News indexed video picks. Index dates do not verify upload dates. Up to 10, not a sitewide weekly ranking or seven-day view growth. Official updates are labeled when recommendations are unavailable.": "优先推荐近7天发布的 Rumble 视频，按可获取的公开累计播放量排序；否则推荐 Google News 近7天收录的视频。收录日期不能证明上传日期。最多10条，不是全站周榜或7天播放增量榜。无法获取推荐时明确标注官方动态。",
+  "7-day attention risers": "近7天关注度上升节目",
+  "Wikipedia attention": "维基百科关注度",
+  "+{percent}% vs previous 7 days": "较前7天 +{percent}%",
+  "{count} page views": "{count} 次页面浏览",
+  "Programs from the official Paramount+ press catalog, ranked by English Wikipedia human page-view growth over the latest complete 7 UTC days versus the previous 7. Up to 10 matched TV series; dates may lag 1–2 days. A sampled public-attention measure, not platform viewing figures. Upcoming shows, incomplete data and zero baselines are excluded. Official updates are labeled when comparisons are unavailable.": "节目来自 Paramount+ 官方媒体目录，按英文维基百科最近完整7个UTC日相较前7日的真人页面浏览量增长排序。最多10个匹配的电视剧；日期可能延迟1至2天。这是抽样公开关注度，不是平台播放量。排除未播出、数据不完整和基期为零的节目；无法比较时明确标注官方动态。"
 }

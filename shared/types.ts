@@ -95,6 +95,8 @@ export interface NewsItem {
     quora?: { indexedAt: number }
     pinterest?: { createdAt: number, repins?: number, aggregateSaves?: number }
     facebook?: { indexedAt: number, reactions?: number, views?: number }
+    rumble?: { kind: "published" | "indexed" | "official", date?: number, views?: number }
+    paramount?: { kind: "riser" | "official", article?: string, start?: number, end?: number, previous?: number, current?: number, growth?: number }
     instagram?: { indexedAt: number, likes: number }
     youtube?: { expiresAt: number, views: number }
     image?: string

@@ -1,5 +1,5 @@
-import { afterEach, describe, expect, it, vi } from "vitest"
-import { LANGUAGE_KEY, dictionaries, languages, persistLocale, resolveLocale, savedLocale, translate } from "../shared/i18n"
+import { afterEach, beforeAll, describe, expect, it, vi } from "vitest"
+import { LANGUAGE_KEY, dictionaries, languages, loadLocale, persistLocale, resolveLocale, savedLocale, translate } from "../shared/i18n"
 import { localizeAnnotation, sourceDescription } from "../shared/i18n/content"
 import { sources } from "../shared/sources"
 import { metadata } from "../shared/metadata"
@@ -7,6 +7,7 @@ import { relativeTime } from "../shared/utils"
 import { getInstallInstructions } from "../shared/page-actions"
 
 describe("interface languages", () => {
+  beforeAll(() => Promise.all(languages.map(language => loadLocale(language.code))))
   afterEach(() => vi.useRealTimers())
 
   it("defaults to English for missing, unsupported or inaccessible saved preferences", () => {
@@ -20,11 +21,11 @@ describe("interface languages", () => {
 
   it("supports twelve complete dictionaries with matching interpolation parameters", () => {
     expect(languages).toHaveLength(12)
-    const keys = Object.keys(dictionaries.en).sort()
+    const keys = Object.keys(dictionaries.en!).sort()
     for (const language of languages) {
-      expect(Object.keys(dictionaries[language.code]).sort()).toEqual(keys)
+      expect(Object.keys(dictionaries[language.code]!).sort()).toEqual(keys)
       for (const key of keys) {
-        const message = dictionaries[language.code][key]
+        const message = dictionaries[language.code]![key]
         expect(message.trim()).not.toBe("")
         expect((message.match(/\{\w+\}/g) ?? []).sort()).toEqual((key.match(/\{\w+\}/g) ?? []).sort())
       }
@@ -35,7 +36,7 @@ describe("interface languages", () => {
     const titles = [...Object.values(metadata).map(column => column.name), ...Object.values(sources).map(source => source.title).filter((title): title is string => !!title && title !== "Win11")]
     const help = [getInstallInstructions("iPhone", 5), getInstallInstructions("Android", 5), getInstallInstructions("Windows", 0), getInstallInstructions("Macintosh", 0)]
     for (const language of languages) {
-      for (const message of [...titles, ...help]) expect(dictionaries[language.code][message]).toBeDefined()
+      for (const message of [...titles, ...help]) expect(dictionaries[language.code]![message]).toBeDefined()
     }
   })
 

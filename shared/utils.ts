@@ -1,3 +1,5 @@
+import { relativeTimeFormat, shortDateFormat } from "./intl"
+
 export function relativeTime(timestamp: string | number, locale = "en") {
   if (!timestamp) return undefined
   const date = new Date(timestamp)
@@ -7,18 +9,17 @@ export function relativeTime(timestamp: string | number, locale = "en") {
   const diffInSeconds = (now.getTime() - date.getTime()) / 1000
   const diffInMinutes = diffInSeconds / 60
   const diffInHours = diffInMinutes / 60
-  const format = new Intl.RelativeTimeFormat(locale, { numeric: "auto" })
 
   if (diffInSeconds < 60) {
-    return locale === "en" ? "just now" : format.format(0, "second")
+    return locale === "en" ? "just now" : relativeTimeFormat(locale).format(0, "second")
   } else if (diffInMinutes < 60) {
     const minutes = Math.floor(diffInMinutes)
-    return locale === "en" ? `${minutes} min ago` : format.format(-minutes, "minute")
+    return locale === "en" ? `${minutes} min ago` : relativeTimeFormat(locale).format(-minutes, "minute")
   } else if (diffInHours < 24) {
     const hours = Math.floor(diffInHours)
-    return locale === "en" ? `${hours} hr ago` : format.format(-hours, "hour")
+    return locale === "en" ? `${hours} hr ago` : relativeTimeFormat(locale).format(-hours, "hour")
   } else {
-    return new Intl.DateTimeFormat(locale, { month: "short", day: "numeric" }).format(date)
+    return shortDateFormat(locale).format(date)
   }
 }
 

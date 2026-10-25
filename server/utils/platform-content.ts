@@ -79,10 +79,10 @@ export async function fetchOfficialFeed(url: string, domains: string[], label: s
   return requireItems(parseInternationalFeed(xml, domains).map(item => ({ ...item, extra: { info: label } })))
 }
 
-export async function fetchOfficialAggregated(query: string, domains: string[], label: string) {
+export async function fetchOfficialAggregated(query: string, domains: string[], label: string, timeout = 5000) {
   const url = new URL("https://news.google.com/rss/search")
   url.search = new URLSearchParams({ q: query, hl: "en-US", gl: "US", ceid: "US:en" }).toString()
-  const xml = await myFetch<string, "text">(url.href, { responseType: "text", retry: 0, timeout: 5000 })
+  const xml = await myFetch<string, "text">(url.href, { responseType: "text", retry: 0, timeout })
   return requireItems(parseInternationalFeed(xml, domains, true).map(item => ({
     ...item,
     extra: { info: `${label}${item.pubDate ? ` · ${new Date(item.pubDate).toISOString().slice(0, 10)}` : ""} · Google News` },

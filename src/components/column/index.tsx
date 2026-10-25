@@ -1,11 +1,14 @@
 import type { FixedColumnID } from "@shared/types"
 import { localizedPageCopy } from "@shared/seo"
+import { Suspense, lazy } from "react"
 import { NavBar } from "../navbar"
-import { Dnd } from "./dnd"
+import { SourceGrid } from "./grid"
 import { SourceDirectory } from "./source-directory"
 import { currentColumnIDAtom } from "~/atoms"
 import { useLocale } from "~/i18n"
 import { usePageSeo } from "~/hooks/usePageSeo"
+
+const SortableGrid = lazy(() => import("./dnd").then(module => ({ default: module.Dnd })))
 
 export function Column({ id }: { id: FixedColumnID }) {
   const { locale } = useLocale()
@@ -26,7 +29,9 @@ export function Column({ id }: { id: FixedColumnID }) {
         <h1 id="page-heading">{copy.heading}</h1>
         <p>{copy.description}</p>
       </section>
-      {id === currentColumnID && <Dnd />}
+      {id === currentColumnID && (id === "focus"
+        ? <Suspense fallback={<SourceGrid />}><SortableGrid /></Suspense>
+        : <SourceGrid />)}
       <SourceDirectory page={page} />
     </>
   )

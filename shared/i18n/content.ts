@@ -1,3 +1,4 @@
+import { numberFormat, relativeTimeFormat } from "../intl"
 import type { Locale } from "./index"
 import { translate } from "./index"
 
@@ -18,7 +19,9 @@ export function sourceDescription(id: string, original: string | undefined, loca
   if (id === "pinterest") text = "Public image Pins created within the past 7 days, discovered through Google News and verified on Pinterest. Aggregate saves rank first, then repins, then creation date. Aggregate saves are not this individual Pin's saves. Up to 10; not a sitewide weekly ranking or seven-day save growth. Pin dates can reflect a recent save of older artwork. Videos, sponsored Pins and unverified dates are omitted."
   if (id === "x") text = "Public X discussions discovered via Google News, with original posts verified in X's public embeds as published within 7 days. Up to 10, sorted by cumulative public likes. A sampled topic recommendation list, not X's official trending chart or seven-day like growth. Unavailable posts are omitted."
   if (id === "quora") text = "Public Quora questions indexed by Google News within 7 days, with up to 10 recent topic recommendations. Index dates are not verified question creation dates. This feed has no engagement counts, so these are discovery picks, not an official Quora popularity ranking."
+  if (id === "rumble") text = "Rumble videos published within 7 days, sorted by public cumulative views when available; otherwise recent Google News indexed video picks. Index dates do not verify upload dates. Up to 10, not a sitewide weekly ranking or seven-day view growth. Official updates are labeled when recommendations are unavailable."
   if (id === "netflix") text = "Latest complete Netflix global English TV week. The chart date is shown; regional availability may vary."
+  if (id === "paramountplus") text = original
   return `${translate(locale, text)} ${translate(locale, "Original headlines are preserved.")}`
 }
 
@@ -26,12 +29,12 @@ export function localizeAnnotation(locale: Locale, text: string | false | undefi
   if (!text) return undefined
   if (locale === "en") return text
   const t = (key: string, params?: Record<string, string | number>) => translate(locale, key, params)
-  const number = (value: string) => Number(value.replace(/,/g, "")).toLocaleString(locale)
+  const number = (value: string) => numberFormat(locale).format(Number(value.replace(/,/g, "")))
   return text.split(" · ").map((segment) => {
     const uploaded = /^Uploaded (\d+)([smhd]) ago$/.exec(segment)
     if (uploaded) {
       const unit = { s: "second", m: "minute", h: "hour", d: "day" } as const
-      const time = new Intl.RelativeTimeFormat(locale).format(-Number(uploaded[1]), unit[uploaded[2] as keyof typeof unit])
+      const time = relativeTimeFormat(locale, "always").format(-Number(uploaded[1]), unit[uploaded[2] as keyof typeof unit])
       return t("Uploaded {time}", { time })
     }
     if (/^(?:Published|Google News date): /.test(segment)) {
@@ -39,6 +42,10 @@ export function localizeAnnotation(locale: Locale, text: string | false | undefi
       return `${t(key)}: ${value.join(": ")}`
     }
     const gain = /^↑(\d+) places$/.exec(segment)
+    const attentionGain = /^\+([\d.]+)% vs previous 7 days$/.exec(segment)
+    if (attentionGain) return t("+{percent}% vs previous 7 days", { percent: number(attentionGain[1]) })
+    const pageViews = /^([\d,]+) page views$/.exec(segment)
+    if (pageViews) return t("{count} page views", { count: number(pageViews[1]) })
     if (gain) return `↑${number(gain[1])}`
     const rank = /^(Category|Rank) #(\d+)$/.exec(segment)
     if (rank) return t(rank[1] === "Category" ? "Category #{rank}" : "Rank #{rank}", { rank: number(rank[2]) })

@@ -12,6 +12,8 @@ import { isCurrentFacebookCache } from "#/utils/facebook-posts"
 import { currentPinterestItems, isCurrentPinterestCache, mergePinterestPins } from "#/utils/pinterest-content"
 import { currentQuoraItems, isCurrentQuoraCache, selectQuoraTopics } from "#/utils/quora-topics"
 import { currentXItems, isCurrentXCache, selectXTopics } from "#/utils/x-topics"
+import { isCurrentRumbleCache } from "#/utils/rumble-content"
+import { isCurrentParamountCache } from "#/utils/paramount-risers"
 
 const info = {
   LICENCE: "MIT",
@@ -40,7 +42,7 @@ export default defineEventHandler(async (event): Promise<SourceResponse> => {
       if (cache && id === "pinterest") cache = { ...cache, items: currentPinterestItems(cache.items, now) }
       if (cache && id === "quora") cache = { ...cache, items: currentQuoraItems(cache.items, now) }
       if (cache && id === "x") cache = { ...cache, items: currentXItems(cache.items, now) }
-      if (cache && (!isCurrentTikTokCache(cache) || !isCurrentYouTubeCache(cache, now) || !isCurrentInstagramCache(cache, now) || !isCurrentFacebookCache(cache, now) || !isCurrentPinterestCache(cache, now) || !isCurrentQuoraCache(cache, now) || !isCurrentXCache(cache, now))) cache = undefined
+      if (cache && (!isCurrentTikTokCache(cache) || !isCurrentYouTubeCache(cache, now) || !isCurrentInstagramCache(cache, now) || !isCurrentFacebookCache(cache, now) || !isCurrentPinterestCache(cache, now) || !isCurrentQuoraCache(cache, now) || !isCurrentXCache(cache, now) || !isCurrentRumbleCache(cache, now) || !isCurrentParamountCache(cache, now))) cache = undefined
       // Automatic requests obey the source interval, without an extra 30-minute cache floor.
       const interval = ["pinterest", "quora", "x"].includes(id) && (cache?.items.length ?? 0) < 10 ? 60000 : sources[id].interval
       if (cache && now - cache.updated < interval) {

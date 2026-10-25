@@ -1,13 +1,14 @@
 import { readFileSync } from "node:fs"
 import { load } from "cheerio"
-import { describe, expect, it } from "vitest"
+import { beforeAll, describe, expect, it } from "vitest"
 import { renderSeoPage } from "../tools/seo-pages"
 import { canonicalPath, localizedPageCopy, pageCopy, pageForPath, pageSources, publicPaths, siteOrigin } from "../shared/seo"
-import { languages } from "../shared/i18n"
+import { languages, loadLocale } from "../shared/i18n"
 
 const template = readFileSync("index.html", "utf8")
 
 describe("crawlable page documents", () => {
+  beforeAll(() => Promise.all(languages.map(language => loadLocale(language.code))))
   it("renders distinct route metadata and readable content without JavaScript", () => {
     const titles = new Set<string>()
     for (const path of publicPaths) {

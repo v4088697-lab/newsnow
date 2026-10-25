@@ -2,7 +2,7 @@ import { localizeAnnotation, sourceDescription } from "@shared/i18n/content"
 import type { NewsItem, SourceID } from "@shared/types"
 import { useQuery } from "@tanstack/react-query"
 import { useWindowSize } from "react-use"
-import { forwardRef, useImperativeHandle } from "react"
+import { forwardRef, useImperativeHandle, useLayoutEffect } from "react"
 import { OverlayScrollbar } from "../common/overlay-scrollbar"
 import { useLocale } from "~/i18n"
 import { sourceQueryOptions } from "~/utils/source-query"
@@ -25,6 +25,7 @@ interface NewsCardProps {
 
 export const CardWrapper = forwardRef<HTMLElement, ItemsProps>(({ id, isDragging, setHandleRef, immediate = false, style, ...props }, dndRef) => {
   const ref = useRef<HTMLElement>(null)
+  const restoreFocus = useRef(false)
 
   const [inView, setInView] = useState(immediate)
   useEffect(() => {
@@ -44,10 +45,21 @@ export const CardWrapper = forwardRef<HTMLElement, ItemsProps>(({ id, isDragging
   }, [inView])
 
   useImperativeHandle(dndRef, () => ref.current!)
+  useLayoutEffect(() => {
+    if (inView && restoreFocus.current) {
+      restoreFocus.current = false
+      ref.current?.querySelector<HTMLAnchorElement>("a")?.focus()
+    }
+  }, [inView])
 
   return (
     <article
       ref={ref}
+      aria-busy={!inView}
+      onFocusCapture={() => {
+        if (!inView) restoreFocus.current = true
+        setInView(true)
+      }}
       className={$(
         "news-card flex flex-col h-500px rounded-2xl p-4 cursor-default",
         // "backdrop-blur-5",
@@ -61,10 +73,27 @@ export const CardWrapper = forwardRef<HTMLElement, ItemsProps>(({ id, isDragging
       }}
       {...props}
     >
-      <NewsCard id={id} active={inView} setHandleRef={setHandleRef} />
+      {inView ? <NewsCard id={id} active setHandleRef={setHandleRef} /> : <CardPreview id={id} />}
     </article>
   )
 })
+
+function CardPreview({ id }: { id: SourceID }) {
+  const { locale, t } = useLocale()
+  const description = sourceDescription(id, sources[id].desc, locale)
+  return (
+    <>
+      <div className="flex items-center gap-2 mx-2 mb-2 min-w-0">
+        <a href={sources[id].home} target="_blank" rel="noopener noreferrer" aria-label={`${sources[id].name} — ${t("Open original source")}`} title={description} className="w-8 h-8 rounded-full bg-cover shrink-0" style={{ backgroundImage: `url(/icons/${id.split("-")[0]}.png)` }} />
+        <div className="min-w-0">
+          <h2 className="text-xl font-bold break-words leading-tight"><bdi>{sources[id].name}</bdi></h2>
+          <span className="text-xs op-70">{t("Loading...")}</span>
+        </div>
+      </div>
+      <div className="h-full p-2 min-h-0 rounded-2xl bg-base bg-op-70!" />
+    </>
+  )
+}
 
 function NewsCard({ id, active, setHandleRef }: NewsCardProps) {
   const { locale, t } = useLocale()
@@ -129,21 +158,25 @@ function NewsCard({ id, active, setHandleRef }: NewsCardProps) {
         </div>
       </div>
 
-      <OverlayScrollbar
-        className={$([
-          "h-full p-2 overflow-y-auto rounded-2xl bg-base bg-op-70!",
-          isFetching && `animate-pulse`,
-          `sprinkle-${sources[id].color}`,
-        ])}
-        options={{
-          overflow: { x: "hidden" },
-        }}
-        defer
-      >
-        <div className={$("transition-opacity-500", isFetching && "op-20")}>
-          {active && !!data?.items?.length && (["pinterest", "instagram", "facebook"].includes(id) ? <VisualList id={id} items={data.items} /> : sources[id].type === "hottest" ? <NewsListHot items={data.items} description={description} /> : <NewsListTimeLine items={data.items} description={description} />)}
-        </div>
-      </OverlayScrollbar>
+      {active
+        ? (
+            <OverlayScrollbar
+              className={$([
+                "h-full p-2 overflow-y-auto rounded-2xl bg-base bg-op-70!",
+                isFetching && `animate-pulse`,
+                `sprinkle-${sources[id].color}`,
+              ])}
+              options={{
+                overflow: { x: "hidden" },
+              }}
+              defer
+            >
+              <div className={$("transition-opacity-500", isFetching && "op-20")}>
+                {active && !!data?.items?.length && (["pinterest", "instagram", "facebook"].includes(id) ? <VisualList id={id} items={data.items} /> : sources[id].type === "hottest" ? <NewsListHot items={data.items} description={description} /> : <NewsListTimeLine items={data.items} description={description} />)}
+              </div>
+            </OverlayScrollbar>
+          )
+        : <div className="h-full p-2 min-h-0 overflow-y-auto rounded-2xl bg-base bg-op-70!" />}
     </>
   )
 }

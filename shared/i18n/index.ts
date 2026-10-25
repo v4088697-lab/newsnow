@@ -1,15 +1,4 @@
 import en from "./en.json"
-import zh from "./zh-CN.json"
-import ja from "./ja.json"
-import de from "./de.json"
-import fr from "./fr.json"
-import ar from "./ar.json"
-import es from "./es.json"
-import pt from "./pt.json"
-import it from "./it.json"
-import ko from "./ko.json"
-import ru from "./ru.json"
-import tr from "./tr.json"
 
 export const languages = [
   { code: "en", label: "English", short: "EN" },
@@ -26,14 +15,43 @@ export const languages = [
   { code: "tr", label: "Türkçe", short: "TR" },
 ] as const
 export type Locale = typeof languages[number]["code"]
-export const dictionaries: Record<Locale, Record<string, string>> = { en, "zh-CN": zh, ja, de, fr, ar, es, pt, it, ko, ru, tr }
+export const dictionaries: Partial<Record<Locale, Record<string, string>>> = { en }
+const loaders = {
+  "zh-CN": () => import("./zh-CN.json"),
+  "ja": () => import("./ja.json"),
+  "de": () => import("./de.json"),
+  "fr": () => import("./fr.json"),
+  "ar": () => import("./ar.json"),
+  "es": () => import("./es.json"),
+  "pt": () => import("./pt.json"),
+  "it": () => import("./it.json"),
+  "ko": () => import("./ko.json"),
+  "ru": () => import("./ru.json"),
+  "tr": () => import("./tr.json"),
+}
+const pending = new Map<Locale, Promise<void>>()
+
+export function loadLocale(locale: Locale): Promise<void> {
+  if (dictionaries[locale]) return Promise.resolve()
+  const existing = pending.get(locale)
+  if (existing) return existing
+  const request = loaders[locale as keyof typeof loaders]().then((module) => {
+    dictionaries[locale] = module.default
+    pending.delete(locale)
+  }).catch((error) => {
+    pending.delete(locale)
+    throw error
+  })
+  pending.set(locale, request)
+  return request
+}
 export const LANGUAGE_KEY = "newsnow-language"
 export const defaultLocale: Locale = "en"
 export function resolveLocale(value: unknown): Locale {
   return languages.find(item => item.code === value)?.code ?? defaultLocale
 }
 export function translate(locale: Locale, text: string, params: Record<string, string | number> = {}) {
-  return (dictionaries[locale][text] ?? text).replace(/\{(\w+)\}/g, (match, key) => String(params[key] ?? match))
+  return (dictionaries[locale]?.[text] ?? en[text as keyof typeof en] ?? text).replace(/\{(\w+)\}/g, (match, key) => String(params[key] ?? match))
 }
 export function savedLocale(storage?: Pick<Storage, "getItem">): Locale {
   try {
