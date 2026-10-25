@@ -76,6 +76,12 @@ a, button {
 .source-grid > li { min-width: 0; }
 .source-grid-deferred > li { content-visibility: auto; contain-intrinsic-block-size: auto 500px; }
 .source-grid .news-card { width: 100%; min-width: 0; }
+.source-grid > li.sponsored-banner-slot { grid-column: 1 / -1; content-visibility: visible; contain-intrinsic-block-size: none; }
+.sponsored-banner { margin: 0; width: 100%; }
+.sponsored-banner-label { margin: 0 0 0.4rem; text-align: end; font-size: 0.6875rem; line-height: 1.4; color: #737373; }
+.dark .sponsored-banner-label { color: #aaa; }
+.sponsored-banner a { display: block; overflow: hidden; border-radius: 12px; }
+.sponsored-banner img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 1; }
 .news-card > div:first-child { flex-shrink: 0; }
 .news-card > div:last-child { min-height: 0; }
 @media (min-width: 640px) {

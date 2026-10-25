@@ -1,4 +1,5 @@
 import type { PropsWithChildren } from "react"
+import { Fragment } from "react"
 import type { SourceID } from "@shared/types"
 import type { BaseEventPayload, ElementDragType } from "@atlaskit/pragmatic-drag-and-drop/dist/types/internal-types"
 import { extractClosestEdge } from "@atlaskit/pragmatic-drag-and-drop-hitbox/closest-edge"
@@ -10,12 +11,14 @@ import { DndContext } from "../common/dnd"
 import { useSortable } from "../common/dnd/useSortable"
 import type { ItemsProps } from "./card"
 import { CardWrapper } from "./card"
+import { AdvertisementSlot, useFirstRowSize } from "./advertisement"
 import { useLocale } from "~/i18n"
 import { currentColumnIDAtom, currentSourcesAtom } from "~/atoms"
 
 const AnimationDuration = 200
 export function Dnd() {
   const [items, setItems] = useAtom(currentSourcesAtom)
+  const firstRowSize = useFirstRowSize()
   const currentColumnID = useAtomValue(currentColumnIDAtom)
   const sortable = currentColumnID === "focus"
   const [parent] = useAutoAnimate({ duration: AnimationDuration })
@@ -27,9 +30,10 @@ export function Dnd() {
     <DndWrapper items={items} setItems={setItems} sortable={sortable}>
       <ol className="source-grid" ref={parent}>
         {items.map((id, index) => (
-          <li key={id}>
-            <SortableCardWrapper id={id} sortable={sortable} immediate={index < 2} />
-          </li>
+          <Fragment key={id}>
+            <li><SortableCardWrapper id={id} sortable={sortable} immediate={index < 2} /></li>
+            {index === Math.min(firstRowSize, items.length) - 1 && <AdvertisementSlot />}
+          </Fragment>
         ))}
       </ol>
     </DndWrapper>
