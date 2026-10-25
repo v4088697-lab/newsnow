@@ -9,12 +9,10 @@ Its placement does not add a source ID or a draggable item.
 The image links exactly to `https://kailashenergy.com/vullnetdemiri`, opening
 in a new tab with `sponsored noopener noreferrer`. A localized Sponsored feature
 label and image description are provided. The original asset has no added
-text or overlays. The banner frame remains 6:1, keeping its full horizontal
-span and reduced display height. The complete 3:1 photograph is scaled down
-proportionally and centered with `object-fit: contain`; dark wood-colored
-side areas fill the remaining space. The bracelet and artwork are not cropped
-or distorted. Responsive image sizes reflect the photograph's actual width
-within the frame rather than downloading for the wider surrounding area.
+text or overlays. The banner frame uses the photograph's original 3:1 ratio,
+spanning the content grid. The complete photograph is displayed proportionally
+with `object-fit: contain`, without side fills, cropping or distortion.
+Responsive image sizes reflect the full-width photograph.
 
 The original image is 2172×724 (3:1), approximately 3.4 MB. Responsive WebP
 assets preserve that ratio at 480, 960 and 1920 pixels wide, approximately
