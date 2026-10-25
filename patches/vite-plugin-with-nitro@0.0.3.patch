@@ -1,0 +1,56 @@
+diff --git a/dist/index.cjs b/dist/index.cjs
+index ba04878ebce00a93cc9b856496bad2c5752871fa..56aa6f480d4b9eb39404b15fa3dd6770e26f4584 100644
+--- a/dist/index.cjs
++++ b/dist/index.cjs
+@@ -99,15 +99,18 @@ function nitro(nitroOptions) {
+       if (!isServe)
+         return;
+       const devConfig = defu__default({
+-        dev: true,
+-        routeRules: {
+-          "/**": { proxy: `${apiPrefix}/**` }
+-        }
++        dev: true
+       }, nitroConfig);
+       const nitro2 = await nitropack.createNitro(devConfig);
+       const server = nitropack.createDevServer(nitro2);
+       await nitropack.build(nitro2);
+-      viteServer.middlewares.use(apiPrefix, h3.toNodeListener(server.app));
++      const listener = h3.toNodeListener(server.app);
++      viteServer.middlewares.use((req, res, next) => {
++        const path = (req.url || "").split("?")[0];
++        if (path !== apiPrefix && !path.startsWith(`${apiPrefix}/`)) return next();
++        return listener(req, res);
++      });
++      viteServer.httpServer?.once("close", () => nitro2.close());
+       viteServer.httpServer?.once("listening", () => {
+         const { host, port } = viteServer.config.server;
+         process__default.env.NITRO_HOST = host ? String(host) : "localhost";
+diff --git a/dist/index.mjs b/dist/index.mjs
+index fd448b1abe21dd966a2210914e80e59b6e9e4aed..8f79cafa37b9a044d8b38430e958942fb3f95cbe 100644
+--- a/dist/index.mjs
++++ b/dist/index.mjs
+@@ -91,15 +91,18 @@ function nitro(nitroOptions) {
+       if (!isServe)
+         return;
+       const devConfig = defu({
+-        dev: true,
+-        routeRules: {
+-          "/**": { proxy: `${apiPrefix}/**` }
+-        }
++        dev: true
+       }, nitroConfig);
+       const nitro2 = await createNitro(devConfig);
+       const server = createDevServer(nitro2);
+       await build(nitro2);
+-      viteServer.middlewares.use(apiPrefix, toNodeListener(server.app));
++      const listener = toNodeListener(server.app);
++      viteServer.middlewares.use((req, res, next) => {
++        const path = (req.url || "").split("?")[0];
++        if (path !== apiPrefix && !path.startsWith(`${apiPrefix}/`)) return next();
++        return listener(req, res);
++      });
++      viteServer.httpServer?.once("close", () => nitro2.close());
+       viteServer.httpServer?.once("listening", () => {
+         const { host, port } = viteServer.config.server;
+         process.env.NITRO_HOST = host ? String(host) : "localhost";

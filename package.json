@@ -85,6 +85,7 @@
     "lint-staged": "^16.2.7",
     "mlly": "^1.8.0",
     "mockdate": "^3.0.5",
+    "nitropack": "^2.13.5",
     "pnpm-patch-i": "^0.5.6",
     "rollup": "^4.59.0",
     "simple-git-hooks": "^2.13.1",
@@ -103,7 +104,8 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "dayjs": "patches/dayjs.patch"
+      "dayjs": "patches/dayjs.patch",
+      "vite-plugin-with-nitro@0.0.3": "patches/vite-plugin-with-nitro@0.0.3.patch"
     },
     "onlyBuiltDependencies": [
       "@napi-rs/pinyin",
@@ -117,8 +119,7 @@
       "workerd"
     ],
     "overrides": {
-      "vite-plugin-with-nitro>h3": "npm:h3-nightly@1.15.4-20250730-094032-325a62b",
-      "nitro-go>h3": "npm:h3-nightly@1.15.4-20250730-094032-325a62b",
+      "vite-plugin-with-nitro>h3": "^1.15.11",
       "@babel/core": "^7.29.6",
       "@babel/plugin-transform-modules-systemjs": "^7.29.4",
       "@fastify/busboy": "^3.2.2",
@@ -129,7 +130,7 @@
       "brace-expansion@^2": "^2.1.4",
       "brace-expansion@^5": "^5.0.9",
       "browserslist": "^4.28.7",
-      "esbuild@^0.27": "^0.28.1",
+      "esbuild": "^0.28.2",
       "fast-uri": "^3.1.9",
       "flatted": "^3.4.2",
       "glob@^10": "^10.5.0",
@@ -172,7 +173,7 @@
     "cross-spawn": ">=7.0.6",
     "dayjs": "1.11.13",
     "db0": "^0.3.4",
-    "nitropack": "npm:nitro-go@0.0.3",
+    "nitropack": "^2.13.5",
     "picomatch": "^4.0.4",
     "react": "^19.0.4",
     "vite": "^7.3.7"

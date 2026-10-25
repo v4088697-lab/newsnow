@@ -7,6 +7,9 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "node",
+    server: {
+      deps: { inline: ["vite-plugin-with-nitro"] },
+    },
     include: ["server/**/*.test.ts", "shared/**/*.test.ts", "src/**/*.test.ts", "test/**/*.test.ts"],
   },
   resolve: {
