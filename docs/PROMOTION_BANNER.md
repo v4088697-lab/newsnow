@@ -8,8 +8,9 @@ Its placement does not add a source ID or a draggable item.
 
 The image links exactly to `https://kailashenergy.com/vullnetdemiri`, opening
 in a new tab with `sponsored noopener noreferrer`. A localized Sponsored feature
-label and image description are provided. The image itself is not altered
-with text, overlays or a crop.
+label and image description are provided. The original asset has no added
+text or overlays. It is displayed in a centered 6:1 crop, keeping the full
+horizontal span while halving the previous 3:1 banner's display height.
 
 The original image is 2172×724 (3:1), approximately 3.4 MB. Responsive WebP
 assets preserve that ratio at 480, 960 and 1920 pixels wide, approximately
