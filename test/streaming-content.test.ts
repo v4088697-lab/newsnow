@@ -38,7 +38,7 @@ describe("streaming platform replacements", () => {
     ["Paramount+", paramountplus, "https://www.paramountpressexpress.com"],
     ["Peacock", peacock, "https://www.peacocktv.com"],
   ] as const)("labels %s official aggregation when the direct page is unavailable", async (_, getter, publisher) => {
-    if (getter === paramountplus) fetchMock.mockRejectedValueOnce(new Error("Catalog unavailable"))
+    fetchMock.mockRejectedValueOnce(new Error(getter === paramountplus ? "Catalog unavailable" : "Weekly chart unavailable"))
     fetchMock.mockRejectedValueOnce(new Error("Unavailable")).mockResolvedValueOnce(`<rss><channel><item>
       <title>New release</title><link>https://news.google.com/rss/articles/release</link>
       <source url="${publisher}">Official publisher</source><pubDate>Tue, 20 Oct 2026 12:00:00 GMT</pubDate>

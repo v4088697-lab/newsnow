@@ -6,7 +6,7 @@ import sourceHandler from "../server/api/s/index"
 import { getters } from "#/getters"
 import { getCacheTable } from "#/database/cache"
 
-vi.mock("#/getters", () => ({ getters: { cnn: vi.fn(), youtube: vi.fn(), instagram: vi.fn(), facebook: vi.fn(), pinterest: vi.fn(), quora: vi.fn(), x: vi.fn(), rumble: vi.fn(), paramountplus: vi.fn() } }))
+vi.mock("#/getters", () => ({ getters: { cnn: vi.fn(), youtube: vi.fn(), instagram: vi.fn(), facebook: vi.fn(), pinterest: vi.fn(), quora: vi.fn(), x: vi.fn(), rumble: vi.fn(), paramountplus: vi.fn(), peacock: vi.fn() } }))
 vi.mock("#/database/cache", () => ({ getCacheTable: vi.fn() }))
 
 describe("source cache refresh", () => {
@@ -36,7 +36,7 @@ describe("source cache refresh", () => {
     expect(getters.cnn).not.toHaveBeenCalled()
   })
 
-  it.each(["rumble", "paramountplus"] as const)("replaces legacy %s news in single requests and bulk hydration", async (id) => {
+  it.each(["rumble", "paramountplus", "peacock"] as const)("replaces legacy %s news in single requests and bulk hydration", async (id) => {
     const old = { id, updated: now - 60000, items }
     const fresh = [{ id: "new-recommendation", title: "Current recommendation", url: "https://example.com/new" }]
     cacheTable.get.mockResolvedValue(old)

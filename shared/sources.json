@@ -534,10 +534,10 @@
     "interval": 600000
   },
   "peacock": {
-    "title": "Popular & recommended",
+    "title": "7-day popular shows",
     "name": "Peacock",
     "type": "hottest",
-    "desc": "Popular and recommended content from the official Peacock blog, with labeled official updates if unavailable. Not a platform viewing chart.",
+    "desc": "Latest published complete seven-day Peacock US chart from Showlabs, filtered to TV series, with up to 10 programs in source rank order. Dates and original ranks are shown; publication is delayed, not a rolling last-seven-day feed or an official Peacock chart. Viewing counts are not public. Unavailable or stale charts fall back to labeled official updates.",
     "column": "world",
     "home": "https://www.peacocktv.com",
     "color": "yellow",

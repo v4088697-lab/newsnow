@@ -282,10 +282,10 @@ function NewsListHot({ items, description }: { items: NewsItem[], description?: 
             </span>
             {!!item.extra?.diff && <DiffNumber diff={item.extra.diff} />}
             <span className="self-start line-height-none flex-1 min-w-0">
-              <bdi dir="auto" className={$("me-2 text-base", locale === "ar" && "block text-start")}>
+              <bdi dir="auto" className={$("me-2 text-base", (locale === "ar" || item.extra?.peacock) && "block text-start")}>
                 {item.title}
               </bdi>
-              <span className={$("text-xs text-neutral-400/80 align-middle", locale === "ar" ? "block mt-1 text-start" : "truncate")}>
+              <span className={$("text-xs text-neutral-400/80 align-middle", item.extra?.peacock ? "block mt-1 text-start break-words" : locale === "ar" ? "block mt-1 text-start" : "truncate")}>
                 <ExtraInfo item={item} />
               </span>
             </span>
