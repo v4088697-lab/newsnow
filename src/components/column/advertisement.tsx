@@ -30,7 +30,7 @@ export function AdvertisementSlot() {
           <img
             src="/assets/promotions/kailash-bracelet-960.d76e60343a70.webp"
             srcSet="/assets/promotions/kailash-bracelet-480.0c615ffcd9db.webp 480w, /assets/promotions/kailash-bracelet-960.d76e60343a70.webp 960w, /assets/promotions/kailash-bracelet-1920.0f2e71f3bff8.webp 1920w"
-            sizes="(min-width: 1440px) 1280px, calc(100vw - 32px)"
+            sizes="(min-width: 1440px) 640px, calc(50vw - 16px)"
             width={2172}
             height={724}
             alt={t("Amber-colored skull-bead bracelet on a wooden table")}
