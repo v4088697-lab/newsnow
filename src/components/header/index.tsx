@@ -62,9 +62,6 @@ export function Header() {
             <span className="masthead-period">.</span>
           </span>
         </Link>
-        <a target="_blank" rel="noopener noreferrer" href={`${Homepage}/releases/tag/v${Version}`} className="masthead-version">
-          {`v${Version}`}
-        </a>
       </div>
       <div className="masthead-nav justify-self-center">
         <div className="hidden lg:(inline-block)">
