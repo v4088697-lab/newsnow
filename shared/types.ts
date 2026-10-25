@@ -98,6 +98,7 @@ export interface NewsItem {
     rumble?: { kind: "published" | "indexed" | "official", date?: number, views?: number }
     paramount?: { kind: "riser" | "official", article?: string, start?: number, end?: number, previous?: number, current?: number, growth?: number }
     peacock?: { kind: "weekly" | "official", start?: number, end?: number, rank?: number }
+    disneyplus?: { kind: "weekly" | "official", start?: number, end?: number, rank?: number }
     instagram?: { indexedAt: number, likes: number }
     youtube?: { expiresAt: number, views: number }
     image?: string

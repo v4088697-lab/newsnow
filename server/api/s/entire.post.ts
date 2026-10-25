@@ -13,6 +13,7 @@ import { currentXItems, isCurrentXCache } from "#/utils/x-topics"
 import { isCurrentRumbleCache } from "#/utils/rumble-content"
 import { isCurrentParamountCache } from "#/utils/paramount-risers"
 import { isCurrentPeacockCache } from "#/utils/peacock-weekly"
+import { isCurrentDisneyCache } from "#/utils/disney-weekly"
 
 export default defineEventHandler(async (event) => {
   try {
@@ -22,7 +23,7 @@ export default defineEventHandler(async (event) => {
     if (ids?.length && cacheTable) {
       const caches = await cacheTable.getEntire(ids)
       return caches.map(cache => cache.id === "pinterest" ? { ...cache, items: currentPinterestItems(cache.items) } : cache.id === "quora" ? { ...cache, items: currentQuoraItems(cache.items) } : cache.id === "x" ? { ...cache, items: currentXItems(cache.items) } : cache)
-        .filter(cache => isCurrentTikTokCache(cache) && isCurrentYouTubeCache(cache) && isCurrentInstagramCache(cache) && isCurrentFacebookCache(cache) && isCurrentPinterestCache(cache) && isCurrentQuoraCache(cache) && isCurrentXCache(cache) && isCurrentRumbleCache(cache) && isCurrentParamountCache(cache) && isCurrentPeacockCache(cache))
+        .filter(cache => isCurrentTikTokCache(cache) && isCurrentYouTubeCache(cache) && isCurrentInstagramCache(cache) && isCurrentFacebookCache(cache) && isCurrentPinterestCache(cache) && isCurrentQuoraCache(cache) && isCurrentXCache(cache) && isCurrentRumbleCache(cache) && isCurrentParamountCache(cache) && isCurrentPeacockCache(cache) && isCurrentDisneyCache(cache))
         .map(cache => ({
           status: "cache",
           id: cache.id,

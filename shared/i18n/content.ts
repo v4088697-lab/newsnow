@@ -21,7 +21,7 @@ export function sourceDescription(id: string, original: string | undefined, loca
   if (id === "quora") text = "Public Quora questions indexed by Google News within 7 days, with up to 10 recent topic recommendations. Index dates are not verified question creation dates. This feed has no engagement counts, so these are discovery picks, not an official Quora popularity ranking."
   if (id === "rumble") text = "Rumble videos published within 7 days, sorted by public cumulative views when available; otherwise recent Google News indexed video picks. Index dates do not verify upload dates. Up to 10, not a sitewide weekly ranking or seven-day view growth. Official updates are labeled when recommendations are unavailable."
   if (id === "netflix") text = "Latest complete Netflix global English TV week. The chart date is shown; regional availability may vary."
-  if (["paramountplus", "peacock"].includes(id)) text = original
+  if (["paramountplus", "peacock", "disneyplus"].includes(id)) text = original
   return `${translate(locale, text)} ${translate(locale, "Original headlines are preserved.")}`
 }
 
