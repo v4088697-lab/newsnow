@@ -19,6 +19,11 @@ const PROMOTIONS = {
     srcSet: "/assets/promotions/kailash-multicolor-bracelet-480.175cdb88cea8.webp 480w, /assets/promotions/kailash-multicolor-bracelet-960.e7a6df546f52.webp 960w, /assets/promotions/kailash-multicolor-bracelet-1920.01f9049256b4.webp 1920w",
     alt: "Multicolored bead bracelet with English material labels on a black background",
   },
+  fourth: {
+    src: "/assets/promotions/kailash-necklace-960.4a4ca374bf54.webp",
+    srcSet: "/assets/promotions/kailash-necklace-480.fde1547cd19c.webp 480w, /assets/promotions/kailash-necklace-960.4a4ca374bf54.webp 960w, /assets/promotions/kailash-necklace-1920.4db63ba8c92b.webp 1920w",
+    alt: "Carved-bead necklace with pendants and tassels on a red velvet display",
+  },
 }
 
 function subscribeToGridSize(onChange: () => void) {

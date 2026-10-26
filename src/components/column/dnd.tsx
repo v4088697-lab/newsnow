@@ -35,6 +35,7 @@ export function Dnd() {
             {index === Math.min(firstRowSize, items.length) - 1 && <AdvertisementSlot />}
             {items.length > firstRowSize && index === Math.min(firstRowSize * 2, items.length) - 1 && <AdvertisementSlot variant="second" />}
             {items.length > firstRowSize * 2 && index === Math.min(firstRowSize * 3, items.length) - 1 && <AdvertisementSlot variant="third" />}
+            {items.length > firstRowSize * 3 && index === Math.min(firstRowSize * 4, items.length) - 1 && <AdvertisementSlot variant="fourth" />}
           </Fragment>
         ))}
       </ol>
