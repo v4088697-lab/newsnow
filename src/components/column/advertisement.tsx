@@ -34,6 +34,11 @@ const PROMOTIONS = {
     srcSet: "/assets/promotions/kailash-turquoise-bracelet-480.33b111bbf656.webp 480w, /assets/promotions/kailash-turquoise-bracelet-960.a4b1920d6d7d.webp 960w, /assets/promotions/kailash-turquoise-bracelet-1920.6311ae20f8cf.webp 1920w",
     alt: "Turquoise and black bead bracelet with a brass charm on an antique wooden box",
   },
+  seventh: {
+    src: "/assets/promotions/kailash-yellow-bracelet-960.63674bc7b421.webp",
+    srcSet: "/assets/promotions/kailash-yellow-bracelet-480.3ca776544a73.webp 480w, /assets/promotions/kailash-yellow-bracelet-960.63674bc7b421.webp 960w, /assets/promotions/kailash-yellow-bracelet-1920.13619949c0b5.webp 1920w",
+    alt: "Yellow bead bracelet with turquoise accents and a silver charm beside a painted wooden box",
+  },
 }
 
 function subscribeToGridSize(onChange: () => void) {
