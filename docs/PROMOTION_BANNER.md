@@ -1,5 +1,9 @@
 # First-row promotion banner
 
+A second 3:1 banner now follows the second source-card row and uses the same
+destination. Its separate artwork and responsive assets are documented in
+`SECOND_PROMOTION_BANNER.md`; the first banner below is preserved.
+
 The supplied bracelet image appears directly after the first complete row
 of source cards, spanning the content grid. It follows three cards on desktop
 (1200px and wider), two on tablet (640–1199px), and one on mobile. If a Followed

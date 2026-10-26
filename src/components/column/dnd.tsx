@@ -33,6 +33,7 @@ export function Dnd() {
           <Fragment key={id}>
             <li><SortableCardWrapper id={id} sortable={sortable} immediate={index < 2} /></li>
             {index === Math.min(firstRowSize, items.length) - 1 && <AdvertisementSlot />}
+            {items.length > firstRowSize && index === Math.min(firstRowSize * 2, items.length) - 1 && <AdvertisementSlot variant="second" />}
           </Fragment>
         ))}
       </ol>
