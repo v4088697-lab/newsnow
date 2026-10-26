@@ -19,6 +19,7 @@ export function SourceGrid() {
           {items.length > firstRowSize * 2 && index === Math.min(firstRowSize * 3, items.length) - 1 && <AdvertisementSlot variant="third" />}
           {items.length > firstRowSize * 3 && index === Math.min(firstRowSize * 4, items.length) - 1 && <AdvertisementSlot variant="fourth" />}
           {items.length > firstRowSize * 4 && index === Math.min(firstRowSize * 5, items.length) - 1 && <AdvertisementSlot variant="fifth" />}
+          {items.length > firstRowSize * 5 && index === Math.min(firstRowSize * 6, items.length) - 1 && <AdvertisementSlot variant="sixth" />}
         </Fragment>
       ))}
     </ol>

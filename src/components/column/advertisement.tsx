@@ -29,6 +29,11 @@ const PROMOTIONS = {
     srcSet: "/assets/promotions/kailash-dzi-bracelet-480.6d4927048cb2.webp 480w, /assets/promotions/kailash-dzi-bracelet-960.926fadaf34a6.webp 960w, /assets/promotions/kailash-dzi-bracelet-1920.ff54cc114386.webp 1920w",
     alt: "Dzi-bead bracelet with English material labels on a black background",
   },
+  sixth: {
+    src: "/assets/promotions/kailash-turquoise-bracelet-960.a4b1920d6d7d.webp",
+    srcSet: "/assets/promotions/kailash-turquoise-bracelet-480.33b111bbf656.webp 480w, /assets/promotions/kailash-turquoise-bracelet-960.a4b1920d6d7d.webp 960w, /assets/promotions/kailash-turquoise-bracelet-1920.6311ae20f8cf.webp 1920w",
+    alt: "Turquoise and black bead bracelet with a brass charm on an antique wooden box",
+  },
 }
 
 function subscribeToGridSize(onChange: () => void) {
