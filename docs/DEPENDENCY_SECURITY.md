@@ -1,4 +1,29 @@
-# Dependency security updates — 2026-10-24
+# Dependency security updates — latest check 2026-10-28
+
+## 2026-10-28: qs CVE-2026-110816
+
+The latest screenshot's `qs` finding is fixed by pinning the existing pnpm
+override to **6.16.1** and regenerating the lockfile. The only resolved package
+changed in this update is `qs` (6.16.0 → 6.16.1); earlier security overrides,
+adapter patches and application code remain unchanged.
+
+The [upstream advisory](https://github.com/ljharb/qs/security/advisories/GHSA-6pq8-jhm2-2vcw)
+identifies an uncaught exception in comma-array serialization when an element
+has a non-callable own `toString`. Versions 6.7.0 through 6.16.0 are affected;
+6.16.1 is the patched release. The dependency path is
+`nitropack → unstorage → @netlify/blobs → @netlify/dev-utils → netlify → qs`.
+
+Validation for this update: frozen-lockfile installation, type checks, lint,
+all **260 tests**, production build and SEO/runtime page checks passed. The
+advisory input no longer throws with either value of `encodeValuesOnly`, and
+ordinary comma-array serialization and parsing were also checked.
+
+The project production-dependency audit reports **0 advisories**. The complete
+audit reports **2** remaining build-tool findings, listed below; neither is
+suppressed. These are dated audit results, not a claim that all possible
+vulnerabilities are absent. Redeploy Hostinger and scan the new deployment.
+
+## Earlier remediation — 2026-10-24
 
 The six scanner findings in the Hostinger screenshot are addressed in
 `package.json` and `pnpm-lock.yaml`. Deploy both files together.
@@ -69,12 +94,13 @@ application or future vulnerabilities.
 
 ## Remaining build dependency advisories
 
-One high-severity advisory remains visible in the full audit. It is not
-suppressed or treated as fixed:
+At the 2026-10-28 check, one high-severity and one low-severity advisory remain
+visible in the full audit. Neither is suppressed or treated as fixed:
 
-| Dependency path under vite-plugin-with-nitro → nitropack | Advisory | Status |
+| Build dependency path | Advisory | Status |
 | --- | --- | --- |
-| listhen → node-forge 1.4.0 | [GHSA-86w9-cpqp-85rv](https://github.com/advisories/GHSA-86w9-cpqp-85rv) | No patched upstream release listed at verification time. |
+| nitropack → listhen → node-forge 1.4.0 | [GHSA-86w9-cpqp-85rv](https://github.com/advisories/GHSA-86w9-cpqp-85rv) | High severity; no patched upstream release listed in the audit. |
+| workbox-build / nitropack → @rollup/plugin-node-resolve → deepmerge 4.3.1 | [GHSA-gcqx-w48m-w2h4](https://github.com/advisories/GHSA-gcqx-w48m-w2h4) | Low severity; no patched upstream release listed in the audit. |
 
 The generated `dist/output/server/package.json` and its external runtime
 modules do not contain node-forge or zod, and extract-zip is no longer in the
