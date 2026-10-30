@@ -1,8 +1,38 @@
-# Dependency security updates — latest check 2026-10-28
+# Dependency security updates — latest check 2026-10-30
+
+## 2026-10-30: five seroval advisories
+
+The screenshot's five `seroval` findings are addressed by pinning the existing
+pnpm override to **1.6.11** and regenerating the lockfile. TanStack Router and
+`seroval-plugins` now resolve a single `seroval@1.6.11` instead of 1.6.7.
+No other resolved package version, earlier security fix or application feature
+is changed by this update.
+
+| Advisory | Earliest patched version |
+| --- | --- |
+| [CVE-2026-116580](https://github.com/lxsmnsyc/seroval/security/advisories/GHSA-7rv5-mrxv-xcr9) — async-iterator source validation | 1.6.8 |
+| [CVE-2026-116581](https://github.com/lxsmnsyc/seroval/security/advisories/GHSA-97r2-qh9m-474h) — array and sequence metadata denial of service | 1.6.8 |
+| [CVE-2026-116584](https://github.com/lxsmnsyc/seroval/security/advisories/GHSA-wp97-x4hv-qvhp) — invalid array element-list length | 1.6.8 |
+| [CVE-2026-116582](https://github.com/lxsmnsyc/seroval/security/advisories/GHSA-9wx9-5pv9-3349) — RegExp HTML script injection on the 1.x line | 1.6.10 |
+| [CVE-2026-116583](https://github.com/lxsmnsyc/seroval/security/advisories/GHSA-f86p-h4j2-7qgj) — typed-array constructor code injection | 1.6.11 |
+
+Validation: frozen-lockfile installation, type checks, lint, all **260 tests**,
+production build and SEO/runtime page checks passed. The running news API
+returned HTTP 200 with 30 CNN items. Focused checks confirmed that `fromJSON`
+and `fromCrossJSON` reject non-array element lists; JavaScript-output APIs
+ignore an untrusted typed-array constructor name; RegExp sources containing
+`<` are escaped; ordinary structured-data round trips still work.
+
+The production-dependency audit reports **0 advisories**. The complete audit
+still reports the two build-tool findings listed below (`node-forge` and
+`deepmerge`), with no patched upstream versions listed. The five screenshot
+findings are absent from the audit and 1.6.7 is absent from the lockfile.
+Hostinger must install this lockfile in a fresh deployment and rescan it before
+the live application can be considered updated.
 
 ## 2026-10-28: qs CVE-2026-110816
 
-The latest screenshot's `qs` finding is fixed by pinning the existing pnpm
+The 2026-10-28 screenshot's `qs` finding is fixed by pinning the existing pnpm
 override to **6.16.1** and regenerating the lockfile. The only resolved package
 changed in this update is `qs` (6.16.0 → 6.16.1); earlier security overrides,
 adapter patches and application code remain unchanged.
@@ -94,7 +124,7 @@ application or future vulnerabilities.
 
 ## Remaining build dependency advisories
 
-At the 2026-10-28 check, one high-severity and one low-severity advisory remain
+At the 2026-10-30 check, one high-severity and one low-severity advisory remain
 visible in the full audit. Neither is suppressed or treated as fixed:
 
 | Build dependency path | Advisory | Status |
