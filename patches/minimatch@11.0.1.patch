@@ -1,0 +1,12 @@
+diff --git a/dist/commonjs/index.js b/dist/commonjs/index.js
+index ec1981d9a738ecf28d63190e27506ff0e600bf79..e8d39b9937c406ce605023a6af77024c1a172a7d 100644
+--- a/dist/commonjs/index.js
++++ b/dist/commonjs/index.js
+@@ -1509,4 +1509,7 @@ Object.defineProperty(exports, "unescape", { enumerable: true, get: function ()
+ exports.minimatch.Minimatch = Minimatch;
+ exports.minimatch.escape = escape_js_1.escape;
+ exports.minimatch.unescape = unescape_js_1.unescape;
++// Legacy consumers call require('minimatch') directly. Keep that call form
++// while retaining the patched v11 implementation and all modern named exports.
++module.exports = Object.assign(exports.minimatch, exports);
+ //# sourceMappingURL=index.js.map

@@ -1,4 +1,44 @@
-# Dependency security updates — latest check 2026-10-30
+# Dependency security updates — latest check 2026-11-05
+
+## 2026-11-05: node-forge, minimatch and glob screenshots
+
+All dependency paths now use the following exact pnpm overrides. The lockfile
+contains no earlier versions of these three packages.
+
+| Package | Previous versions | Locked version | Upstream security reference |
+| --- | --- | --- | --- |
+| node-forge | 1.4.0 | 1.4.3 | [Forge changelog](https://github.com/digitalbazaar/forge/blob/v1.4.3/CHANGELOG.md) |
+| minimatch | 3.1.5, 5.1.9, 9.0.9, 10.2.4 | 11.0.1 | [CVE-2026-118764](https://github.com/isaacs/minimatch/security/advisories/GHSA-g3hv-75wg-m249) |
+| glob | 10.5.0, 11.1.0, 13.0.6 | 14.0.2 | [CVE-2026-118773](https://github.com/isaacs/node-glob/security/advisories/GHSA-3g3m-2fjr-6pw4) |
+
+Forge 1.4.3 includes the 1.4.1 fixes for the screenshots' CVE-2026-118779,
+CVE-2026-118782, CVE-2026-119188, CVE-2026-119187, CVE-2026-119190,
+CVE-2026-118777, CVE-2026-118778 and CVE-2026-119186, plus subsequent
+compatibility and security fixes. The later screenshot's glob 11 and 13
+instances are covered by the same global override as glob 10.
+
+Two committed pnpm patches preserve compatibility with older build tools:
+
+- The minimatch CommonJS entry exports the v11 matcher as a callable function
+  while retaining its modern named exports. Its matching implementation is
+  unchanged.
+- ESLint's `import-x/no-internal-modules` rule uses `new Minimatch().match()`
+  instead of the removed `makeRe()` API. The rule remains enabled.
+
+Validation: a frozen-lockfile install applies both patches; type checks, lint,
+all **266 tests**, the Node production build and SEO/runtime page checks pass.
+Six new regression tests exercise legacy matcher calls, bounded pattern and
+malformed-PEM processing, sync/async file traversal, cancellation before
+directory reads, and RSA/PEM compatibility. The running CNN API returns HTTP
+200 with 30 items. Earlier security overrides and application features are
+preserved.
+
+The production dependency audit reports **0 advisories**. The complete audit
+reports **1 low-severity deepmerge advisory**, with no patched release listed;
+it reports no moderate, high or critical findings. None of the screenshots'
+three packages appears in the remaining audit findings. These results describe
+the local dependency tree, not the current Hostinger deployment. Redeploy the
+updated branch and rescan as described below.
 
 ## 2026-10-30: five seroval advisories
 
@@ -124,19 +164,18 @@ application or future vulnerabilities.
 
 ## Remaining build dependency advisories
 
-At the 2026-10-30 check, one high-severity and one low-severity advisory remain
-visible in the full audit. Neither is suppressed or treated as fixed:
+At the 2026-11-05 check, one low-severity advisory remains visible in the full
+audit. It is not suppressed or treated as fixed:
 
 | Build dependency path | Advisory | Status |
 | --- | --- | --- |
-| nitropack → listhen → node-forge 1.4.0 | [GHSA-86w9-cpqp-85rv](https://github.com/advisories/GHSA-86w9-cpqp-85rv) | High severity; no patched upstream release listed in the audit. |
 | workbox-build / nitropack → @rollup/plugin-node-resolve → deepmerge 4.3.1 | [GHSA-gcqx-w48m-w2h4](https://github.com/advisories/GHSA-gcqx-w48m-w2h4) | Low severity; no patched upstream release listed in the audit. |
 
 The generated `dist/output/server/package.json` and its external runtime
 modules do not contain node-forge or zod, and extract-zip is no longer in the
-project lockfile. Node-forge's absence from the Node runtime does not resolve
-the advisory in the development/build tools. Resolving this remaining finding
-requires an upstream fix or replacement of the affected development tooling.
+project lockfile. Forge is also patched in the development/build dependency
+tree. Resolving the remaining deepmerge finding requires an upstream fix or
+replacement of the affected development tooling.
 
 ## Hostinger deployment
 
