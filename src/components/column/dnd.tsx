@@ -1,5 +1,4 @@
 import type { PropsWithChildren } from "react"
-import { Fragment } from "react"
 import type { SourceID } from "@shared/types"
 import type { BaseEventPayload, ElementDragType } from "@atlaskit/pragmatic-drag-and-drop/dist/types/internal-types"
 import { extractClosestEdge } from "@atlaskit/pragmatic-drag-and-drop-hitbox/closest-edge"
@@ -11,14 +10,12 @@ import { DndContext } from "../common/dnd"
 import { useSortable } from "../common/dnd/useSortable"
 import type { ItemsProps } from "./card"
 import { CardWrapper } from "./card"
-import { AdvertisementSlot, useFirstRowSize } from "./advertisement"
 import { useLocale } from "~/i18n"
 import { currentColumnIDAtom, currentSourcesAtom } from "~/atoms"
 
 const AnimationDuration = 200
 export function Dnd() {
   const [items, setItems] = useAtom(currentSourcesAtom)
-  const firstRowSize = useFirstRowSize()
   const currentColumnID = useAtomValue(currentColumnIDAtom)
   const sortable = currentColumnID === "focus"
   const [parent] = useAutoAnimate({ duration: AnimationDuration })
@@ -30,17 +27,7 @@ export function Dnd() {
     <DndWrapper items={items} setItems={setItems} sortable={sortable}>
       <ol className="source-grid" ref={parent}>
         {items.map((id, index) => (
-          <Fragment key={id}>
-            <li><SortableCardWrapper id={id} sortable={sortable} immediate={index < 2} /></li>
-            {index === Math.min(firstRowSize, items.length) - 1 && <AdvertisementSlot />}
-            {items.length > firstRowSize && index === Math.min(firstRowSize * 2, items.length) - 1 && <AdvertisementSlot variant="second" />}
-            {items.length > firstRowSize * 2 && index === Math.min(firstRowSize * 3, items.length) - 1 && <AdvertisementSlot variant="third" />}
-            {items.length > firstRowSize * 3 && index === Math.min(firstRowSize * 4, items.length) - 1 && <AdvertisementSlot variant="fourth" />}
-            {items.length > firstRowSize * 4 && index === Math.min(firstRowSize * 5, items.length) - 1 && <AdvertisementSlot variant="fifth" />}
-            {items.length > firstRowSize * 5 && index === Math.min(firstRowSize * 6, items.length) - 1 && <AdvertisementSlot variant="sixth" />}
-            {items.length > firstRowSize * 6 && index === Math.min(firstRowSize * 7, items.length) - 1 && <AdvertisementSlot variant="seventh" />}
-            {items.length > firstRowSize * 7 && index === Math.min(firstRowSize * 8, items.length) - 1 && <AdvertisementSlot variant="eighth" />}
-          </Fragment>
+          <li key={id}><SortableCardWrapper id={id} sortable={sortable} immediate={index < 2} /></li>
         ))}
       </ol>
     </DndWrapper>
